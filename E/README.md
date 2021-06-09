@@ -1,8 +1,10 @@
----
-title: Explore
-Date: 2021
-This page is used to share some colorful things with you!
----
+# Explore
+
+#### ——分享色彩缤纷的事
+
+欢迎投稿：2546240576@qq.com, 请注明  “#投稿 Explore”！
+
+
 
 
 
