@@ -1,14 +1,16 @@
-# Explore
+---
+title: Explore  
+discription: Hi  
+---
 
-#### ——分享色彩缤纷的事  
+# Explore  
 
-欢迎投稿：2546240576@qq.com, 请注明  “#投稿 Explore”！  
+#### ——分享色彩缤纷的事    
 
-</br>
-</br>
-</br>
-<center> Test </center>
+欢迎投稿：2546240576@qq.com, 请注明  “#投稿 Explore”！    
 
+<br />  
+<br />  
 
 #### 2021.6 史蒂夫·麦凯瑞  
 
