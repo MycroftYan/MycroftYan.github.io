@@ -1,4 +1,4 @@
 认识系列：
 
-[THUPC2021A研究](/THUPC2021A研究)
+[THUPC2021A研究](/A/THUPC2021A研究)
 
