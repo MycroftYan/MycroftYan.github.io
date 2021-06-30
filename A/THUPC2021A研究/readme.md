@@ -55,7 +55,7 @@ void inc(int x,int sgn){
 }
 ```
 
-
+mycroftyan.github.io/A/THUPC2021A研究
 
 # 可拓展性
 
