@@ -1,1 +1,6 @@
+
+ markdown: kramdown 
+    mathjax: true 
+    hardwrap : true
+
 theme: jekyll-theme-cayman
