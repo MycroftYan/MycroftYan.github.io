@@ -1,5 +1,2 @@
 
- markdown: kramdown
-    hardwrap : true
-
 theme: jekyll-theme-cayman
