@@ -1,0 +1,45 @@
+# Oh,Cotton~
+
+
+
+## 棉花打机
+
+![IMG_20210722_084232](IMG_20210722_084232.jpg)
+
+---
+
+![IMG_20210722_203812](C:\Users\Administrator\Documents\GitHub\MycroftYan.github.io\C\棉花\IMG_20210722_203812.jpg)
+
+---
+
+![IMG_20210722_100920_2](C:\Users\Administrator\Documents\GitHub\MycroftYan.github.io\C\棉花\IMG_20210722_100920_2.jpg)
+
+
+
+
+
+## 棉花活蹦乱跳
+
+![IMG_20210811_200926](C:\Users\Administrator\Documents\GitHub\MycroftYan.github.io\C\棉花\IMG_20210811_200926.jpg)
+
+---
+
+![IMG_20210729_130951_2](C:\Users\Administrator\Documents\GitHub\MycroftYan.github.io\C\棉花\IMG_20210729_130951_2.jpg)
+
+---
+
+![IMG_20210722_194653](C:\Users\Administrator\Documents\GitHub\MycroftYan.github.io\C\棉花\IMG_20210722_194653.jpg)
+
+
+
+## 棉花睡觉
+
+![IMG_20210811_165703](C:\Users\Administrator\Documents\GitHub\MycroftYan.github.io\C\棉花\IMG_20210811_165703.jpg)
+
+---
+
+![IMG_20210812_091833](C:\Users\Administrator\Documents\GitHub\MycroftYan.github.io\C\棉花\IMG_20210812_091833.jpg)
+
+---
+
+![IMG_20210814_095532](C:\Users\Administrator\Documents\GitHub\MycroftYan.github.io\C\棉花\IMG_20210814_095532.jpg)
