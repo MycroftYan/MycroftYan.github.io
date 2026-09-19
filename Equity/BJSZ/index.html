@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百济神州公司分析底稿</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #f4f6f9;
+    --card:      #ffffff;
+    --sidebar:   #eef1f6;
+    --text:      #2e3440;
+    --muted:     #8b949e;
+    --border:    #d8dee4;
+    --border-lt: #e8ecf1;
+    --accent:    #3574d4;
+    --accent-bg: #e8f0fe;
+    --green:     #2e7d57;
+    --green-bg:  #e3f5ec;
+    --quote:     #5b6b82;
+    --quote-bg:  #eef1f6;
+    --heading:   #1c2433;
+    --toc-w:     252px;
+    --radius:    8px;
+    --shadow:    0 1px 3px rgba(31,35,40,.08);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:20px; }
+  body {
+    font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px; line-height: 1.8; color: var(--text);
+    background: var(--bg);
+  }
+
+  /* ── Sidebar ── */
+  nav.toc {
+    position: fixed; top:0; left:0; width: var(--toc-w); height: 100vh;
+    background: var(--sidebar); border-right: 1px solid var(--border-lt);
+    overflow-y: auto; z-index: 100; padding: 0;
+    scrollbar-width: thin; scrollbar-color: #ccc transparent;
+  }
+  nav.toc::-webkit-scrollbar { width:4px; }
+  nav.toc::-webkit-scrollbar-thumb { background:#ccc; border-radius:2px; }
+
+  .toc-brand {
+    padding: 20px 18px 14px; border-bottom: 1px solid var(--border-lt);
+  }
+  .toc-brand .label {
+    font-size: 11px; font-weight: 600; color: var(--accent);
+    letter-spacing: .06em; text-transform: uppercase;
+  }
+  .toc-brand .doc-title {
+    font-family: "Noto Serif SC", serif;
+    font-size: 15px; font-weight: 700; color: var(--heading);
+    margin-top: 4px; line-height: 1.35;
+  }
+
+  nav.toc > ul { list-style:none; padding:8px 0 28px; }
+  nav.toc a {
+    display: block; padding: 3px 18px; font-size: 13px; line-height: 1.5;
+    color: #57606a; text-decoration: none;
+    border-left: 2px solid transparent; transition: all .1s;
+  }
+  nav.toc a:hover {
+    color: var(--accent); background: var(--accent-bg);
+    border-left-color: var(--accent);
+  }
+  nav.toc .toc-h1 {
+    font-weight: 700; color: var(--heading); font-size: 13px;
+    margin-top: 12px; padding-top: 8px;
+    border-top: 1px solid var(--border-lt);
+  }
+  nav.toc li:first-child .toc-h1, nav.toc .toc-h1:first-child { border-top:none; margin-top:0; }
+  nav.toc .toc-h2 { font-weight:600; padding-left:24px; color:#3d4852; }
+  nav.toc .toc-h3 { padding-left:34px; font-size:12.5px; color:var(--muted); }
+  nav.toc .toc-h4 { padding-left:44px; font-size:12px; color:#adb5bd; }
+
+  /* ── Main ── */
+  main { margin-left: var(--toc-w); padding: 36px 48px 80px; }
+  .wrap {
+    max-width: 940px; margin: 0 auto;
+    background: var(--card); border-radius: 12px;
+    padding: 40px 48px; border: 1px solid var(--border-lt);
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+  }
+
+  /* ── Headings ── */
+  h1 {
+    font-family: "Noto Serif SC", serif;
+    font-size: 28px; font-weight: 700; color: var(--heading);
+    padding-bottom: 12px; margin-bottom: 16px;
+    border-bottom: 2px solid var(--accent);
+  }
+  h2 {
+    font-size: 19px; font-weight: 700; color: var(--accent);
+    margin: 44px 0 14px;
+    padding: 0 0 8px;
+    border-bottom: 2px solid var(--accent);
+  }
+  h3 {
+    font-size: 16px; font-weight: 600; color: var(--heading);
+    margin: 28px 0 8px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--border-lt);
+  }
+  h4 {
+    font-size: 14.5px; font-weight: 600; color: var(--green);
+    margin: 18px 0 6px;
+  }
+  p { margin: 7px 0; }
+
+  /* ── Tables ── */
+  .table-wrap {
+    overflow-x: auto; margin: 14px 0;
+    border: 1px solid var(--border); border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--card); }
+  thead th {
+    background: var(--accent); color: #fff;
+    font-weight: 600; font-size: 12.5px; text-align: left;
+    padding: 9px 14px; border-bottom: none;
+  }
+  tbody td {
+    padding: 8px 14px; vertical-align:top;
+    border-bottom: 1px solid var(--border-lt);
+  }
+  tbody tr:last-child td { border-bottom:none; }
+  tbody tr:hover td { background: #f6f8fa; }
+  tbody td:first-child { font-weight:500; color:var(--heading); }
+
+  /* ── Blockquote (LLM判断) ── */
+  blockquote {
+    margin: 10px 0; padding: 12px 18px;
+    background: var(--quote-bg); border-left: 3px solid var(--quote);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 14px;
+  }
+  blockquote p { margin:3px 0; color: var(--quote); }
+  blockquote strong { color: var(--accent); }
+
+  /* ── Code ── */
+  code {
+    background: #eff1f3; padding:2px 6px; border-radius:4px; font-size:13px;
+    font-family: "Cascadia Code","Fira Code",Consolas,monospace; color:#0550ae;
+  }
+  pre {
+    background:#f6f8fa; color:var(--text); padding:16px 18px;
+    border-radius:var(--radius); border:1px solid var(--border-lt);
+    overflow-x:auto; margin:12px 0;
+  }
+  pre code { background:none; color:inherit; padding:0; }
+
+  /* ── Lists ── */
+  ul,ol { padding-left:22px; margin:5px 0; }
+  li { margin:3px 0; }
+  li::marker { color:var(--accent); }
+
+  /* ── Misc ── */
+  strong { color:var(--heading); }
+  hr { border:none; height:1px; background:var(--border-lt); margin:28px 0; }
+
+  /* ── Responsive ── */
+  @media print {
+    nav.toc { display:none; }
+    main { margin-left:0; padding:20px; }
+    .wrap { max-width:100%; }
+  }
+  @media (max-width:940px) {
+    nav.toc { display:none; }
+    main { margin-left:0; padding:16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="toc">
+  <div class="toc-brand">
+    <div class="label">分析底稿</div>
+    <div class="doc-title">百济神州</div>
+  </div>
+  <ul>
+  <li class="toc-h1"><a href="#s-1-百济神州公司分析底稿">百济神州公司分析底稿</a></li>
+  <li class="toc-h2"><a href="#s-2-汇总表">汇总表</a></li>
+  <li class="toc-h2"><a href="#s-3-一商业模式">一、商业模式</a></li>
+  <li class="toc-h3"><a href="#s-4-商0-利润来源管线是否能确认落实">商0. 利润来源管线是否能确认落实</a></li>
+  <li class="toc-h3"><a href="#s-5-商1-重复性资本开支">商1. 重复性资本开支</a></li>
+  <li class="toc-h3"><a href="#s-6-商2-收现金-vs-收应收先货后款-vs-先钱后货">商2. 收现金 vs 收应收，先货后款 vs 先钱后货</a></li>
+  <li class="toc-h3"><a href="#s-7-商31-所属行业是垄断还是竞争型">商3.1 所属行业是垄断还是竞争型</a></li>
+  <li class="toc-h3"><a href="#s-8-商32-企业在行业中属竞争还是垄断型">商3.2 企业在行业中属竞争还是垄断型</a></li>
+  <li class="toc-h3"><a href="#s-9-商33-公司是否有应付社会责任">商3.3 公司是否有应付社会责任</a></li>
+  <li class="toc-h3"><a href="#s-10-商41-企业是否具备调整自己产品售价的能力定价权">商4.1 企业是否具备调整自己产品售价的能力（定价权）</a></li>
+  <li class="toc-h3"><a href="#s-11-商42-企业是否具备调整自己产品成本的能力">商4.2 企业是否具备调整自己产品成本的能力</a></li>
+  <li class="toc-h3"><a href="#s-12-商51-产品差异性品牌力护城河">商5.1 产品差异性、品牌力、护城河</a></li>
+  <li class="toc-h3"><a href="#s-13-商52-成本侧是否存在周期性">商5.2 成本侧是否存在周期性</a></li>
+  <li class="toc-h3"><a href="#s-14-商53-售价侧是否存在周期性">商5.3 售价侧是否存在周期性</a></li>
+  <li class="toc-h2"><a href="#s-15-二重要财务指标">二、重要财务指标</a></li>
+  <li class="toc-h3"><a href="#s-16-财0-穿透回报派息-注销型回购">财0. 穿透回报（派息 + 注销型回购）</a></li>
+  <li class="toc-h3"><a href="#s-17-财1-穿透回报率">财1. 穿透回报率</a></li>
+  <li class="toc-h3"><a href="#s-18-财11-适当参考内容">财1.1 适当参考内容</a></li>
+  <li class="toc-h3"><a href="#s-19-财12-保守未来净利润-应收三项">财1.2 保守未来净利润 / 应收三项</a></li>
+  <li class="toc-h3"><a href="#s-20-财13-公司公告最低股息支付率">财1.3 公司公告最低股息支付率</a></li>
+  <li class="toc-h3"><a href="#s-21-财2-现金方面">财2. 现金方面</a></li>
+  <li class="toc-h3"><a href="#s-22-财21-真实可支配现金流">财2.1 真实可支配现金流</a></li>
+  <li class="toc-h3"><a href="#s-23-财22-真实可支配现金流-vs-自由现金流FCF">财2.2 真实可支配现金流 vs 自由现金流（FCF）</a></li>
+  <li class="toc-h3"><a href="#s-24-财23-现金储备">财2.3 现金储备</a></li>
+  <li class="toc-h3"><a href="#s-25-综合现金因子表">综合现金因子表</a></li>
+  <li class="toc-h3"><a href="#s-26-财31-股息率的历史水平和分位数">财3.1 股息率的历史水平和分位数</a></li>
+  <li class="toc-h3"><a href="#s-27-最新滚动十二个月TTM速览">最新滚动十二个月（TTM）速览</a></li>
+  <li class="toc-h2"><a href="#s-28-三行业逻辑">三、行业逻辑</a></li>
+  <li class="toc-h3"><a href="#s-29-1-产品研发与商业化进展">1. 产品研发与商业化进展</a></li>
+  <li class="toc-h3"><a href="#s-30-2-国际化与海外市场">2. 国际化与海外市场</a></li>
+  <li class="toc-h3"><a href="#s-31-3-政策环境">3. 政策环境</a></li>
+  <li class="toc-h3"><a href="#s-32-4-成本与运营效率">4. 成本与运营效率</a></li>
+  <li class="toc-h3"><a href="#s-33-5-需求基本面与行业格局">5. 需求基本面与行业格局</a></li>
+  <li class="toc-h3"><a href="#s-34-6-战略并购与业务整合">6. 战略并购与业务整合</a></li>
+  <li class="toc-h3"><a href="#s-35-7-产品结构与毛利变化">7. 产品结构与毛利变化</a></li>
+</ul>
+</nav>
+
+<main><div class="wrap">
+<h1 id="s-1-百济神州公司分析底稿">百济神州公司分析底稿</h1>
+<blockquote>
+<p>数据截至：2026-08-09
+最新年报：2025年度（pub 2026-04-15）| 最新季报：2026Q1（pub 2026-05-12）| 最新半年度主要财务数据：2026H1（pub 2026-08-06，未经审计）
+估值数据：2026-08-06收盘</p>
+</blockquote>
+<hr />
+<h2 id="s-2-汇总表">汇总表</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>关键数值</th>
+<th>事实概述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>商0. 利润管线</strong></td>
+<td>产品收入382.2亿(2025)</td>
+<td>核心产品泽布替尼(百悦泽)全球超75市场获批，BTK抑制剂全球龙头；替雷利珠单抗(百泽安)超50市场获批；索托克拉(百悦达)中美获批</td>
+</tr>
+<tr>
+<td><strong>商1. 重复性资本开支</strong></td>
+<td>Capex/营收=3.76%(2025)</td>
+<td>资本开支占比低且递减；但研发费用占比极高(40.57%)，是实质性的"资本开支"</td>
+</tr>
+<tr>
+<td><strong>商2. 收现模式</strong></td>
+<td>收现比=122.2%(2025)</td>
+<td>收现金为主，应收账款占营收15.6%，有合同负债2.5亿；已转为先货后部分款模式</td>
+</tr>
+<tr>
+<td><strong>商3.1 行业格局</strong></td>
+<td>全球抗肿瘤药物市场</td>
+<td>竞争型行业（创新药），但细分领域(BTK抑制剂)已形成寡头格局</td>
+</tr>
+<tr>
+<td><strong>商3.2 企业竞争地位</strong></td>
+<td>BTK抑制剂全球第一</td>
+<td>2025年百悦泽全球销售额约260亿，超越伊布替尼成为BTK抑制剂全球市场份额第一</td>
+</tr>
+<tr>
+<td><strong>商3.3 社会责任</strong></td>
+<td>无显著社会责任负担</td>
+<td>民营企业，无特许经营牌照，无强制性社会责任支出</td>
+</tr>
+<tr>
+<td><strong>商4.1 定价权</strong></td>
+<td>毛利率87.6%(2025)</td>
+<td>创新药具备定价权，但受各国医保谈判/集采约束；全球化布局分散单一市场风险</td>
+</tr>
+<tr>
+<td><strong>商4.2 成本调整</strong></td>
+<td>成本率12.4%(2025)</td>
+<td>生产成本占比低，规模效应显现；主要费用在研发和销售</td>
+</tr>
+<tr>
+<td><strong>商5.1 差异性/品牌</strong></td>
+<td>百悦泽：同类最佳</td>
+<td>唯一头对头优于伊布替尼的BTK抑制剂；拥有完整一体化平台</td>
+</tr>
+<tr>
+<td><strong>商5.2 成本周期性</strong></td>
+<td>成本波动较小</td>
+<td>主要成本为原料药和生产制造，非大宗商品依赖，成本端弱周期</td>
+</tr>
+<tr>
+<td><strong>商5.3 售价周期性</strong></td>
+<td>营收增速波动极大</td>
+<td>处于高速成长期，营收爆发式增长；售价受医保政策影响但总体稳定</td>
+</tr>
+<tr>
+<td><strong>财0. 穿透回报</strong></td>
+<td>派息=0，回购=0</td>
+<td>历史无分红、无回购；母公司存在未弥补亏损，预计未来一段时期不会现金分红</td>
+</tr>
+<tr>
+<td><strong>财1.1 可预测性</strong></td>
+<td>资产负债率46.5%(2025)</td>
+<td>无管理层分红承诺；商业模式处于成长期，分红可预测性低</td>
+</tr>
+<tr>
+<td><strong>财1.2 应收三项</strong></td>
+<td>59.5亿(2025)</td>
+<td>全部为应收账款，无应收票据和应收款项融资</td>
+</tr>
+<tr>
+<td><strong>财1.3 股息支付率</strong></td>
+<td>0%</td>
+<td>无分红历史，无有效承诺，无法外推</td>
+</tr>
+<tr>
+<td><strong>财2.1 真实可支配现金流</strong></td>
+<td>18.5亿(2025)</td>
+<td>首年转正！2025年OCF=137.1亿，ICF=-114.6亿，财务费用=4.0亿</td>
+</tr>
+<tr>
+<td><strong>财2.2 自由现金流（FCF）</strong></td>
+<td>122.8亿(2025)</td>
+<td>OCF 137.1亿 - Capex 14.4亿 = FCF 122.8亿</td>
+</tr>
+<tr>
+<td><strong>财2.3 现金储备</strong></td>
+<td>143.4亿(2025)</td>
+<td>货币资金153.6亿 - 短期借款0 - 一年内到期10.2亿 = 143.4亿</td>
+</tr>
+<tr>
+<td><strong>财3.1 股息率</strong></td>
+<td>0%</td>
+<td>无分红历史</td>
+</tr>
+<tr>
+<td><strong>2026年全年业绩指引</strong></td>
+<td>营收449-462亿</td>
+<td>8月6日上调指引，经营利润65-71亿（扣除经营成本费用后）</td>
+</tr>
+<tr>
+<td><strong>2026H1（未经审计）</strong></td>
+<td>营收222.2亿,归母净利32.7亿</td>
+<td>同比+26.8%/+627.1%，百悦泽H1全球销售161.3亿</td>
+</tr>
+<tr>
+<td><strong>估值</strong></td>
+<td>PE=96.9,PB=11.7</td>
+<td>总市值4,148.75亿元（2026-08-06收盘），总股本15.42亿股</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="s-3-一商业模式">一、商业模式</h2>
+<h3 id="s-4-商0-利润来源管线是否能确认落实">商0. 利润来源管线是否能确认落实</h3>
+<p><strong>公司概况</strong>：百济神州有限公司（688235.XSHG / 06160.HK / ONC.NASDAQ）是一家全球性肿瘤创新治疗公司，主营业务为"创新型药物的研究、开发、生产以及商业化"。行业分类：申万一级「医药生物I」、申万二级「化学制药II」、证监会「医药制造业」。公司于2010年成立，2021年12月15日于科创板上市。</p>
+<p><strong>利润来源管线</strong>：</p>
+<p>公司利润来源分为三大板块，均有明确的产品、适应症和收入来源（年报 p.13-14）：</p>
+<ol>
+<li><strong>自研产品（核心利润来源）</strong>：</li>
+<li><strong>百悦泽（泽布替尼，BTK抑制剂）</strong>：全球获批适应症最广泛的BTK抑制剂，覆盖CLL/SLL（慢性淋巴细胞白血病/小淋巴细胞淋巴瘤）、MCL（套细胞淋巴瘤）、WM（华氏巨球蛋白血症）、MZL（边缘区淋巴瘤）、FL（滤泡性淋巴瘤）5项适应症，在全球超75个市场获批，约60个市场纳入报销。2025年全球销售额约260亿元，是公司绝对核心产品。2026H1全球销售额161.27亿元（同比+28.7%），其中美国市场113.90亿元（同比+27.2%）。</li>
+<li><strong>百泽安（替雷利珠单抗，PD-1抗体）</strong>：实体瘤产品组合基石，在全球超50个市场获批。2026H1全球销售额29.84亿元（同比+12.9%）。</li>
+<li><strong>百悦达（索托克拉，BCL2抑制剂）</strong>：2025年12月获中国首批（全球首次获批），2026年5月获美国FDA加速批准用于R/R MCL。</li>
+<li>
+<p><strong>百汇泽（帕米帕利，PARP抑制剂）</strong>：中国已获批。</p>
+</li>
+<li>
+<p><strong>安进授权产品（中国区商业化）</strong>：</p>
+</li>
+<li>
+<p>安泰适（塔拉妥单抗）、安加维（地舒单抗）、倍利妥（贝林妥欧单抗）、凯洛斯（卡非佐米）等。2026H1安进授权产品销售额20.65亿元（同比+19.6%）。</p>
+</li>
+<li>
+<p><strong>其他合作/授权产品</strong>：</p>
+</li>
+<li>百赫安（泽尼达妥单抗，HER-2双特异性抗体，Jazz/Zymeworks合作）、萨温珂、凯泽百（Recordati合作）、诺华5款产品（中国广阔市场推广）等。</li>
+</ol>
+<p><strong>收入结构</strong>：2025年营业收入382.2亿元，其中产品收入为绝对主体。百悦泽贡献约68%的产品收入，百泽安约14%，安进授权产品约10%，其他合计约8%。</p>
+<p><strong>研发管线纵深</strong>：
+- 血液肿瘤：百悦泽+索托克拉联合用药（固定疗程CLL一线，3期CELESTIAL-TNCLL试验已完成入组）、tacabrutideg（BTK-CDAC，潜在同类首创，3期CaDAnCe-303中国试验最后一例入组已完成）、BG-75202（KAT6A/B抑制剂）。
+- 实体肿瘤：BGB-43395（CDK4抑制剂，已启动乳腺癌一线3期）、BGB-B2033（GPC3x4-1BB双抗）、BG-C9074（B7-H4 ADC）、百泽安+百赫安+化疗（HER2阳性GEA一线，sBLA获FDA优先审评受理）。</p>
+<p><strong>本项小结</strong>：百济神州利润来源管线高度清晰。核心产品百悦泽是全球BTK抑制剂市场份额第一的品种，覆盖5项血液肿瘤适应症、75+个市场，收入增长路径明确。第二梯队百泽安、百悦达均已全球多市场获批。公司还拥有20余项处于临床阶段的在研项目，管线纵深良好。产品的适应症、目标患者群体、竞品格局均可清晰识别和量化。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：利润管线可确认落实，且管线纵深在全球创新药企中属于领先水平。核心风险在于百悦泽收入占比过高（~68%），单一产品依赖度高；但百悦泽覆盖多个适应症且仍在拓展（MCL一线MANGROVE试验已取得PFS优效性），加之百泽安、百悦达和实体瘤管线正在崛起，管线集中度风险正在降低。</p>
+</blockquote>
+<hr />
+<h3 id="s-5-商1-重复性资本开支">商1. 重复性资本开支</h3>
+<p><strong>逐年数据</strong>（数据来源：<code>stk_cashflow.fix_intan_other_asset_acqui_cash</code>、<code>stk_cashflow.net_operate_cash_flow</code>、<code>stk_income.operating_revenue</code>）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>资本开支(Capex,亿元)</th>
+<th>经营现金流(OCF,亿元)</th>
+<th>营业收入(亿元)</th>
+<th>Capex/营收</th>
+<th>Capex/OCF</th>
+<th>在建工程(亿元)</th>
+<th>固定资产(亿元)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>3.97</td>
+<td>0.58</td>
+<td>16.1</td>
+<td>24.6%</td>
+<td>678.8%</td>
+<td>1.70</td>
+<td>1.71</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>7.21</td>
+<td>-42.0</td>
+<td>13.1</td>
+<td>55.1%</td>
+<td>N/A(OCF&lt;0)</td>
+<td>6.84</td>
+<td>2.96</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>6.18</td>
+<td>-55.5</td>
+<td>29.5</td>
+<td>20.9%</td>
+<td>N/A</td>
+<td>1.46</td>
+<td>14.1</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>9.92</td>
+<td>-51.8</td>
+<td>21.2</td>
+<td>46.8%</td>
+<td>N/A</td>
+<td>5.60</td>
+<td>16.3</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>22.6</td>
+<td>-82.8</td>
+<td>75.9</td>
+<td>29.7%</td>
+<td>N/A</td>
+<td>11.9</td>
+<td>23.9</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>23.3</td>
+<td>-78.0</td>
+<td>95.7</td>
+<td>24.4%</td>
+<td>N/A</td>
+<td>20.4</td>
+<td>35.6</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>41.1</td>
+<td>-77.9</td>
+<td>174.2</td>
+<td>23.6%</td>
+<td>N/A</td>
+<td>52.5</td>
+<td>37.4</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>34.2</td>
+<td>-12.6</td>
+<td>272.1</td>
+<td>12.6%</td>
+<td>N/A</td>
+<td>47.2</td>
+<td>63.1</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>14.4</strong></td>
+<td><strong>137.1</strong></td>
+<td><strong>382.2</strong></td>
+<td><strong>3.76%</strong></td>
+<td><strong>10.5%</strong></td>
+<td><strong>8.93</strong></td>
+<td><strong>101.2</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>趋势分析</strong>：
+- 前5年均值(2017-2021) Capex/营收 = 35.4%
+- 后4年均值(2022-2025) Capex/营收 = 16.1%
+- 趋势标签：<strong>递减</strong>（后半段均值 &lt; 前半段均值 × 0.7）
+- 2025年Capex/营收仅3.76%，大幅下降的原因是：①营收快速增长（+40.5%）；②生产基地（苏州小分子、广州大分子、美国新泽西）基本建成，大规模建设期结束；③在建工程从2024年47.2亿降至8.9亿，固定资产从63.1亿增至101.2亿，说明资产已转固。</p>
+<p><strong>资本开支性质</strong>：百济神州的资本开支主要用于生产基地建设（年报 p.35）：
+- 苏州小分子制剂基地：占地5.2万平方米，年产能约6亿粒片剂和胶囊
+- 广州大分子生物药基地：总产能65,000升，含ADC生产设施
+- 美国新泽西临床研发和生物药生产旗舰基地：产能8,000升，2024年7月启用，已全面投产
+- 外部CMO合作：Catalent（美国百悦泽）、勃林格殷格翰（上海百泽安）</p>
+<p><strong>特殊说明</strong>：对于创新药企，传统意义上的资本开支（固定资产投资）占比较低，但<strong>研发费用</strong>才是实质性的"重复性投入"。2025年研发费用占营收40.57%，2024年为51.96%，2023年为73.54%——呈逐年下降趋势，反映产品商业化加速后费用杠杆改善（年报 p.12）。</p>
+<p><strong>本项小结</strong>：传统Capex维度，百济神州已从建设高峰期转入运营期，2025年Capex/营收仅3.76%（Capex/OCF=10.5%），且在建工程大幅缩减（8.9亿 vs 上年47.2亿）。但研发费用（155.1亿/年）才是创新药企的实质性重复投入，占营收40.57%。若将研发费用视为"维持性投入"，则实际重复性支出占营收约44%。好消息是这一比例逐年下降（2023年73.5%→2024年52.0%→2025年40.6%→2026Q1为35.9%）。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：传统资本开支已过峰值，生产基地建设基本完成。真正的重复性支出是研发费用，但随着营收规模扩大，研发费用率持续下降，显示出良好的经营杠杆效应。2026年全年指引研发+销售+管理费用合计333-348亿，占营收449-462亿的约74%，利润空间快速打开。</p>
+</blockquote>
+<hr />
+<h3 id="s-6-商2-收现金-vs-收应收先货后款-vs-先钱后货">商2. 收现金 vs 收应收，先货后款 vs 先钱后货</h3>
+<p><strong>逐年数据</strong>（数据来源：<code>stk_balance</code>、<code>stk_cashflow</code>、<code>stk_income</code>）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>应收账款(亿元)</th>
+<th>合同负债(亿元)</th>
+<th>营收(亿元)</th>
+<th>收现金额(亿元)</th>
+<th>应收/营收</th>
+<th>收现比</th>
+<th>预收/营收</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>1.94</td>
+<td>—</td>
+<td>16.1</td>
+<td>17.0</td>
+<td>12.1%</td>
+<td>105.5%</td>
+<td>0.5%(预收)</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>2.85</td>
+<td>1.25</td>
+<td>13.1</td>
+<td>13.0</td>
+<td>21.7%</td>
+<td>99.1%</td>
+<td>9.5%</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>4.94</td>
+<td>—</td>
+<td>29.5</td>
+<td>27.4</td>
+<td>16.8%</td>
+<td>92.7%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>3.94</td>
+<td>0.01</td>
+<td>21.2</td>
+<td>27.1</td>
+<td>18.6%</td>
+<td>127.9%</td>
+<td>0.0%</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>30.8</td>
+<td>14.6</td>
+<td>75.9</td>
+<td>89.4</td>
+<td>40.6%</td>
+<td>117.8%</td>
+<td>19.2%</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>12.0</td>
+<td>14.9</td>
+<td>95.7</td>
+<td>120.4</td>
+<td>12.6%</td>
+<td>125.8%</td>
+<td>15.6%</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>25.4</td>
+<td>—</td>
+<td>174.2</td>
+<td>162.2</td>
+<td>14.6%</td>
+<td>93.1%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>48.8</td>
+<td>—</td>
+<td>272.1</td>
+<td>273.1</td>
+<td>18.0%</td>
+<td>100.4%</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>59.5</strong></td>
+<td><strong>2.53</strong></td>
+<td><strong>382.2</strong></td>
+<td><strong>467.1</strong></td>
+<td><strong>15.6%</strong></td>
+<td><strong>122.2%</strong></td>
+<td><strong>0.7%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>2026Q1</strong>：应收账款63.6亿元，收现金额108.9亿元（Q1营收105.4亿，收现比=103.2%）。</p>
+<p><strong>模式判断</strong>：
+- 收现比近年波动较大，2025年高达122.2%，主要因上年应收账款回款。整体看，收现比中枢在100%附近，属于<strong>收现金为主</strong>。
+- 应收账款/营收在15-18%区间，主要源于海外销售回款周期（美国、欧洲等市场的保险/支付方结算存在时滞）。
+- 合同负债极小（2.5亿/382亿=0.7%），且波动大——创新药销售不存在大额预收款特征。
+- 综合模式：<strong>先货后款</strong>（药品交付后由保险/医疗机构结算），但回款周期可控。</p>
+<p><strong>本项小结</strong>：百济神州以收现金为主，2025年收现比122.2%，2026Q1收现比103.2%。应收账款绝对额逐年增长（2025年59.5亿），但应收/营收稳定在15-18%，主要由海外销售结算周期导致。合同负债极小（&lt;1%营收），不存在先钱后货的经营特征。属于"先货后款、但回款较快"的经营模式。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：收现能力良好，创新药企业中属于正常水平。应收账款占比不高且主要是海外渠道应收，下游为各国医保/商保体系，信用风险较低。需关注应收账款绝对额增长是否与营收增长匹配。</p>
+</blockquote>
+<hr />
+<h3 id="s-7-商31-所属行业是垄断还是竞争型">商3.1 所属行业是垄断还是竞争型</h3>
+<p>百济神州所属行业为<strong>创新药/抗肿瘤药物</strong>，属于<strong>竞争型行业</strong>。</p>
+<p>全球抗肿瘤药物市场：
+- 2026年预计市场规模3,337亿美元，至2032年增长至5,452亿美元，年复合增长率9.0%（灼识咨询，年报 p.27-28）
+- 美国市场：2026年预计1,440亿美元，至2032年2,229亿美元
+- 中国市场：2026年预计3,760亿元人民币，至2032年8,430亿元，年复合增长率14.9%</p>
+<p><strong>行业格局特征</strong>：
+- 创新药行业整体为高度竞争型，进入壁垒极高（研发周期长、投入大、临床失败率高），但一旦获批的产品在专利保护期内享有准垄断地位
+- <strong>BTK抑制剂细分市场</strong>已形成寡头格局：百悦泽（百济神州）、伊布替尼（强生/艾伯维）、阿可替尼（阿斯利康）三家主导。2025年百悦泽已成为全球销售额第一的BTK抑制剂
+- <strong>PD-1/PD-L1</strong>领域竞争激烈：全球有K药（默沙东）、O药（BMS）等巨头，国内有信达、君实、恒瑞等竞品</p>
+<p><strong>本项小结</strong>：创新药行业整体属于竞争型，但存在极高技术门槛和专利壁垒。在百济神州的核心赛道BTK抑制剂领域，全球仅三款药品获批上市，且百悦泽已取得全球销售额领先地位。抗肿瘤药物市场处于快速增长期，2025-2032年全球年复合增长率约9%。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：行业整体竞争激烈，但创新药的"赢者通吃"特征明显——临床数据优越的品种能快速抢占市场。百济神州凭借百悦泽的头对头优效性数据，已在BTK抑制剂细分领域建立起接近垄断的竞争地位。</p>
+</blockquote>
+<hr />
+<h3 id="s-8-商32-企业在行业中属竞争还是垄断型">商3.2 企业在行业中属竞争还是垄断型</h3>
+<p><strong>企业性质</strong>：百济神州为注册于瑞士的外资控股公司（非国企），三地上市（科创板+港股+纳斯达克），实际控制人为管理团队。前三大股东：安进（17.05%）、Baker Brothers（8.01%）、Capital Research（5.36%）。</p>
+<p><strong>竞争地位</strong>：
+- <strong>BTK抑制剂全球第一</strong>：百悦泽2025年全球销售额约260亿元（按2026H1推算全年约320亿元），超越强生/艾伯维的伊布替尼和阿斯利康的阿可替尼，成为全球B细胞恶性肿瘤市场领导者（提质增效方案 p.1）
+- <strong>唯一头对头优效性</strong>：3期ALPINE试验中，百悦泽是唯一一款在所有CLL患者群体（含高危17p/TP53）中对比伊布替尼取得PFS优效性的BTK抑制剂，且心血管事件发生率更低
+- <strong>获批适应症最广</strong>：百悦泽是全球获批适应症最广泛的BTK抑制剂（5项适应症、75+市场）
+- <strong>研发管线最深</strong>：全球唯一在CLL领域拥有三个潜在同类最佳产品的公司（百悦泽+索托克拉+tacabrutideg）</p>
+<p><strong>核心竞争力分析</strong>（年报 p.34-36）：
+1. 全方位一体化平台：覆盖药物发现、临床开发（全球3,800人团队，基本不依赖CRO）、自主生产（苏州+广州+美国新泽西）和全球商业化
+2. 超1,200名科学家的研发团队
+3. 已建立全球化商业网络：美国、欧盟、中国、日本等主要市场均有自营销售团队</p>
+<p><strong>本项小结</strong>：百济神州在BTK抑制剂细分领域已取得全球第一的竞争地位，是唯一头对头击败伊布替尼的产品，具备差异化的临床数据优势。公司为民营企业，无垄断牌照，竞争地位来源于产品力和全球一体化平台能力。在PD-1领域，百泽安面临激烈竞争（默沙东K药、恒瑞等），但已进入全球50+市场。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：百济神州在BTK抑制剂领域已建立起接近垄断的竞争优势（产品力+数据+渠道），但这种优势建立在专利和临床数据基础上，需持续投入研发以维护。在PD-1领域则处于竞争格局中，差异化不如BTK领域明显。</p>
+</blockquote>
+<hr />
+<h3 id="s-9-商33-公司是否有应付社会责任">商3.3 公司是否有应付社会责任</h3>
+<p><strong>本项小结</strong>：百济神州为民营企业（注册瑞士、管理团队控制），无特许经营牌照，无垄断性国企属性。未发现强制性社会责任负担（如偏远地区基建、政策性贷款等）。公司发布了《负责任商业和可持续发展报告》（2026-04-15），但属于自愿性质ESG报告，非社会责任硬性支出。公司作为创新药企，本身的社会价值（为癌症患者提供可及药物）与商业目标高度一致。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：无显著社会责任负担。创新药企业的社会责任（药物可及性、慈善用药）与商业利益基本一致，不构成利润侵蚀因素。</p>
+</blockquote>
+<hr />
+<h3 id="s-10-商41-企业是否具备调整自己产品售价的能力定价权">商4.1 企业是否具备调整自己产品售价的能力（定价权）</h3>
+<p><strong>维度① 毛利率稳定性</strong>：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>营收(亿元)</th>
+<th>营业成本(亿元)</th>
+<th>毛利率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>16.1</td>
+<td>0.34</td>
+<td>97.9%</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>13.1</td>
+<td>1.90</td>
+<td>85.5%</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>29.5</td>
+<td>4.91</td>
+<td>83.4%</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>21.2</td>
+<td>4.74</td>
+<td>77.6%</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>75.9</td>
+<td>10.6</td>
+<td>86.0%</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>95.7</td>
+<td>19.0</td>
+<td>80.2%</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>174.2</td>
+<td>26.9</td>
+<td>84.6%</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>272.1</td>
+<td>42.3</td>
+<td>84.4%</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>382.2</strong></td>
+<td><strong>47.3</strong></td>
+<td><strong>87.6%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>计算公式：毛利率 = (operating_revenue - operating_cost) / operating_revenue</p>
+<p>2017-2025年均值 = 85.2%，标准差 = 5.5pp，变异系数(CV) = 0.064，极差 = 20.3pp（2020年77.6%至2017年97.9%，但2017年产品结构特殊）。剔除2017年后：均值83.9%，CV=0.038，极差10.0pp。</p>
+<p><strong>维度② 定价机制</strong>：创新药的定价机制为<strong>公司自主定价+各国医保谈判</strong>：
+- 美国：公司自主定价，通过商业保险覆盖，定价能力较强
+- 欧盟：通过HTA（卫生技术评估）后纳入报销，有一定价格谈判
+- 中国：通过国家医保谈判确定支付价格，存在降价压力；但百悦泽作为创新药通过医保谈判后实现以价换量
+- 全球75+市场获批，约60个市场纳入报销范围</p>
+<p><strong>维度④ 下游客户集中度</strong>：下游客户为全球各市场的医院、药房、保险/医保体系，客户极度分散，不存在单一大客户依赖风险。</p>
+<p><strong>维度⑦ 与商5.2交叉验证</strong>：成本端（原料药+生产制造）弱周期 + 毛利率稳定（CV=0.064）= 定价权较强。</p>
+<p><strong>2026Q1</strong>：营收105.4亿，成本11.6亿，毛利率89.0%——进一步提升。</p>
+<p><strong>本项小结</strong>：毛利率近9年均值85.2%，近5年(2021-2025)均值84.6%，变异系数0.064，稳定性良好。2025年毛利率87.6%为近年最高水平，反映百悦泽全球放量带来的规模效应。公司核心产品享有创新药定价权（专利保护期内无仿制药竞争），但各国医保谈判可能带来价格下行压力。美国市场（占百悦泽收入约70%）的定价自主度最高。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：百济神州具备较强定价权，核心来源于产品力（唯一头对头优效性数据）和专利保护。毛利率稳定在85%+水平，且仍有上升趋势。风险在于：①百悦泽专利到期后仿制药竞争；②各国医保政策收紧；③PD-1领域价格竞争激烈。</p>
+</blockquote>
+<hr />
+<h3 id="s-11-商42-企业是否具备调整自己产品成本的能力">商4.2 企业是否具备调整自己产品成本的能力</h3>
+<p><strong>成本率趋势</strong>：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>成本率(营业成本/营收)</th>
+<th>成本同比变动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>2.1%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>14.5%</td>
+<td>+465.1%</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>16.6%</td>
+<td>+158.9%</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>22.4%</td>
+<td>-3.5%</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>14.0%</td>
+<td>+124.0%</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>19.8%</td>
+<td>+78.6%</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>15.4%</td>
+<td>+41.8%</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>15.6%</td>
+<td>+57.4%</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>12.4%</strong></td>
+<td><strong>+11.8%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>趋势：近3年均值(2023-2025) = 14.5%，远3年均值(2019-2021) = 17.7%，呈持续优化趋势。</p>
+<p><strong>成本构成分析</strong>：创新药企的营业成本主要包括：
+- 原料药采购和生产制造成本（包括CMO合同生产费用）
+- 自有工厂的折旧摊销
+- 质量控制和物流成本</p>
+<p>随着自有产能利用率提升（苏州、广州、新泽西三大基地投产）和产量规模效应，单位生产成本呈下降趋势。2025年成本率12.4%为历史最低。</p>
+<p><strong>特殊说明</strong>：创新药企的"广义成本"应包括研发费用和销售费用，这才是决定盈利能力的关键。2025年研发费用率40.57%（vs 2024年51.96%），销售+管理费用率也在下降，反映出良好的费用杠杆效应。</p>
+<p><strong>本项小结</strong>：营业成本率从2020年22.4%降至2025年12.4%，规模效应显著。公司自建三大生产基地（苏州/广州/新泽西），逐步降低CMO依赖，具备一定的成本调整能力。真正影响利润的是研发费用（155.1亿）和销售管理费用，两者合计约占营收60%，但比例在快速下降。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：生产成本端具备较强的调整能力，规模效应持续释放。关键在于研发费用的"质量"——百济神州的研发投入在产出高质量临床数据和新药获批方面效率较高，155亿研发费用支撑了20+临床阶段管线。</p>
+</blockquote>
+<hr />
+<h3 id="s-12-商51-产品差异性品牌力护城河">商5.1 产品差异性、品牌力、护城河</h3>
+<p><strong>产品差异性</strong>：
+- 百悦泽是全球唯一在CLL头对头试验中优于伊布替尼（ALPINE试验：PFS优效+心血管事件更低）的BTK抑制剂（年报 p.35-36）
+- 百悦泽是唯一可每日一次或每日两次灵活给药的BTK抑制剂（2025年6月FDA批准片剂剂型）
+- 百悦泽获批适应症最广（5项，超过伊布替尼和阿可替尼）
+- 索托克拉是首款且唯一一款获FDA批准用于R/R MCL单药治疗的BCL2抑制剂
+- 百泽安已获FDA、EMA、NMPA等多国监管机构批准，在中国PD-1市场具有先发优势</p>
+<p><strong>品牌力</strong>：百济神州品牌在全球肿瘤领域认知度快速提升，2025年10月更名为"BeOne Medicines"，百悦泽已成为美国肿瘤科医生处方BTK抑制剂时的首选品种。</p>
+<p><strong>护城河</strong>：
+1. <strong>专利壁垒</strong>：泽布替尼核心专利覆盖多个主要市场
+2. <strong>临床数据壁垒</strong>：大规模3期头对头优效性数据（ALPINE），竞品难以复制
+3. <strong>全球一体化平台</strong>：研发→临床→生产→商业化全链条自有能力，竞品即使仿制也难以快速建立全球销售网络
+4. <strong>适应症拓展</strong>：百悦泽+索托克拉+tacabrutideg组成的CLL三药组合，构建了"BTK+BCL2+BTK-CDAC"的全方位血液肿瘤治疗平台</p>
+<p><strong>定量辅助</strong>：
+- 毛利率85%+（A股医药板块前列）
+- PB=11.7（2026-08-06），市场给予高溢价，认可无形资产价值
+- PE=96.9，反映市场对高增长的预期</p>
+<p><strong>本项小结</strong>：百济神州产品差异性极强：百悦泽是全球唯一击败伊布替尼的BTK抑制剂，索托克拉是首款获FDA批准的BCL2抑制剂单药。护城河来源于专利+临床数据+全球一体化平台+适应症组合策略。品牌力在全球肿瘤领域快速建立。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：在BTK抑制剂领域拥有强差异性和深护城河（临床数据+全球渠道），这是百悦泽能够后来居上超越伊布替尼的核心原因。在PD-1领域差异性相对较弱，需依靠联合用药策略（百泽安+百赫安）打造差异化。</p>
+</blockquote>
+<hr />
+<h3 id="s-13-商52-成本侧是否存在周期性">商5.2 成本侧是否存在周期性</h3>
+<p><strong>营业成本同比增速</strong>：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>营业成本(亿元)</th>
+<th>同比增速</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2018</td>
+<td>1.90</td>
+<td>+465.1%</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>4.91</td>
+<td>+158.9%</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>4.74</td>
+<td>-3.5%</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>10.6</td>
+<td>+124.0%</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>19.0</td>
+<td>+78.6%</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>26.9</td>
+<td>+41.8%</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>42.3</td>
+<td>+57.4%</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>47.3</td>
+<td>+11.8%</td>
+</tr>
+</tbody>
+</table></div>
+<p>成本同比增速标准差 = 155.7%（含早期异常值），但这主要反映的是营收/产量快速增长而非成本端价格波动。</p>
+<p><strong>成本端周期性判断</strong>：创新药的主要生产成本为原料药（化学合成/生物发酵）和制造费用：
+- 原料药：泽布替尼为化学合成小分子，替雷利珠单抗为生物大分子。均非大宗商品，不受煤炭/油价/猪肉等大宗商品周期影响
+- 制造费用：主要是人工+折旧+能源+耗材，相对稳定
+- 毛利率CV=0.064（近9年），稳定性良好，说明成本端无明显周期波动</p>
+<p><strong>本项小结</strong>：百济神州成本侧为弱周期。主要生产成本（原料药+制造费用）不依赖大宗商品，价格波动小。营业成本增速的变化主要由产量增长驱动，而非成本端价格波动。毛利率近5年在80-88%区间，变异系数低（0.064），进一步验证成本端弱周期特征。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：成本侧为明确的弱周期。创新药的成本结构（原料药+制造+质控）受大宗商品价格波动影响极小，是典型的"成本可控"型商业模式。</p>
+</blockquote>
+<hr />
+<h3 id="s-14-商53-售价侧是否存在周期性">商5.3 售价侧是否存在周期性</h3>
+<p><strong>营收和净利润波动</strong>：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>营收(亿元)</th>
+<th>营收同比</th>
+<th>归母净利(亿元)</th>
+<th>净利同比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2018</td>
+<td>13.1</td>
+<td>-18.7%</td>
+<td>-47.5</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>29.5</td>
+<td>+125.5%</td>
+<td>-69.1</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>21.2</td>
+<td>-28.2%</td>
+<td>-113.8</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>75.9</td>
+<td>+257.9%</td>
+<td>-97.5</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>95.7</td>
+<td>+26.1%</td>
+<td>-136.4</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>174.2</td>
+<td>+82.0%</td>
+<td>-67.2</td>
+<td>—</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>272.1</td>
+<td>+56.2%</td>
+<td>-49.8</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>382.2</strong></td>
+<td><strong>+40.5%</strong></td>
+<td><strong>14.6</strong></td>
+<td><strong>首次盈利</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>营收增速标准差 = 91.4%（极高波动，但这是成长型公司从0到1的营收爆发，非周期性波动）。</p>
+<p><strong>售价端分析</strong>：
+- 百悦泽在美国的年销售额持续高增长（2026H1美国113.9亿元同比+27.2%），主要驱动力是<strong>市场份额提升</strong>（从伊布替尼手中抢夺）和<strong>新适应症/新市场</strong>拓展，而非提价
+- 中国市场通过医保谈判后以价换量
+- 欧洲市场通过HTA评估纳入报销后快速放量</p>
+<p><strong>本项小结</strong>：营收增速波动极大（标准差91.4%），但这反映的是创新药企从研发期到商业化期的成长轨迹，而非售价周期性。产品售价本身较为稳定（受专利保护），收入增长主要来自<strong>量</strong>（处方量增长+新市场渗透），而非<strong>价</strong>。净利润在2025年首次转正（14.6亿），标志着公司进入盈利期。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：百济神州不存在传统意义上的售价周期性，其营收波动完全由成长驱动。但需注意：①百悦泽专利到期后（预计2030年代中期），可能面临仿制药价格竞争；②各国医保政策变化可能压制售价。当前处于产品生命周期的"黄金增长期"，售价风险短期可控。</p>
+</blockquote>
+<hr />
+<h2 id="s-15-二重要财务指标">二、重要财务指标</h2>
+<h3 id="s-16-财0-穿透回报派息-注销型回购">财0. 穿透回报（派息 + 注销型回购）</h3>
+<p><strong>派息记录</strong>：
+百济神州自上市以来<strong>从未进行过现金分红</strong>。<code>divid_split</code>表返回空集。</p>
+<p><strong>回购记录</strong>：
+<code>announcement</code>表中未搜索到任何回购相关公告。公司无回购历史。</p>
+<p><strong>不分红原因</strong>（年报 利润分配预案）：</p>
+<blockquote>
+<p>"公司2025年度利润分配预案为：不进行利润分配，亦不进行资本公积转增股本。截至2025年12月31日，母公司存在未弥补亏损，这主要由于新药研发、生产、商业化是一个投资大、周期长、风险高的过程，公司自成立以来在药物早期发现、临床前研究、临床开发、监管审查、生产、商业化推广等多个环节持续投入，存在累计亏损。公司未来在研管线配套的生产线及在研管线产品研发需保持金额较大的投入，并且计划保留大部分可用资金及盈利用于公司业务的发展及增长。因此，<strong>公司预计在未来一段时期内不会进行现金分红</strong>。"</p>
+</blockquote>
+<p><strong>本项小结</strong>：穿透回报 = 0。公司历史无派息、无回购。2025年首次实现盈利（归母14.6亿），但母公司仍存在大额未弥补亏损，明确表示未来一段时期内不会现金分红。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：穿透回报率为零。对于百济神州这类处于高速成长期、刚实现盈利的创新药企，利润再投资（研发管线+全球商业化）的预期回报远高于分红，不分红是合理的资本配置选择。投资者回报将主要通过股价增长实现。</p>
+</blockquote>
+<hr />
+<h3 id="s-17-财1-穿透回报率">财1. 穿透回报率</h3>
+<p>由于公司无分红且不预期分红，穿透回报率 = 0。此项不适用传统分析框架。</p>
+<hr />
+<h3 id="s-18-财11-适当参考内容">财1.1 适当参考内容</h3>
+<p><strong>1. 管理层承诺</strong>：
+- 无任何分红承诺。<code>ann_return_plan</code>返回空集。
+- 公司发布了《2026年度"提质增效重回报"行动方案》（2026-04-15），但全文未提及任何分红比例或金额承诺，主要内容为：聚焦创新药主业、优化财务管理、提升公司治理、维护投资者利益。<strong>此方案不构成分红承诺</strong>。</p>
+<p><strong>2. 历史线性外推</strong>：
+- 历史派息率 = 0%，无法线性外推。</p>
+<p><strong>3. 商业模式影响</strong>：
+- 创新药商业模式处于<strong>高速成长期</strong>，需持续大额研发投入（2025年155亿研发费用）、全球商业化扩张（销售团队、市场准入）、生产基地运营。利润优先再投资而非分红。</p>
+<p><strong>4. 资产负债率</strong>：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>总负债(亿元)</th>
+<th>总资产(亿元)</th>
+<th>资产负债率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>22.9</td>
+<td>67.2</td>
+<td>34.1%</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>33.3</td>
+<td>154.9</td>
+<td>21.5%</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>43.4</td>
+<td>112.2</td>
+<td>38.7%</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>112.3</td>
+<td>365.6</td>
+<td>30.7%</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>152.6</td>
+<td>551.8</td>
+<td>27.7%</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>138.9</td>
+<td>442.2</td>
+<td>31.4%</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>160.2</td>
+<td>411.2</td>
+<td>38.9%</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>186.6</td>
+<td>428.3</td>
+<td>43.6%</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>266.7</strong></td>
+<td><strong>573.1</strong></td>
+<td><strong>46.5%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>计算公式：资产负债率 = total_liability / total_assets</p>
+<p>2026Q1末：资产负债率 = 260.4亿 / 590.7亿 = 44.1%</p>
+<p>均值(2017-2025) = 34.8%，标准差 = 7.8pp。近年呈上升趋势（从2021年27.7%升至2025年46.5%），主要因经营规模扩大导致经营性负债增长（应付账款+合同负债+其他应付），而非有息借款增加。注意2025年末短期借款为0（vs 2024年58.9亿），有息负债显著下降。</p>
+<p><strong>5. 综合可信度判断</strong>：</p>
+<p><strong>本项小结</strong>：公司无管理层分红承诺，无历史分红可供外推，商业模式处于高速成长期需大额再投资。资产负债率46.5%（2025年末），处于中等水平。穿透回报率的可预测性极低，因公司明确表示未来一段时期不会现金分红。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：穿透回报率完全不可预测，此项不适用于百济神州。投资者不应期待短期内获得股息回报。关注点应转向公司盈利能力的持续增长以及远期分红可能性——当母公司累计亏损弥补完毕后，分红才具备法律前提。</p>
+</blockquote>
+<hr />
+<h3 id="s-19-财12-保守未来净利润-应收三项">财1.2 保守未来净利润 / 应收三项</h3>
+<p><strong>应收三项逐年明细</strong>：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>应收账款(亿元)</th>
+<th>应收票据(亿元)</th>
+<th>应收款项融资(亿元)</th>
+<th>三项合计(亿元)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>1.94</td>
+<td>0</td>
+<td>0</td>
+<td>1.94</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>2.85</td>
+<td>0</td>
+<td>0</td>
+<td>2.85</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>4.94</td>
+<td>0</td>
+<td>0</td>
+<td>4.94</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>3.94</td>
+<td>0</td>
+<td>0</td>
+<td>3.94</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>30.8</td>
+<td>0</td>
+<td>0</td>
+<td>30.8</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>12.0</td>
+<td>0</td>
+<td>0</td>
+<td>12.0</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>25.4</td>
+<td>0</td>
+<td>0</td>
+<td>25.4</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>48.8</td>
+<td>0</td>
+<td>0</td>
+<td>48.8</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>59.5</strong></td>
+<td><strong>0</strong></td>
+<td><strong>0</strong></td>
+<td><strong>59.5</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>2026Q1末：应收账款63.6亿，三项合计63.6亿。</p>
+<p>计算公式：应收三项 = IFNULL(account_receivable, 0) + IFNULL(bill_receivable, 0) + IFNULL(receivable_fin, 0)</p>
+<p><strong>趋势</strong>：应收账款绝对额逐年增长，与营收增长基本同步。应收/营收比率稳定在15-18%。全部为应收账款（无应收票据和应收款项融资），主要来自全球各市场的医保/商保结算应收。</p>
+<p><strong>保守净利润</strong>（此项为定性讨论，定量预测延后）：
+- 2025年归母净利14.6亿，扣除应收59.5亿后为-44.9亿（说明净利润中有大量应收尚未收回现金）
+- 但从现金流角度看，2025年经营现金流137.1亿远大于净利润14.6亿，说明现金收回不是问题（利润被大额非现金费用压低——主要是股份支付费用和折旧摊销）
+- 无注销型回购金额需加回</p>
+<p><strong>本项小结</strong>：应收三项全部为应收账款，2025年末59.5亿，占营收15.6%。应收账款增长与营收增长基本匹配。保守净利润因公司刚盈利、无分红承诺，暂不做定量计算。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：应收账款规模与海外业务占比相匹配，信用质量较好（下游为各国医保/商保体系）。值得关注的是，公司OCF（137.1亿）远大于净利润（14.6亿），说明现金创造能力极强，净利润被非现金费用（股份支付、折旧等）大幅压低。</p>
+</blockquote>
+<hr />
+<h3 id="s-20-财13-公司公告最低股息支付率">财1.3 公司公告最低股息支付率</h3>
+<p><strong>路径一（公告承诺）</strong>：无。<code>ann_return_plan</code>返回空集，"提质增效重回报"行动方案中无分红比例承诺。</p>
+<p><strong>路径二（历史fallback）</strong>：历史支付率全部为0%（从未分红），无法外推。</p>
+<p><strong>本项小结</strong>：公司无有效分红承诺，历史分红率为0%。属于"长期不分红"的公司类型。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：此项不适用。百济神州明确表示因母公司存在未弥补亏损，预计未来一段时期不会分红。投资者应将此作为"无分红"类公司对待。</p>
+</blockquote>
+<hr />
+<h3 id="s-21-财2-现金方面">财2. 现金方面</h3>
+<p>= 财2.1（真实可支配现金流）+ 财2.3（现金储备），综合如下：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>真实可支配现金流(亿元)</th>
+<th>现金储备(亿元)</th>
+<th>综合现金因子(亿元)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>-25.5</td>
+<td>7.32</td>
+<td>-18.2</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>-87.9</td>
+<td>32.5</td>
+<td>-55.4</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>-5.9</td>
+<td>37.7</td>
+<td>31.8</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>-273.5</td>
+<td>32.1</td>
+<td>-241.5</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>-54.0</td>
+<td>215.4</td>
+<td>161.4</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>-72.0</td>
+<td>168.7</td>
+<td>96.7</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>-82.8</td>
+<td>96.0</td>
+<td>13.2</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>-39.4</td>
+<td>52.1</td>
+<td>12.7</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>18.5</strong></td>
+<td><strong>143.4</strong></td>
+<td><strong>161.9</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>详见财2.1和财2.3各节。</p>
+<p><strong>本项小结</strong>：2025年综合现金因子161.9亿元，为历史最高水平。真实可支配现金流首次转正（18.5亿），现金储备大幅改善至143.4亿。公司现金状况发生了质的改善，标志着从"烧钱期"进入"造血期"。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：现金状况已发生根本性转变。2025年是公司历史上首次实现正向真实可支配现金流，综合现金因子161.9亿显示出极强的财务安全边际。</p>
+</blockquote>
+<hr />
+<h3 id="s-22-财21-真实可支配现金流">财2.1 真实可支配现金流</h3>
+<p><strong>逐年明细</strong>（数据来源：<code>stk_cashflow</code>）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>OCF(经营净额,亿元)</th>
+<th>ICF(投资净额,亿元)</th>
+<th>财务费用(补充资料,亿元)</th>
+<th>真实可支配现金流(亿元)</th>
+<th>归母净利(亿元)</th>
+<th>真实/净利</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>0.58</td>
+<td>-22.6</td>
+<td>0.51</td>
+<td><strong>-22.5</strong></td>
+<td>-9.82</td>
+<td>N/A(均负)</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>-42.0</td>
+<td>-45.2</td>
+<td>0.91</td>
+<td><strong>-88.1</strong></td>
+<td>-47.5</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>-55.5</td>
+<td>50.8</td>
+<td>1.32</td>
+<td><strong>-5.9</strong></td>
+<td>-69.1</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>-51.8</td>
+<td>-218.6</td>
+<td>1.16</td>
+<td><strong>-271.5</strong></td>
+<td>-113.8</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>-82.8</td>
+<td>31.3</td>
+<td>2.47</td>
+<td><strong>-54.0</strong></td>
+<td>-97.5</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>-78.0</td>
+<td>24.1</td>
+<td>17.2</td>
+<td><strong>-71.0</strong></td>
+<td>-136.4</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>-77.9</td>
+<td>1.17</td>
+<td>5.06</td>
+<td><strong>-81.8</strong></td>
+<td>-67.2</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>-12.6</td>
+<td>-23.9</td>
+<td>2.89</td>
+<td><strong>-39.4</strong></td>
+<td>-49.8</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>137.1</strong></td>
+<td><strong>-114.6</strong></td>
+<td><strong>4.03</strong></td>
+<td><strong>18.5</strong></td>
+<td><strong>14.6</strong></td>
+<td><strong>1.27x</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>计算公式：真实可支配现金流 = net_operate_cash_flow + net_invest_cash_flow - financial_cost（补充资料）</p>
+<p><strong>2025年详解</strong>：
+- 经营现金流137.1亿：首次转正且金额巨大，反映产品销售回款大幅增长
+- 投资现金流-114.6亿：其中Capex仅14.4亿，大头为其他投资支出（投资流出122.9亿 - Capex 14.4亿 = 非Capex投资108.6亿）——主要为理财/短期投资的滚动操作以及与Royalty Pharma的特许权交易相关资金流
+- 财务费用4.03亿：利息支出
+- 真实可支配 = 137.1 + (-114.6) - 4.03 = 18.5亿</p>
+<p><strong>TTM（滚动12个月）速览</strong>（FY2025 + Q1_2026 - Q1_2025）：
+- TTM OCF = 137.1 + 13.5 - (-1.93) = 152.5亿
+- TTM Capex = 14.4 + 3.08 - 3.98 = 13.5亿
+- TTM FCF = 152.5 - 13.5 = 139.1亿</p>
+<p><strong>2026Q1现金流</strong>：OCF=13.5亿（去年同期-1.93亿，由负转正），ICF=6.86亿（投资到期回款）。</p>
+<p><strong>本项小结</strong>：2025年真实可支配现金流首次转正至18.5亿元（2024年为-39.4亿），标志着公司从"持续烧钱"转变为"自我造血"。经营现金流137.1亿远超净利润14.6亿（比值1.27x），说明现金创造能力极强。投资现金流-114.6亿中Capex仅14.4亿，大量为投资性资金运作。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：现金流质量发生质变。2025年OCF=137.1亿 vs 净利=14.6亿，差异主要来自：①股份支付费用（非现金）约50亿+；②折旧摊销；③运营资本变动。实际现金创造能力远强于GAAP利润所显示的水平。这是百济神州投资逻辑的核心支撑之一。</p>
+</blockquote>
+<hr />
+<h3 id="s-23-财22-真实可支配现金流-vs-自由现金流FCF">财2.2 真实可支配现金流 vs 自由现金流（FCF）</h3>
+<p><strong>逐年对比</strong>：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>OCF(亿元)</th>
+<th>Capex(亿元)</th>
+<th>FCF(亿元)</th>
+<th>投资流出合计(亿元)</th>
+<th>非Capex投资(亿元)</th>
+<th>真实可支配(亿元)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>0.58</td>
+<td>3.97</td>
+<td>-3.39</td>
+<td>52.7</td>
+<td>48.7</td>
+<td>-22.5</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>-42.0</td>
+<td>7.21</td>
+<td>-49.2</td>
+<td>190.5</td>
+<td>183.3</td>
+<td>-88.1</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>-55.5</td>
+<td>6.18</td>
+<td>-61.6</td>
+<td>86.8</td>
+<td>80.7</td>
+<td>-5.9</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>-51.8</td>
+<td>9.92</td>
+<td>-61.7</td>
+<td>409.3</td>
+<td>399.4</td>
+<td>-271.5</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>-82.8</td>
+<td>22.6</td>
+<td>-105.4</td>
+<td>172.2</td>
+<td>149.7</td>
+<td>-54.0</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>-78.0</td>
+<td>23.3</td>
+<td>-101.3</td>
+<td>69.9</td>
+<td>46.6</td>
+<td>-71.0</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>-77.9</td>
+<td>41.1</td>
+<td>-119.0</td>
+<td>49.2</td>
+<td>8.18</td>
+<td>-81.8</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>-12.6</td>
+<td>34.2</td>
+<td>-46.8</td>
+<td>44.8</td>
+<td>10.6</td>
+<td>-39.4</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>137.1</strong></td>
+<td><strong>14.4</strong></td>
+<td><strong>122.8</strong></td>
+<td><strong>122.9</strong></td>
+<td><strong>108.6</strong></td>
+<td><strong>18.5</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>计算公式：FCF = OCF - Capex = net_operate_cash_flow - fix_intan_other_asset_acqui_cash
+非Capex投资 = subtotal_invest_cash_outflow - fix_intan_other_asset_acqui_cash</p>
+<p><strong>2025年差异解读</strong>：FCF = 122.8亿 vs 真实可支配 = 18.5亿，差额104.3亿。差异来源：
+- 非Capex投资支出108.6亿：主要为短期投资/理财滚动和其他投资活动（含Royalty Pharma交易等）
+- 投资活动有正向流入（投资收回等），使ICF = -114.6亿而非-122.9亿
+- 加上财务费用4.03亿的扣除</p>
+<p><strong>本项小结</strong>：2025年FCF=122.8亿，远大于真实可支配现金流18.5亿。差异主要来自大额非Capex投资支出（108.6亿），反映公司将闲置资金进行短期投资/理财。FCF口径更能反映公司的核心经营现金创造能力。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：FCF=122.8亿更能反映百济神州的真实现金创造能力。非Capex投资支出主要为资金运作而非不可回收支出，未来随着这部分投资到期回笼，真实可支配现金流将趋近FCF水平。</p>
+</blockquote>
+<hr />
+<h3 id="s-24-财23-现金储备">财2.3 现金储备</h3>
+<p><strong>逐年明细</strong>（数据来源：<code>stk_balance</code>）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>货币资金(亿元)</th>
+<th>短期借款(亿元)</th>
+<th>一年内到期(亿元)</th>
+<th>现金储备(亿元)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>13.9</td>
+<td>0</td>
+<td>0.60</td>
+<td>13.3</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>39.1</td>
+<td>0</td>
+<td>0.60</td>
+<td>38.5</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>38.4</td>
+<td>0</td>
+<td>0.75</td>
+<td>37.7</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>63.4</td>
+<td>21.0</td>
+<td>10.3</td>
+<td>32.1</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>251.9</td>
+<td>26.2</td>
+<td>10.3</td>
+<td>215.4</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>201.3</td>
+<td>22.0</td>
+<td>10.6</td>
+<td>168.7</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>151.2</td>
+<td>46.8</td>
+<td>8.40</td>
+<td>96.0</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>122.8</td>
+<td>58.9</td>
+<td>11.8</td>
+<td>52.1</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>153.6</strong></td>
+<td><strong>0</strong></td>
+<td><strong>10.2</strong></td>
+<td><strong>143.4</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>计算公式：现金储备 = cash_equivalents - IFNULL(shortterm_loan, 0) - IFNULL(non_current_liability_in_one_year, 0)</p>
+<p><strong>2026Q1末</strong>：货币资金176.5亿，短期借款4.0亿，一年内到期8.1亿，现金储备 = 176.5 - 4.0 - 8.1 = <strong>164.4亿</strong>。</p>
+<p><strong>重大变化说明</strong>：
+- 2025年末短期借款降至0（2024年末58.9亿），公司提前偿还短期借款
+- 货币资金从122.8亿增至153.6亿，增长来自经营现金流和融资活动
+- 2021年货币资金高达251.9亿，主要来自当年筹资活动（增发融资228.7亿）</p>
+<p><strong>本项小结</strong>：2025年末现金储备143.4亿元，较2024年末52.1亿大幅增长175.2%，为近4年最高。短期借款清零、货币资金充裕，财务安全边际显著增强。2026Q1末现金储备进一步增至164.4亿。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：现金储备充裕且大幅改善。短期借款清零是重要正面信号，说明公司已不再需要依赖短期借款维持运营。加上2025年OCF=137.1亿的强劲现金创造能力，公司财务状况处于历史最佳水平。</p>
+</blockquote>
+<hr />
+<h3 id="s-25-综合现金因子表">综合现金因子表</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>真实可支配现金流(亿元)</th>
+<th>现金储备(亿元)</th>
+<th>综合现金因子(亿元)</th>
+<th>归母净利(亿元)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2017</td>
+<td>-22.5</td>
+<td>13.3</td>
+<td>-9.17</td>
+<td>-9.82</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>-88.1</td>
+<td>38.5</td>
+<td>-49.6</td>
+<td>-47.5</td>
+</tr>
+<tr>
+<td>2019</td>
+<td>-5.9</td>
+<td>37.7</td>
+<td>31.8</td>
+<td>-69.1</td>
+</tr>
+<tr>
+<td>2020</td>
+<td>-271.5</td>
+<td>32.1</td>
+<td>-239.3</td>
+<td>-113.8</td>
+</tr>
+<tr>
+<td>2021</td>
+<td>-54.0</td>
+<td>215.4</td>
+<td>161.4</td>
+<td>-97.5</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>-71.0</td>
+<td>168.7</td>
+<td>97.6</td>
+<td>-136.4</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>-81.8</td>
+<td>96.0</td>
+<td>14.2</td>
+<td>-67.2</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>-39.4</td>
+<td>52.1</td>
+<td>12.7</td>
+<td>-49.8</td>
+</tr>
+<tr>
+<td><strong>2025</strong></td>
+<td><strong>18.5</strong></td>
+<td><strong>143.4</strong></td>
+<td><strong>161.9</strong></td>
+<td><strong>14.6</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h3 id="s-26-财31-股息率的历史水平和分位数">财3.1 股息率的历史水平和分位数</h3>
+<p><strong>不适用</strong>。百济神州历史从未分红，股息率为0%。</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>年度</th>
+<th>派息总额(元)</th>
+<th>年末市值(亿元)</th>
+<th>股息率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2021</td>
+<td>0</td>
+<td>1,920.93</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>2022</td>
+<td>0</td>
+<td>1,788.30</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>2023</td>
+<td>0</td>
+<td>1,882.75</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>2024</td>
+<td>0</td>
+<td>2,228.82</td>
+<td>0%</td>
+</tr>
+<tr>
+<td>2025</td>
+<td>0</td>
+<td>4,138.26</td>
+<td>0%</td>
+</tr>
+</tbody>
+</table></div>
+<p>当前股息率 = 0%（总市值4,148.75亿元，2026-08-06收盘）。</p>
+<hr />
+<h3 id="s-27-最新滚动十二个月TTM速览">最新滚动十二个月（TTM）速览</h3>
+<p><strong>TTM计算方法</strong>：FY2025全年值 + 2026Q1累计值 - 2025Q1累计值</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>FY2025</th>
+<th>2026Q1</th>
+<th>2025Q1</th>
+<th>TTM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>营业收入(亿元)</td>
+<td>382.2</td>
+<td>105.4</td>
+<td>80.5</td>
+<td><strong>407.2</strong></td>
+</tr>
+<tr>
+<td>营业成本(亿元)</td>
+<td>47.3</td>
+<td>11.6</td>
+<td>11.4</td>
+<td><strong>47.5</strong></td>
+</tr>
+<tr>
+<td>归母净利(亿元)</td>
+<td>14.6</td>
+<td>16.1</td>
+<td>-0.95</td>
+<td><strong>31.6</strong></td>
+</tr>
+<tr>
+<td>OCF(亿元)</td>
+<td>137.1</td>
+<td>13.5</td>
+<td>-1.93</td>
+<td><strong>152.5</strong></td>
+</tr>
+<tr>
+<td>Capex(亿元)</td>
+<td>14.4</td>
+<td>3.08</td>
+<td>3.98</td>
+<td><strong>13.5</strong></td>
+</tr>
+<tr>
+<td>收现金额(亿元)</td>
+<td>467.1</td>
+<td>108.9</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>TTM关键指标</strong>：
+- TTM营收407.2亿，同比增长约31%
+- TTM归母净利31.6亿（FY2025仅14.6亿→TTM翻倍+，说明盈利加速）
+- TTM FCF = 152.5 - 13.5 = 139.1亿
+- TTM毛利率 = (407.2 - 47.5) / 407.2 = 88.3%
+- TTM PE = 4,148.75 / 31.6 = 131.3x</p>
+<p><strong>2026H1主要财务数据</strong>（未经审计，2026-08-06公告）：
+- 营业总收入：222.20亿元（同比+26.8%）
+- 产品收入：217.97亿元（同比+25.6%）
+- 营业利润：40.83亿元（同比+411.0%）
+- 归母净利：32.71亿元（同比+627.1%）
+- 扣非归母净利：29.18亿元（同比+1,017.6%）
+- 总资产：624.99亿元（较期初+9.1%）
+- 归母所有者权益：354.27亿元（较期初+15.6%）
+- 基本每股收益：2.26元
+- 加权平均净资产收益率：9.90%（同比+8.1个百分点）</p>
+<p><strong>2026Q2单季度</strong>（H1减Q1推算）：
+- Q2营收 = 222.20 - 105.44 = 116.76亿元（Q1为105.44亿，环比+10.7%）
+- Q2归母净利 = 32.71 - 16.08 = 16.63亿元（Q1为16.08亿，基本持平）</p>
+<p><strong>2026年全年业绩指引</strong>（2026-08-06上调后）：
+- 营业收入：449-462亿元（原436-452亿→上调）
+- 毛利率：80%区间的高位（不变）
+- 研发+销售+管理费用合计：333-348亿元（不变）
+- 营业收入扣除经营成本费用：65-71亿元（原48-55亿→大幅上调）
+- 营业收入扣除经调整经营成本费用：115-122亿元（原100-106亿→上调）
+- 上调原因：百悦泽在美国市场的领先地位以及其在欧洲和全球其他重要市场的持续扩张</p>
+<p><strong>美国公认会计准则(US GAAP)下2026Q2业绩</strong>（港股公告，美元计值）：
+- Q2全球总收入：17.05亿美元（同比+30%）
+- Q2百悦泽全球收入：12亿美元（同比+31%）
+- Q2 GAAP稀释每股ADS收益：2.05美元
+- Q2非GAAP稀释每股ADS收益：3.84美元
+- 上调全年总收入指引至66-68亿美元
+- 上调全年GAAP经营利润指引至10-11亿美元
+- 上调全年非GAAP经营利润指引至17-18亿美元</p>
+<p><strong>本项小结</strong>：TTM归母净利31.6亿，较FY2025的14.6亿大幅增长，盈利加速态势明确。2026H1归母净利32.71亿元，已超过2025全年的14.6亿的2.24倍。全年业绩指引在8月6日第二次上调，显示管理层对业绩增长的信心。</p>
+<hr />
+<h2 id="s-28-三行业逻辑">三、行业逻辑</h2>
+<h3 id="s-29-1-产品研发与商业化进展">1. 产品研发与商业化进展</h3>
+<p><strong>近12个月关键事件</strong>：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事件</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-07-01</td>
+<td>百悦泽3期MANGROVE试验取得PFS优效性，百悦泽联合利妥昔单抗vs BR方案治疗MCL一线，疾病进展/死亡风险降低43%(HR=0.57, p&lt;0.0001)</td>
+<td>临床试验进展公告</td>
+</tr>
+<tr>
+<td>2026-05-14</td>
+<td>百悦达(索托克拉)获FDA加速批准用于R/R MCL(ORR=52%, CR=16%, 中位DOR=15.8个月)</td>
+<td>FDA审批公告</td>
+</tr>
+<tr>
+<td>2026-05</td>
+<td>2026ASCO/EHA年会：SEQUOIA试验78个月长期随访数据、实体瘤管线POC数据(CDK4i/GPC3xBB/B7-H4 ADC)</td>
+<td>港股业务进展公告</td>
+</tr>
+<tr>
+<td>2026-04-15</td>
+<td>公司首次实现盈利，取消科创板"U"标识</td>
+<td>首次盈利公告</td>
+</tr>
+<tr>
+<td>2025-12</td>
+<td>百悦达(索托克拉)获中国NMPA首批（全球首次获批），用于R/R MCL和R/R CLL/SLL</td>
+<td>年报</td>
+</tr>
+<tr>
+<td>2025-11</td>
+<td>百泽安获日本批准用于胃癌一线治疗</td>
+<td>Q3报告</td>
+</tr>
+<tr>
+<td>2025-10</td>
+<td>Pharmacyclics专利诉讼终局撤回——USPTO宣布'803专利全部权利无效</td>
+<td>诉讼进展公告</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>在研管线进展</strong>：
+- <strong>血液肿瘤</strong>：tacabrutideg(BTK-CDAC) 3期CaDAnCe-303中国试验完成最后一例入组；百悦泽+索托克拉CLL一线3期CELESTIAL-TNCLL完成入组；BG-75202(KAT6A/B抑制剂)1期首例入组
+- <strong>实体肿瘤</strong>：BGB-43395(CDK4i)已启动乳腺癌一线3期；百泽安+百赫安+化疗HER2阳性GEA一线sBLA获FDA优先审评受理，预计2026H2获FDA决定
+- 计划2026H2在美国、欧洲、中国、日本递交百悦泽MCL一线申请</p>
+<p><strong>本项小结</strong>：近12个月研发和商业化进展极为密集——百悦泽MANGROVE试验成功（MCL一线新适应症）、百悦达获FDA和NMPA双批准、首次盈利里程碑、专利诉讼利好解除、实体瘤管线POC数据公布。产品矩阵从血液肿瘤向实体肿瘤快速扩展。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：近12个月催化剂密度极高，几乎所有关键里程碑均为正向信号。MANGROVE试验成功意味着百悦泽将从R/R MCL拓展至MCL一线，市场空间显著扩大。百悦达获FDA批准标志着公司第三款全球化产品诞生。实体瘤管线（CDK4i、B7-H4 ADC、HER2双抗联合）快速推进，有望成为下一增长引擎。</p>
+</blockquote>
+<hr />
+<h3 id="s-30-2-国际化与海外市场">2. 国际化与海外市场</h3>
+<p><strong>海外收入情况</strong>：
+- 2026H1百悦泽全球销售额161.27亿元，其中美国113.90亿元（占70.6%），同比+27.2%
+- 百悦泽在全球超75个市场获批，约60个市场纳入报销
+- 百泽安在全球超50个市场获批
+- 百悦达已在中国和美国获批</p>
+<p><strong>国际化战略进展</strong>：
+- 美国新泽西生物药生产基地已全面投产，实现百泽安美国本土生产
+- FDA和EMA已批准除中国以外地区的API采购来源
+- 持续在亚太、拉丁美洲、中东拓展市场
+- 2025年10月更名为BeOne Medicines（原BeiGene），强化全球品牌</p>
+<p><strong>Royalty Pharma特许权使用费交易</strong>（2025-08-26）：
+- 以8.85亿美元向Royalty Pharma出售安进产品Imdelltra（塔拉妥单抗）中国以外市场特许权使用费的大部分权利
+- 保留年度Imdelltra中国外净收入超15亿美元部分的特许权使用费分享
+- 卖出选择权可获最高6,500万美元额外付款
+- 此交易体现公司对安进合作产品的资产证券化能力</p>
+<p><strong>本项小结</strong>：美国市场贡献百悦泽约70%收入，是公司最重要的海外市场。全球化布局持续深化——75+市场获批、自建美国生产基地、多区域销售团队。Royalty Pharma交易带来8.85亿美元一次性收入，体现资产组合的变现能力。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：国际化是百济神州最核心的竞争优势之一。公司已建立真正的全球化运营能力（研发+生产+销售），这在中国药企中独一无二。美国市场收入占比高（~70%）是双刃剑——受益于美国高药价环境，但也面临中美地缘政治风险和美国药品价格改革政策风险。</p>
+</blockquote>
+<hr />
+<h3 id="s-31-3-政策环境">3. 政策环境</h3>
+<p><strong>中国政策</strong>：
+- 百悦泽已纳入中国国家医保目录，通过以价换量实现中国市场增长
+- 百泽安多项适应症已纳入医保
+- 创新药鼓励政策持续（优先审评、加速审批等）
+- 中国抗肿瘤药物市场2025-2032年复合增长率14.9%（灼识咨询）</p>
+<p><strong>美国政策</strong>：
+- 百悦达获FDA突破性疗法认定（BTD）、快速通道认定和孤儿药认定
+- 百泽安+百赫安HER2阳性GEA一线sBLA获FDA优先审评认定
+- 美国IRA（通胀削减法案）药品价格谈判可能影响未来定价，但目前百悦泽未被列入首批谈判名单</p>
+<p><strong>欧洲政策</strong>：
+- 百悦泽已获EC批准多项适应症，纳入多国报销体系
+- 2023年EC批准百悦泽联合奥妥珠单抗用于R/R FL</p>
+<p><strong>本项小结</strong>：政策环境整体有利。中国创新药鼓励政策持续，百悦泽和百泽安已纳入医保。美国FDA给予百悦达多项快速审评资格认定。主要政策风险为美国IRA药品价格谈判和各国医保控费趋势。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：政策环境中性偏正。创新药（尤其是肿瘤领域）在全球主要市场均获政策支持。中国集采主要针对仿制药，对创新药影响有限。需关注美国IRA药品价格谈判的潜在长期影响，但短期内百悦泽不受直接影响。</p>
+</blockquote>
+<hr />
+<h3 id="s-32-4-成本与运营效率">4. 成本与运营效率</h3>
+<p><strong>盈利能力趋势</strong>：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+<th>2026Q1</th>
+<th>2026H1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>毛利率</td>
+<td>84.6%</td>
+<td>84.4%</td>
+<td>87.6%</td>
+<td>89.0%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>研发费用率</td>
+<td>73.54%</td>
+<td>51.96%</td>
+<td>40.57%</td>
+<td>35.89%</td>
+<td>—</td>
+</tr>
+<tr>
+<td>归母净利率</td>
+<td>-38.6%</td>
+<td>-18.3%</td>
+<td>3.82%</td>
+<td>15.2%</td>
+<td>14.7%</td>
+</tr>
+<tr>
+<td>加权平均ROE</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>5.05%</td>
+<td>9.90%</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>费用管控</strong>：
+- 研发费用率从2023年73.5%降至2026Q1的35.9%，降幅超过一半
+- 2026年全年指引：研发+销售+管理费用合计333-348亿，占营收449-462亿的约74%
+- 经调整营业利润率（剔除SBC和D&amp;A）持续提升：2026H1经调整营业利润65.08亿（同比+101.9%）</p>
+<p><strong>提质增效方案执行</strong>（2026-04-15公告）：
+- 聚焦创新药主业，提升临床试验效率
+- 优化全球供应链布局，提高生产效率
+- 加强财务管理，优化资金配置
+- 2025年首次实现盈利和正向经营现金流</p>
+<p><strong>本项小结</strong>：运营效率快速提升。毛利率从84.4%升至87.6%，研发费用率从52.0%降至40.6%（2026Q1降至35.9%），归母净利率从-18.3%转正至3.82%（2026H1提升至14.7%）。利润增速远超营收增速，经营杠杆效应显著。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：百济神州正处于"利润率快速爬坡"阶段。营收增长约30-40%，但利润增速动辄数倍甚至十倍+（2026H1归母净利同比+627%），核心驱动力是费用率的系统性下降。随着营收规模继续扩大，费用率仍有进一步优化空间。这是典型的创新药企"J-curve"盈利曲线的上升段。</p>
+</blockquote>
+<hr />
+<h3 id="s-33-5-需求基本面与行业格局">5. 需求基本面与行业格局</h3>
+<p><strong>市场规模与增速</strong>（灼识咨询，年报 p.27-30）：
+- 全球抗肿瘤药物市场：2026年3,337亿美元→2032年5,452亿美元，CAGR=9.0%
+- 全球肿瘤免疫治疗市场：2026年903亿美元→2032年2,579亿美元，CAGR=19.2%
+- 中国抗肿瘤药物市场：2026年3,760亿元→2032年8,430亿元，CAGR=14.9%</p>
+<p><strong>BTK抑制剂竞争格局</strong>：
+- 百悦泽：2025年全球销售额领先（~260亿元），2026H1全球161.3亿元
+- 伊布替尼(强生/艾伯维)：全球销售额下滑（专利到期+百悦泽替代）
+- 阿可替尼(阿斯利康)：第三位，份额较小
+- 百悦泽在美国BTK市场份额持续提升，已确立领先地位</p>
+<p><strong>PD-1竞争格局</strong>：
+- 全球：K药(默沙东，年销售额250亿美元+)遥遥领先
+- 百泽安定位差异化——联合百赫安(HER-2双抗)打造实体瘤方案
+- 中国：竞争激烈（恒瑞、信达、君实等），但百泽安仍保持增长</p>
+<p><strong>本项小结</strong>：全球抗肿瘤药物市场处于高速增长期，肿瘤免疫治疗市场增速更高（19.2%）。百济神州在BTK抑制剂细分赛道已取得全球第一，且市场份额仍在提升（伊布替尼份额持续被替代）。PD-1领域竞争激烈但百泽安通过联合用药策略保持差异化。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：需求基本面极为强劲——全球肿瘤药物市场是最大且增长最快的药品细分市场之一。百济神州在BTK抑制剂赛道的龙头地位稳固且仍在扩大，这与"竞争格局优化+产品力领先"的正循环一致。</p>
+</blockquote>
+<hr />
+<h3 id="s-34-6-战略并购与业务整合">6. 战略并购与业务整合</h3>
+<p><strong>近12个月无重大并购事件</strong>。百济神州的增长模式以<strong>自主研发为主</strong>，而非并购驱动。</p>
+<p><strong>安进战略合作</strong>：
+- 安进持股17.05%（最大单一股东），双方2019年签订合作协议
+- 安进授权百济神州在中国商业化安泰适、安加维、倍利妥、凯洛斯等产品
+- 2025年8月，百济神州将安进产品Imdelltra中国以外特许权使用费权利出售给Royalty Pharma，获8.85亿美元
+- 安进合作产品2026H1销售额20.65亿元（同比+19.6%）</p>
+<p><strong>License-in合作</strong>：
+- 百赫安(泽尼达妥单抗)：来自Jazz/Zymeworks授权，百济神州拥有亚洲（除日本/印度）、澳大利亚、新西兰商业化权利
+- 多款诺华产品中国广阔市场推广权</p>
+<p><strong>商誉</strong>：因未有重大并购，商誉风险极低。</p>
+<p><strong>本项小结</strong>：百济神州以自主研发为核心增长引擎，并购活动极少。安进战略合作为公司带来产品组合补充和股权支持。Royalty Pharma交易体现了公司对非核心资产的变现能力。无商誉减值风险。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：纯研发驱动的增长模式是百济神州的核心特征，避免了并购带来的整合风险和商誉减值风险。安进战略合作是互利关系（安进获得中国渠道+百济神州获得产品组合+资本支持），且安进17%持股构成稳定的股东基础。</p>
+</blockquote>
+<hr />
+<h3 id="s-35-7-产品结构与毛利变化">7. 产品结构与毛利变化</h3>
+<p><strong>产品收入结构</strong>（基于2026H1数据）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>产品线</th>
+<th>2026H1收入(亿元)</th>
+<th>同比增速</th>
+<th>收入占比(估)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>百悦泽(泽布替尼)</td>
+<td>161.27</td>
+<td>+28.7%</td>
+<td>~74%</td>
+</tr>
+<tr>
+<td>百泽安(替雷利珠单抗)</td>
+<td>29.84</td>
+<td>+12.9%</td>
+<td>~14%</td>
+</tr>
+<tr>
+<td>安进授权产品</td>
+<td>20.65</td>
+<td>+19.6%</td>
+<td>~9%</td>
+</tr>
+<tr>
+<td>其他(百悦达/百赫安等)</td>
+<td>~6.2</td>
+<td>—</td>
+<td>~3%</td>
+</tr>
+<tr>
+<td><strong>产品收入合计</strong></td>
+<td><strong>217.97</strong></td>
+<td><strong>+25.6%</strong></td>
+<td><strong>100%</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>毛利率趋势</strong>：2023年84.6%→2024年84.4%→2025年87.6%→2026Q1 89.0%，持续上行。</p>
+<p><strong>驱动因素</strong>：
+- 百悦泽收入占比持续提升，百悦泽毛利率高于公司平均水平（小分子药物生产成本低）
+- 自有产能利用率提升，降低单位生产成本
+- 产品结构优化——高毛利自研产品占比增加</p>
+<p><strong>潜在风险</strong>：
+- 百悦泽收入占比约74%，单一产品集中度高
+- 百泽安在中国面临PD-1价格竞争
+- 安进授权产品的利润分享比例可能低于自研产品</p>
+<p><strong>本项小结</strong>：产品结构以百悦泽为绝对核心（~74%收入），收入集中度高但增速稳健（+28.7%）。毛利率持续上行（2025年87.6%→2026Q1 89.0%），反映产品结构优化和规模效应。百泽安和安进产品提供补充性收入来源。百悦达和实体瘤管线产品有望在未来1-2年开始贡献增量收入，降低单一产品依赖。</p>
+<blockquote>
+<p><strong>LLM参考判断</strong>：产品结构正在向更健康的方向演变——毛利率上行、高毛利自研产品占比提升。但百悦泽74%的收入占比仍是核心风险点。积极信号是：①百悦泽仍有新适应症(MCL一线)和新市场空间；②百悦达已获FDA批准，有望快速放量；③实体瘤管线（CDK4i等）正进入临床后期。预计2-3年内百悦泽收入占比将逐步降至60%以下，产品结构更趋均衡。</p>
+</blockquote>
+<hr />
+<p><em>报告生成日期：2026-08-09</em>
+<em>数据来源：MySQL数据库（stk_income/stk_balance/stk_cashflow/divid_split/valuation/announcement等表）、百济神州2025年年度报告（pub 2026-04-15）、2026年第一季度报告（pub 2026-05-12）、2026年半年度主要财务数据公告（pub 2026-08-06）、2026年度经营业绩预测调整公告（pub 2026-08-06）、港股业务进展公告及其他公开信息。</em></p>
+</div></main>
+
+</body>
+</html>
