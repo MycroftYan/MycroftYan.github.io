@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>招商轮船 公司研究</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6f9; --card: #fff; --text: #2e3440; --muted: #6b7785;
+    --border: #e1e5eb; --accent: #3574d4; --accent-bg: #e8f0fe;
+    --green: #1a7f37; --green-bg: #dafbe1; --amber: #9a6700; --amber-bg: #fff8c5;
+    --heading: #1c2433; --toc-w: 240px; --radius: 8px;
+    --shadow: 0 1px 4px rgba(0,0,0,.05);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:24px; }
+  body {
+    font-family: "Noto Sans SC", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 15px; line-height: 1.82; color: var(--text); background: var(--bg);
+  }
+
+  /* ── Sidebar ── */
+  nav.toc {
+    position:fixed; top:0; left:0; width:var(--toc-w); height:100vh;
+    background:#eef1f6; border-right:1px solid var(--border);
+    overflow-y:auto; z-index:100;
+    scrollbar-width:thin; scrollbar-color:#c5c9d0 transparent;
+  }
+  nav.toc::-webkit-scrollbar { width:3px; }
+  nav.toc::-webkit-scrollbar-thumb { background:#c5c9d0; border-radius:2px; }
+  .toc-brand {
+    padding:20px 18px 14px; border-bottom:1px solid var(--border);
+  }
+  .toc-brand .label {
+    font-size:11px; font-weight:600; color:var(--accent);
+    letter-spacing:.06em; text-transform:uppercase;
+  }
+  .toc-brand .doc-title {
+    font-family:"Noto Serif SC",serif; font-size:15px; font-weight:700;
+    color:var(--heading); margin-top:4px; line-height:1.35;
+  }
+  nav.toc ul { list-style:none; padding:8px 0 28px; }
+  nav.toc a {
+    display:block; padding:4px 18px; font-size:13px; line-height:1.5;
+    color:#57606a; text-decoration:none; border-left:2px solid transparent;
+    transition:all .12s;
+  }
+  nav.toc a:hover { color:var(--accent); background:var(--accent-bg); border-left-color:var(--accent); }
+  nav.toc .t1 { font-weight:700; color:var(--heading); margin-top:14px; padding-top:8px; border-top:1px solid var(--border); }
+  nav.toc li:first-child .t1 { border-top:none; margin-top:0; }
+  nav.toc .t2 { font-weight:600; padding-left:24px; }
+  nav.toc .t3 { padding-left:34px; font-size:12.5px; color:var(--muted); }
+
+  /* ── Main ── */
+  main { margin-left:var(--toc-w); padding:32px 44px 80px; }
+  .wrap {
+    max-width:960px; margin:0 auto; background:var(--card);
+    border-radius:12px; padding:44px 52px; border:1px solid #e8ecf1;
+    box-shadow:var(--shadow);
+  }
+
+  /* ── Typography ── */
+  h1 {
+    font-family:"Noto Serif SC",serif; font-size:27px; font-weight:700;
+    color:var(--heading); line-height:1.35; margin-bottom:6px;
+  }
+  .subtitle { font-size:15px; color:var(--muted); margin-bottom:20px; }
+  .meta-bar {
+    display:flex; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted);
+    padding:10px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    margin-bottom:28px;
+  }
+  .meta-bar span { white-space:nowrap; }
+
+  h2 {
+    font-size:19px; font-weight:700; color:var(--accent);
+    margin:40px 0 14px; padding-bottom:8px; border-bottom:2px solid var(--accent);
+  }
+  h3 {
+    font-size:16px; font-weight:600; color:var(--heading);
+    margin:26px 0 8px; padding-left:12px; border-left:3px solid var(--accent);
+  }
+  p { margin:7px 0; }
+  ul { padding-left:20px; }
+  li { margin:4px 0; }
+
+  /* ── Abstract card ── */
+  .abstract {
+    background:linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+    border:1px solid #c8d8f0; border-radius:var(--radius);
+    padding:22px 26px; margin:20px 0 28px;
+  }
+  .abstract h2 { margin:0 0 12px; border:none; padding:0; font-size:17px; color:var(--accent); }
+  .abstract ul { padding-left:20px; margin:0; }
+  .abstract li { margin:6px 0; font-size:14.5px; line-height:1.7; }
+  .abstract li strong { color:var(--heading); }
+
+  /* ── Key figures row ── */
+  .kpi-row {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+    gap:12px; margin:18px 0 24px;
+  }
+  .kpi {
+    background:var(--bg); border-radius:var(--radius); padding:14px 16px;
+    text-align:center; border:1px solid var(--border);
+  }
+  .kpi .num { font-size:22px; font-weight:700; color:var(--accent); }
+  .kpi .lbl { font-size:12px; color:var(--muted); margin-top:2px; }
+
+  /* ── Tables ── */
+  .tw { overflow-x:auto; margin:14px 0; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--card); }
+  thead th {
+    background:var(--accent); color:#fff; font-weight:600; font-size:12.5px;
+    text-align:left; padding:9px 14px;
+  }
+  tbody td { padding:8px 14px; border-bottom:1px solid #eef0f3; vertical-align:top; }
+  tbody tr:last-child td { border-bottom:none; }
+  tbody tr:hover td { background:#f6f8fa; }
+  tbody td:first-child { font-weight:500; color:var(--heading); white-space:nowrap; }
+
+  /* ── Insight box ── */
+  .insight {
+    margin:12px 0; padding:12px 18px;
+    background:#eef1f6; border-left:3px solid #5b6b82;
+    border-radius:0 var(--radius) var(--radius) 0; font-size:14px; color:#4a5568;
+  }
+  .insight strong { color:var(--accent); }
+
+  /* ── Positive / Negative tags ── */
+  .tag-pos { display:inline-block; background:var(--green-bg); color:var(--green); font-size:12px; font-weight:600; padding:2px 8px; border-radius:10px; }
+  .tag-neg { display:inline-block; background:#ffdce0; color:#cf222e; font-size:12px; font-weight:600; padding:2px 8px; border-radius:10px; }
+  .tag-neu { display:inline-block; background:var(--amber-bg); color:var(--amber); font-size:12px; font-weight:600; padding:2px 8px; border-radius:10px; }
+
+  /* ── Risk box ── */
+  .risk {
+    background:#fef2f2; border:1px solid #fecaca; border-radius:var(--radius);
+    padding:16px 20px; margin:20px 0;
+  }
+  .risk h3 { border:none; padding:0; color:#b91c1c; margin:0 0 8px; }
+  .risk ul { padding-left:20px; margin:0; }
+  .risk li { font-size:14px; color:#7f1d1d; margin:4px 0; }
+
+  /* ── Responsive ── */
+  @media print { nav.toc{display:none;} main{margin-left:0;padding:20px;} .wrap{max-width:100%;box-shadow:none;border:none;} }
+  @media (max-width:900px) { nav.toc{display:none;} main{margin-left:0;padding:16px;} .wrap{padding:24px 20px;} }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex; align-items: center; gap: 8px;
+    margin: 8px 0 20px; font-size: 12px; color: #8b949e;
+  }
+  .legend-block {
+    display: inline-block; width: 28px; height: 16px; border-radius: 3px;
+    background: #eef1f6; border-left: 3px solid #5b6b82; flex-shrink: 0;
+  }
+
+</style>
+</head>
+<body>
+
+<nav class="toc">
+  <div class="toc-brand">
+    <div class="label">公司研究</div>
+    <div class="doc-title">招商轮船</div>
+  </div>
+  <ul>
+    <li class="t1"><a href="#abstract">核心观点</a></li>
+    <li class="t1"><a href="#sec1">一、商业模式与船队结构</a></li>
+    <li class="t2"><a href="#s1a">全船型航运平台</a></li>
+    <li class="t2"><a href="#s1b">央企背景与竞争地位</a></li>
+    <li class="t1"><a href="#sec2">二、运价周期与盈利弹性</a></li>
+    <li class="t2"><a href="#s2a">运价周期特征</a></li>
+    <li class="t2"><a href="#s2b">成本结构与敏感度</a></li>
+    <li class="t2"><a href="#s2c">2026H1业绩爆发</a></li>
+    <li class="t1"><a href="#sec3">三、现金流与分红能力</a></li>
+    <li class="t2"><a href="#s3a">经营现金流与资本开支</a></li>
+    <li class="t2"><a href="#s3b">派息与回购</a></li>
+    <li class="t2"><a href="#s3c">现金储备与偿债</a></li>
+    <li class="t1"><a href="#sec4">四、运力供给与行业格局</a></li>
+    <li class="t2"><a href="#s4a">全球运力周期</a></li>
+    <li class="t2"><a href="#s4b">地缘扰动与绿色转型</a></li>
+    <li class="t2"><a href="#s4c">战略扩张动态</a></li>
+    <li class="t1"><a href="#sec5">五、总结与展望</a></li>
+    <li class="t1"><a href="#risk">风险提示</a></li>
+  </ul>
+</nav>
+
+<main><div class="wrap">
+
+<!-- ══════════════ Header ══════════════ -->
+<h1>招商轮船 公司研究</h1>
+<div class="subtitle">601872.XSHG &nbsp;|&nbsp; 航运 &nbsp;|&nbsp; 公司研究</div>
+<div class="meta-bar">
+  <span>报告日期：2026-09-22</span>
+  <span>数据截止：2025年年报 + 2026年半年报</span>
+  <span>市值：1,849.88亿（2026-09-21收盘）</span>
+  <span>股息率：1.40%</span>
+</div>
+
+<!-- ══════════════ Abstract ══════════════ -->
+<div class="abstract" id="abstract">
+  <h2>核心观点</h2>
+  <ul>
+    <li><strong>全球领先的全船型航运央企，VLCC（超大型原油轮）与VLOC（超大型矿砂船）规模世界第一。</strong>油、散、气、车、集五大船队235艘自有船舶/3,885万载重吨，2025年营收281.77亿元。油轮板块贡献利润41.91亿元（占净利润55%），是核心利润引擎。</li>
+    <li><strong>2026上半年业绩爆发，TTM（滚动十二个月）净利创历史新高。</strong>2026H1归母净利69.60亿（同比+228%），半年利润超2025全年。TTM归母净利108.47亿元，驱动力为VLCC运价在红海绕行+贸易路线重构下大幅上行。</li>
+    <li><strong>OCF（经营现金流）持续强劲，但重资产扩张吞噬自由现金。</strong>2025年OCF达90.55亿元，收现比96.8%。但Capex（资本开支）77.97亿元（造船扩张），在建工程114亿元。FCF（自由现金流 = OCF − Capex）仅12.58亿元，分红25.84亿元部分依赖融资支持。</li>
+    <li><strong>分红力度逐年提升，首次实施中期分红与注销型回购。</strong>2025年度合计派息25.84亿元（支付率43.0%），叠加2024年注销型回购4.43亿元，穿透回报意愿明确。但缺乏刚性承诺，且航运利润周期波动大，分红可持续性取决于运价走势。</li>
+    <li><strong>正处于积极扩张周期，战略方向清晰但需警惕周期顶部风险。</strong>手持订单64艘/788万载重吨，2026年新增10艘VLCC+5艘Aframax订单，拟收购安通控股进军内贸集运，签署西芒杜铁矿石运输重大合同。扩张步伐快，若运价周期见顶将面临高折旧+高负债的双重压力。</li>
+  </ul>
+</div>
+
+<!-- ══════════════ KPI ══════════════ -->
+<div class="kpi-row">
+  <div class="kpi"><div class="num">281.77亿</div><div class="lbl">2025年营收</div></div>
+  <div class="kpi"><div class="num">26.5%</div><div class="lbl">2025年毛利率</div></div>
+  <div class="kpi"><div class="num">108.47亿</div><div class="lbl">TTM归母净利</div></div>
+  <div class="kpi"><div class="num">90.55亿</div><div class="lbl">2025年OCF</div></div>
+  <div class="kpi"><div class="num">1.40%</div><div class="lbl">当前股息率</div></div>
+</div>
+
+<div class="legend">
+  <span class="legend-block"></span> 灰色色块为 AI 参考判断，仅供参考，不代表投资建议
+</div>
+
+<!-- ══════════════ Sec 1 ══════════════ -->
+<h2 id="sec1">一、商业模式与船队结构</h2>
+
+<h3 id="s1a">全船型航运平台：油、散、气、车、集五大船队</h3>
+
+<p>招商轮船（招商局能源运输股份有限公司）是招商局集团旗下专业从事远洋运输的上市平台，以油气运输和干散货运输为双核心。公司收入100%来自船舶运费及租金，利润管线清晰——各船队对应明确的运输品类和公开运价指数，收入来源完全可验证。</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>船队</th><th>2025营收（亿元）</th><th>净利润（亿元）</th><th>毛利率</th><th>核心船型/规模</th></tr></thead>
+<tbody>
+<tr><td>油轮</td><td>102.89</td><td>41.91</td><td>39.9%</td><td>VLCC 51艘（世界第一梯队）+ Aframax 6艘</td></tr>
+<tr><td>干散货</td><td>87.69</td><td>11.35</td><td>16.7%</td><td>VLOC 34艘（世界第一）+ Cape/Pana/Handy 64艘</td></tr>
+<tr><td>集装箱</td><td>61.49</td><td>13.59</td><td>22.4%</td><td>19艘自有 + 大量租入，定位亚洲区域支线</td></tr>
+<tr><td>滚装</td><td>16.90</td><td>2.29</td><td>24.7%</td><td>23艘（含9,300车位大型远洋船），内外贸兼营</td></tr>
+<tr><td>LNG</td><td>0.55</td><td>6.71</td><td>28.9%</td><td>30艘 + 34艘在建（利润主要来自合营/联营投资收益）</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>截至2025年末，自有船舶235艘/3,884.59万载重吨，手持订单64艘/788.02万载重吨。VLCC船队平均船龄10.3年，船队整体平均船龄9.95年——在行业中偏年轻，有利于满足IMO环保法规要求。</p>
+
+<div class="insight">油轮是核心利润来源——以36.5%的营收占比贡献了55%的净利润。这种"利润集中于高毛利板块"的结构使公司对VLCC运价周期高度敏感：VLCC运价每变动10美元/天，年度利润影响约5-8亿元。全船型布局虽然提供了一定的周期对冲能力（如2025年散货承压但油轮大增），但油轮板块的权重决定了公司整体业绩仍高度依赖原油运输市场。</div>
+
+<h3 id="s1b">央企背景与行业竞争地位</h3>
+
+<p>控股股东招商局轮船有限公司持股54.48%，实际控制人为招商局集团（央企）。第二大股东中国石油化工集团持股12.57%，提供稳定的原油运输货源。</p>
+
+<p>在VLCC领域，公司拥有51艘自有船舶+5艘在建+2026年新订10艘，未来66艘的规模将稳居全球独立船东前列。取得所有国际大石油公司最高资质认证。VLOC（34艘）为世界第一。LNG船队通过CLNG等合资平台快速扩张至30+34艘。</p>
+
+<p>航运行业整体属于<strong>有壁垒的竞争型市场</strong>：资本密集（单艘VLCC造价约1亿美元）构成进入门槛，但运力高度同质化，运价完全由国际市场供需决定。不同子行业集中度差异大——VLCC前十大船东控制约35%运力（寡头竞争），干散货高度分散。</p>
+
+<div class="insight">航运不存在消费品意义上的"品牌力"和"产品差异性"——一条VLCC运原油与另一条无本质差异。护城河主要来自资本规模（船队总资产800+亿元）、资质壁垒（国际大石油公司认证，准入门槛高）和央企信用优势（融资成本低于民营/外资船东）。这些壁垒属于"渐进构建型"，新进入者难以短期复制，但也不构成绝对的竞争壁垒。</div>
+
+<!-- ══════════════ Sec 2 ══════════════ -->
+<h2 id="sec2">二、运价周期与盈利弹性</h2>
+
+<h3 id="s2a">航运运价的强周期特征</h3>
+
+<p>航运被称为"万业之母的周期之王"——运价波动剧烈，公司无自主定价权。营收同比增速标准差达28.1%，归母净利同比增速标准差高达46.2%。毛利率10年极差21.4个百分点（最高39.1%，最低17.7%），变异系数0.248——远高于消费品行业。</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>年份</th><th>营收（亿元）</th><th>归母净利（亿元）</th><th>毛利率</th><th>净利增速</th></tr></thead>
+<tbody>
+<tr><td>2017</td><td>60.95</td><td>6.14</td><td>23.8%</td><td>-64.5%</td></tr>
+<tr><td>2018</td><td>109.31</td><td>11.67</td><td>17.7%</td><td>+89.9%</td></tr>
+<tr><td>2019</td><td>145.56</td><td>16.13</td><td>22.6%</td><td>+38.2%</td></tr>
+<tr><td>2020</td><td>180.73</td><td>27.77</td><td>25.5%</td><td>+72.2%</td></tr>
+<tr><td>2021</td><td>244.12</td><td>36.09</td><td>18.8%</td><td>+29.9%</td></tr>
+<tr><td>2022</td><td>297.08</td><td>50.86</td><td>21.9%</td><td>+40.9%</td></tr>
+<tr><td>2023</td><td>258.81</td><td>48.37</td><td>25.9%</td><td>-4.9%</td></tr>
+<tr><td>2024</td><td>257.99</td><td>51.07</td><td>28.4%</td><td>+5.6%</td></tr>
+<tr><td>2025</td><td>281.77</td><td>60.12</td><td>26.5%</td><td>+17.7%</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>净利润波动度约为营收波动度的1.6倍，体现了航运行业的<strong>经营杠杆效应</strong>——固定成本（折旧、船员）占比高，营收波动被放大传导至净利润。2017年归母净利仅6.14亿 → 2025年60.12亿（+879%），反映运价从低谷到景气的巨大弹性。</p>
+
+<h3 id="s2b">成本结构与油价/汇率敏感度</h3>
+
+<p>以油轮板块为例（2025年年报成本明细），主要成本构成如下：</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>成本项</th><th>金额（亿元）</th><th>占比</th><th>特征</th></tr></thead>
+<tbody>
+<tr><td>燃油费</td><td>24.68</td><td>39.9%</td><td>与国际油价高度挂钩，同比-4.7%</td></tr>
+<tr><td>船舶折旧</td><td>12.82</td><td>20.7%</td><td>刚性成本，随新船交付持续增长</td></tr>
+<tr><td>船员费用</td><td>7.90</td><td>12.8%</td><td>相对稳定</td></tr>
+<tr><td>坞修/航修</td><td>3.59</td><td>5.8%</td><td>周期性检修</td></tr>
+<tr><td>其他</td><td>12.84</td><td>20.8%</td><td>港口费、保险、备件等</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>全公司合计燃油费约60亿元，占总营业成本约29%。此外，散货和集装箱板块大量使用租入船（散货租金8.38亿、集装箱租金10.02亿），租金水平跟随市场运价波动。公司2025年财务费用11.60亿元（其中汇兑损失增加是主因），航运收入和融资均以美元计价，形成一定的自然对冲。</p>
+
+<div class="insight">成本端强周期——燃油占总成本29%，叠加船舶租金的市场化波动，成本同比增速标准差达24.2%。而公司无法将成本波动转嫁给下游（无定价权），毛利率只能被动承受"运价-成本"剪刀差的变化。这是航运股"高beta"特征的根源——运价和成本同时受外部因素驱动。</div>
+
+<h3 id="s2c">2026H1业绩爆发：TTM净利创历史新高</h3>
+
+<p>2026年半年报显示公司业绩大幅增长：</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>项目</th><th>2026H1</th><th>2025H1</th><th>同比</th></tr></thead>
+<tbody>
+<tr><td>营收</td><td>196.51亿</td><td>125.85亿</td><td>+56.2%</td></tr>
+<tr><td>归母净利</td><td>69.60亿</td><td>21.25亿</td><td>+227.5%</td></tr>
+<tr><td>OCF（经营现金流）</td><td>81.31亿</td><td>35.26亿</td><td>+130.6%</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>TTM关键指标：TTM营收352.44亿、TTM归母净利108.47亿、TTM OCF 136.59亿——均为历史最高水平。驱动因素为VLCC运价在红海绕行+俄乌制裁重构原油贸易路线+OPEC产量波动等多重因素推动下大幅上行。</p>
+
+<p>2026年上半年资产负债表也出现积极变化：货币资金从47.21亿增至78.88亿（+67%），短期借款从104亿降至87.73亿，流动性压力显著缓解。</p>
+
+<div class="insight">2026H1半年利润（69.60亿）已超过2025年全年（60.12亿），处于本轮航运周期的景气高位。但需注意：①VLCC运价的脉冲性上涨部分源于地缘事件（红海绕行），若中东局势缓和，运力释放可能导致运价骤降；②公司VLCC即期比例高（期租不足10%），虽充分享受上行弹性，下行时同样暴露充分；③航运史上多次出现"景气高点大规模造船→交付时运价暴跌"的周期轮回。当前盈利水平可能处于或接近本轮周期的峰值区域。</div>
+
+<!-- ══════════════ Sec 3 ══════════════ -->
+<h2 id="sec3">三、现金流与分红能力</h2>
+
+<h3 id="s3a">经营现金流与资本开支</h3>
+
+<div class="tw">
+<table>
+<thead><tr><th>年份</th><th>OCF（经营现金流，亿元）</th><th>Capex（资本开支，亿元）</th><th>FCF（自由现金流，亿元）</th><th>Capex/OCF</th><th>在建工程（亿元）</th></tr></thead>
+<tbody>
+<tr><td>2020</td><td>75.65</td><td>13.63</td><td>62.01</td><td>18.0%</td><td>9.49</td></tr>
+<tr><td>2021</td><td>65.09</td><td>24.30</td><td>40.79</td><td>37.3%</td><td>7.78</td></tr>
+<tr><td>2022</td><td>69.95</td><td>26.96</td><td>42.99</td><td>38.5%</td><td>10.73</td></tr>
+<tr><td>2023</td><td>89.17</td><td>44.89</td><td>44.29</td><td>50.3%</td><td>34.29</td></tr>
+<tr><td>2024</td><td>84.76</td><td>75.50</td><td>9.26</td><td>89.1%</td><td>65.57</td></tr>
+<tr><td>2025</td><td>90.55</td><td>77.97</td><td>12.58</td><td>86.1%</td><td>114.09</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>OCF创造能力持续增强——从2020年76亿增至2025年91亿。但Capex同步急剧攀升（从14亿到78亿），在建工程从10亿飙升至114亿，反映新一轮大规模造船周期。FCF（= OCF − Capex）从2020年的62亿降至2025年的12.6亿——可自由支配的现金被造船吞噬。</p>
+
+<p>收现比（= 销售商品提供劳务收到的现金 / 营业收入）10年均值100.7%，利润含现金量高。应收账款占营收约5%，客户为大石油公司和大矿商，坏账风险极低。</p>
+
+<h3 id="s3b">派息与回购：穿透回报提升中</h3>
+
+<div class="tw">
+<table>
+<thead><tr><th>年度</th><th>归母净利（亿元）</th><th>派息（亿元）</th><th>支付率</th><th>注销回购（亿元）</th><th>穿透回报（亿元）</th><th>年末股息率</th></tr></thead>
+<tbody>
+<tr><td>2021</td><td>36.09</td><td>8.92</td><td>24.7%</td><td>—</td><td>8.92</td><td>2.68%</td></tr>
+<tr><td>2022</td><td>50.86</td><td>15.44</td><td>30.3%</td><td>—</td><td>15.44</td><td>3.40%</td></tr>
+<tr><td>2023</td><td>48.37</td><td>19.38</td><td>40.1%</td><td>—</td><td>19.38</td><td>4.05%</td></tr>
+<tr><td>2024</td><td>51.07</td><td>20.74</td><td>40.6%</td><td>4.43</td><td>25.17</td><td>3.97%</td></tr>
+<tr><td>2025</td><td>60.12</td><td>25.84</td><td>43.0%</td><td>—</td><td>25.84</td><td>3.56%</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>支付率从2021年24.7%逐步提升至2025年43.0%。2024年公司首次实施中期分红和注销型回购（回购4.43亿元全部用于注销减少注册资本），股东回报意愿明显增强。年报披露"2025年度现金分红占归母净利42.98%，加上回购合计48.14%"。</p>
+
+<p>但公司<strong>缺乏刚性分红承诺</strong>——回报规划为证监会模板格式（三年累计≥30%等标准条款），非公司自主承诺。历史支付率在周期低谷时可能回落至25%水平。</p>
+
+<p><strong>当前股息率1.40%</strong>（基于2026-09-21收盘市值1,849.88亿），处于近5年最低——原因是市值从2024年末522亿涨至当前1,850亿（+254%），涨幅远超派息增长。近5年年末股息率中位数为3.56%。</p>
+
+<div class="insight">分红可持续性面临两个层面的不确定性：①利润层面——航运强周期性使年度归母净利在30-108亿之间大幅波动，即使支付率稳定在40%，派息金额也可能从12亿到40亿剧烈变化；②资金层面——2025年FCF仅12.6亿，但派息25.8亿，差额部分通过融资（借款）补充。在运价景气期，高OCF可支撑高分红；但若运价下行+造船支出持续，分红可能面临削减压力。</div>
+
+<h3 id="s3c">现金储备与偿债压力</h3>
+
+<div class="tw">
+<table>
+<thead><tr><th>年份</th><th>货币资金（亿元）</th><th>短期借款（亿元）</th><th>一年内到期非流动负债（亿元）</th><th>现金储备（亿元）</th></tr></thead>
+<tbody>
+<tr><td>2022</td><td>112.29</td><td>20.24</td><td>28.33</td><td>63.72</td></tr>
+<tr><td>2023</td><td>49.53</td><td>49.90</td><td>29.18</td><td>-29.54</td></tr>
+<tr><td>2024</td><td>45.89</td><td>88.05</td><td>33.36</td><td>-75.52</td></tr>
+<tr><td>2025</td><td>47.21</td><td>104.04</td><td>40.65</td><td>-97.48</td></tr>
+<tr><td>2026H1</td><td>78.88</td><td>87.73</td><td>28.60</td><td>-37.45</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>现金储备（= 货币资金 − 短期借款 − 一年内到期非流动负债）从2022年的+63.72亿急剧恶化至2025年末的-97.48亿。主因是大规模造船融资推高了短期借款（从20亿飙升至104亿）。2026H1得益于高盈利，货币资金增至78.88亿，短期借款下降至87.73亿，缺口收窄至-37.45亿。</p>
+
+<p>资产负债率2025年末46.7%、2026H1末47.5%，处于航运行业合理水平。固定资产421.79亿元（船舶），可作为融资抵押物。央企背景提供了极强的再融资能力。</p>
+
+<div class="insight">现金储备为负是一个值得关注的信号——意味着分红实质上部分依赖融资支持。但这与"恒大式流动性危机"有本质区别：①OCF持续90亿/年，偿债能力有保障；②船舶资产421亿可抵押变现；③央企信用背书+招商局集团财务公司支持。更准确地说，这是"扩张期的战略性负债"——公司选择在运价景气期加大造船投入，用融资弥补现金缺口。风险在于若运价周期突然逆转，高负债+高折旧将形成"戴维斯双杀"。</div>
+
+<!-- ══════════════ Sec 4 ══════════════ -->
+<h2 id="sec4">四、运力供给与行业格局</h2>
+
+<h3 id="s4a">全球运力供给周期</h3>
+
+<p>2025年全球船队增长3.5%至25亿载重吨。新船交付量环比继续上升，但VLCC和好望角型散货船交付增速有限。全球手持订单占现有运力比重约17%——集装箱/LNG/汽车运输船>20%，散货船仅10%。</p>
+
+<p>一个重要的结构性因素是<strong>船龄老化</strong>：超过15年船龄运力占全球船队39%（汽车运输船51%、成品油轮47%），未来拆解潜力较大。IMO碳排放法规（EEXI/CII评级）将加速老旧非节能船淘汰或降速——实际上等于"被动供给收缩"。</p>
+
+<h3 id="s4b">地缘扰动与绿色转型</h3>
+
+<p><strong>地缘因素</strong>：红海/苏伊士通道中断导致船舶绕行好望角，有效运力蒸发约8-10%。俄乌制裁重构原油贸易路线——俄油从欧洲转向亚洲，吨海里增加3-4倍。这些因素在2025-2026年持续支撑运力紧张和运价高位。但地缘驱动的运价上涨具有"脉冲性"——若冲突缓和或停火，运力释放将导致运价回落。</p>
+
+<p><strong>绿色转型</strong>：公司在环保合规方面布局领先——首艘甲醇双燃料VLCC已交付、甲醇双燃料滚装船在建、"船奇碳智"碳资产管理系统上线。船舶单耗连续三年下降至2.18千克标煤/千吨海里。EU ETS碳交易已覆盖航运，碳税将推高全行业运营成本，但合规先行者（新船+低碳技术）将获得相对成本优势。</p>
+
+<div class="insight">当前运力供给端对油轮总体有利——VLCC在手订单占比不高、老龄化拆解加速、绕行吨海里增加。但公司自身大规模扩张（10艘VLCC+5艘Aframax+穿梭油轮等新订单）也在增加未来供给。若全行业同步抢造新船，2028年后可能面临交付高峰与运价下行的叠加压力。甲醇双燃料船型的先发投入是正确的战略方向——未来5年内非节能船将被迫降速或退出，新船将具有显著的竞争优势和残值保护。</div>
+
+<h3 id="s4c">战略扩张动态（2026年近期公告）</h3>
+
+<ul>
+  <li><span class="tag-pos">运力扩张</span> 2026年3月新建10艘VLCC、8月新建5艘Aframax，持续加码油轮船队</li>
+  <li><span class="tag-pos">货源锁定</span> 2026年7月签署西芒杜铁矿石运输重大合同——几内亚→中国航线吨海里约为澳洲→中国的2倍，散货增量空间大</li>
+  <li><span class="tag-pos">外延并购</span> 2026年8月拟取得安通控股控制权——进军沿海集运/多式联运，延伸产业链</li>
+  <li><span class="tag-pos">新船交付</span> 2026年1-8月密集交付LNG船、Kamsarmax散货船、Aframax油轮、重吊多用途船等</li>
+  <li><span class="tag-neg">监管关注</span> 2026年5月收到证监会上海监管局《行政监管措施决定书》</li>
+  <li><span class="tag-neu">股东减持</span> 中石化提前终止减持计划（持股从12.57%下降），2026年6月公告</li>
+</ul>
+
+<!-- ══════════════ Sec 5 ══════════════ -->
+<h2 id="sec5">五、总结与展望</h2>
+
+<p>招商轮船是全球最大的独立VLCC船东之一，央企背景+全船型布局+船队年轻化构成了核心竞争力。2025-2026年正处于航运景气周期高位，油轮运价上行驱动公司业绩创历史新高。</p>
+
+<p><strong>积极信号</strong>：</p>
+<ul>
+  <li><span class="tag-pos">业绩爆发</span> TTM归母净利108.47亿元，2026H1半年利润超2025全年</li>
+  <li><span class="tag-pos">OCF强劲</span> OCF持续90亿+/年，收现比接近100%，利润含现金量高</li>
+  <li><span class="tag-pos">回报提升</span> 支付率从25%提升至43%，首次实施中期分红和注销型回购</li>
+  <li><span class="tag-pos">战略清晰</span> 全船型+绿色化+西芒杜货源锁定+安通控股并购，中长期增长路径明确</li>
+  <li><span class="tag-pos">环保先发</span> 甲醇双燃料VLCC已交付，船队年轻化有利于IMO合规</li>
+</ul>
+
+<p><strong>需关注的风险因素</strong>：</p>
+<ul>
+  <li><span class="tag-neg">周期顶部</span> VLCC运价可能处于或接近本轮周期峰值</li>
+  <li><span class="tag-neg">过度扩张</span> 手持订单64艘+新增大量订单，在建工程114亿，若运价下行将面临高折旧+高负债压力</li>
+  <li><span class="tag-neg">现金缺口</span> FCF仅12.6亿 vs 派息25.8亿，部分分红依赖融资</li>
+  <li><span class="tag-neu">地缘依赖</span> 红海绕行若因停火逆转，运力释放可能导致运价骤降</li>
+  <li><span class="tag-neu">估值压力</span> 当前股息率1.40%为历史最低，PE（市盈率）17.05倍、PB（市净率）3.95倍，已充分反映景气预期</li>
+</ul>
+
+<div class="insight">招商轮船的核心投资命题是<strong>航运周期判断</strong>——公司自身商业模式和经营能力在行业中处于顶尖水平，但利润几乎完全取决于运价走势。当前TTM净利108亿对应市值1,850亿（隐含PE 17倍），若以运价回落后的"正常化"净利50-60亿计算，实际PE在30-37倍。投资者需要回答的核心问题是：当前运价高景气是"新常态"还是"周期顶部"？西芒杜投产、绿色转型加速淘汰、OPEC供给不确定性等因素支持运价中枢抬升的逻辑，但历史经验表明，航运景气周期终将回落——问题只是时间和幅度。</div>
+
+<!-- ══════════════ Risk ══════════════ -->
+<div class="risk" id="risk">
+  <h3>风险提示</h3>
+  <ul>
+    <li>全球航运运价周期下行，VLCC/BDI指数大幅回落</li>
+    <li>红海/中东局势缓和导致船舶恢复苏伊士通道通行，有效运力释放</li>
+    <li>国际油价大幅上涨推高燃油成本，侵蚀利润（燃油占总成本约29%）</li>
+    <li>大规模造船扩张导致2027-2028年交付高峰与运价下行叠加</li>
+    <li>安通控股收购整合不及预期，西芒杜项目进度延迟</li>
+    <li>人民币汇率大幅波动，增加财务费用中的汇兑损失</li>
+    <li>IMO/EU ETS环保法规执行力度超预期，推高合规成本</li>
+    <li>全球贸易摩擦加剧（中美关税战等），海运贸易量萎缩</li>
+  </ul>
+</div>
+
+<div style="margin-top:32px; padding-top:16px; border-top:1px solid var(--border); font-size:12px; color:var(--muted); text-align:center;">
+  公司研究 &nbsp;|&nbsp; 本报告仅包含客观事实和数据分析，不含投资建议 &nbsp;|&nbsp; 数据截止 2026-09-21
+</div>
+
+</div></main>
+</body>
+</html>

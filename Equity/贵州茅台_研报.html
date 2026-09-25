@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>贵州茅台 公司研究</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f4f6f9;--card:#fff;--text:#2e3440;--muted:#6b7785;--border:#e1e5eb;--accent:#3574d4;--accent-bg:#e8f0fe;--green:#1a7f37;--green-bg:#dafbe1;--amber:#9a6700;--amber-bg:#fff8c5;--heading:#1c2433;--toc-w:240px;--radius:8px;--shadow:0 1px 4px rgba(0,0,0,.05)}
+  *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:24px}
+  body{font-family:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.82;color:var(--text);background:var(--bg)}
+  nav.toc{position:fixed;top:0;left:0;width:var(--toc-w);height:100vh;background:#eef1f6;border-right:1px solid var(--border);overflow-y:auto;z-index:100;scrollbar-width:thin;scrollbar-color:#c5c9d0 transparent}
+  nav.toc::-webkit-scrollbar{width:3px}nav.toc::-webkit-scrollbar-thumb{background:#c5c9d0;border-radius:2px}
+  .toc-brand{padding:20px 18px 14px;border-bottom:1px solid var(--border)}.toc-brand .label{font-size:11px;font-weight:600;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}.toc-brand .doc-title{font-family:"Noto Serif SC",serif;font-size:15px;font-weight:700;color:var(--heading);margin-top:4px;line-height:1.35}
+  nav.toc ul{list-style:none;padding:8px 0 28px}nav.toc a{display:block;padding:4px 18px;font-size:13px;line-height:1.5;color:#57606a;text-decoration:none;border-left:2px solid transparent;transition:all .12s}
+  nav.toc a:hover{color:var(--accent);background:var(--accent-bg);border-left-color:var(--accent)}nav.toc .t1{font-weight:700;color:var(--heading);margin-top:14px;padding-top:8px;border-top:1px solid var(--border)}nav.toc li:first-child .t1{border-top:none;margin-top:0}nav.toc .t2{font-weight:600;padding-left:24px}
+  main{margin-left:var(--toc-w);padding:32px 44px 80px}.wrap{max-width:960px;margin:0 auto;background:var(--card);border-radius:12px;padding:44px 52px;border:1px solid #e8ecf1;box-shadow:var(--shadow)}
+  h1{font-family:"Noto Serif SC",serif;font-size:27px;font-weight:700;color:var(--heading);line-height:1.35;margin-bottom:6px}.subtitle{font-size:15px;color:var(--muted);margin-bottom:20px}
+  .meta-bar{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);padding:10px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:28px}.meta-bar span{white-space:nowrap}
+  h2{font-size:19px;font-weight:700;color:var(--accent);margin:40px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--accent)}h3{font-size:16px;font-weight:600;color:var(--heading);margin:26px 0 8px;padding-left:12px;border-left:3px solid var(--accent)}p{margin:7px 0}ul{margin:6px 0 6px 20px}li{margin:4px 0}
+  .abstract{background:linear-gradient(135deg,#f0f4ff 0%,#e8f0fe 100%);border:1px solid #c8d8f0;border-radius:var(--radius);padding:22px 26px;margin:20px 0 28px}.abstract h2{margin:0 0 12px;border:none;padding:0;font-size:17px;color:var(--accent)}.abstract ul{padding-left:20px;margin:0}.abstract li{margin:6px 0;font-size:14.5px;line-height:1.7}.abstract li strong{color:var(--heading)}
+  .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:18px 0 24px}.kpi{background:var(--bg);border-radius:var(--radius);padding:14px 16px;text-align:center;border:1px solid var(--border)}.kpi .num{font-size:22px;font-weight:700;color:var(--accent)}.kpi .lbl{font-size:12px;color:var(--muted);margin-top:2px}
+  .tw{overflow-x:auto;margin:14px 0;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow)}table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--card)}thead th{background:var(--accent);color:#fff;font-weight:600;font-size:12.5px;text-align:left;padding:9px 14px}tbody td{padding:8px 14px;border-bottom:1px solid #eef0f3;vertical-align:top}tbody tr:last-child td{border-bottom:none}tbody tr:hover td{background:#f6f8fa}tbody td:first-child{font-weight:500;color:var(--heading);white-space:nowrap}
+  .insight{margin:12px 0;padding:12px 18px;background:#eef1f6;border-left:3px solid #5b6b82;border-radius:0 var(--radius) var(--radius) 0;font-size:14px;color:#4a5568}.insight strong{color:var(--accent)}
+  .tag-pos{display:inline-block;background:var(--green-bg);color:var(--green);font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px}.tag-neg{display:inline-block;background:#ffdce0;color:#cf222e;font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px}.tag-neu{display:inline-block;background:var(--amber-bg);color:var(--amber);font-size:12px;font-weight:600;padding:2px 8px;border-radius:10px}
+  .risk{background:#fef2f2;border:1px solid #fecaca;border-radius:var(--radius);padding:16px 20px;margin:20px 0}.risk h3{border:none;padding:0;color:#b91c1c;margin:0 0 8px}.risk ul{padding-left:20px;margin:0}.risk li{font-size:14px;color:#7f1d1d;margin:4px 0}
+  @media print{nav.toc{display:none}main{margin-left:0;padding:20px}.wrap{max-width:100%;box-shadow:none;border:none}}@media(max-width:900px){nav.toc{display:none}main{margin-left:0;padding:16px}.wrap{padding:24px 20px}}
+  .legend{display:flex;align-items:center;gap:8px;margin:8px 0 20px;font-size:12px;color:#8b949e}.legend-block{display:inline-block;width:28px;height:16px;border-radius:3px;background:#eef1f6;border-left:3px solid #5b6b82;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<nav class="toc"><div class="toc-brand"><div class="label">公司研究</div><div class="doc-title">贵州茅台</div></div>
+<ul>
+<li class="t1"><a href="#abstract">核心观点</a></li>
+<li class="t1"><a href="#sec1">一、公司画像</a></li>
+<li class="t2"><a href="#s1a">管线与营收结构</a></li>
+<li class="t2"><a href="#s1b">行业格局与竞争地位</a></li>
+<li class="t2"><a href="#s1c">品牌护城河</a></li>
+<li class="t1"><a href="#sec2">二、定价权与成本结构</a></li>
+<li class="t2"><a href="#s2a">极致定价权</a></li>
+<li class="t2"><a href="#s2b">成本端弱周期</a></li>
+<li class="t2"><a href="#s2c">售价端弱周期</a></li>
+<li class="t1"><a href="#sec3">三、现金流与资本效率</a></li>
+<li class="t2"><a href="#s3a">先钱后货的收现模式</a></li>
+<li class="t2"><a href="#s3b">极低的资本开支</a></li>
+<li class="t2"><a href="#s3c">现金储备与零杠杆</a></li>
+<li class="t1"><a href="#sec4">四、股东回报</a></li>
+<li class="t2"><a href="#s4a">派息与回购</a></li>
+<li class="t2"><a href="#s4b">回报可预测性</a></li>
+<li class="t2"><a href="#s4c">股息率历史分位</a></li>
+<li class="t1"><a href="#sec5">五、行业逻辑</a></li>
+<li class="t2"><a href="#s5a">消费景气与调整周期</a></li>
+<li class="t2"><a href="#s5b">批价、库存与渠道变革</a></li>
+<li class="t2"><a href="#s5c">价格带竞争与龙头壁垒</a></li>
+<li class="t1"><a href="#sec6">六、2026年中报速览</a></li>
+<li class="t1"><a href="#sec7">七、总结与展望</a></li>
+<li class="t1"><a href="#risk">风险提示</a></li>
+</ul></nav>
+
+<main><div class="wrap">
+<h1>贵州茅台 公司研究</h1>
+<div class="subtitle">600519.XSHG &nbsp;|&nbsp; 食品饮料 &middot; 白酒 &nbsp;|&nbsp; 公司研究</div>
+<div class="meta-bar"><span>报告日期：2026-09-23</span><span>数据截止：2025年年报 + 2026年半年报</span><span>市值：15,673.5亿（2026-09-22收盘）</span><span>PE（TTM）：19.25倍</span><span>当前股息率：4.15%</span></div>
+
+<div class="abstract" id="abstract"><h2>核心观点</h2>
+<ul>
+<li><strong>管线极简、利润高度可验证。</strong>公司只做一件事——酿造和销售白酒。茅台酒2025年营收1,465亿（占86.8%、毛利率93.53%），系列酒223亿（占13.2%、毛利率76.11%）。营销覆盖国内及66个国家和地区，利润来源透明。</li>
+<li><strong>A股最强定价权，毛利率91%+且极其稳定。</strong>近12年毛利率均值91.35%、变异系数仅0.009。出厂价1,169元 vs 市场批价2,000-2,500元，存在70-110%的隐性提价缓冲。前五大客户占比仅10.10%，长期供不应求，通过配额制主动控量。</li>
+<li><strong>典型"先钱后货"、现金流充沛的轻资本模式。</strong>收现比12年均值113%，应收账款几乎为零。Capex（资本开支）/营收近6年均值仅2.7%且趋势递减，FCF（自由现金流）2025年约584亿，完全覆盖650亿分红。零有息负债，货币资金517亿。</li>
+<li><strong>穿透回报历史新高，股息率处于近5年最高。</strong>2025年度派息650亿（含季度分红+年度预案）+注销型回购30亿，合计穿透回报约680亿。公告承诺2024-2026年度分红不低于归母净利75%。当前股息率4.15%，处于近5年最高水平。</li>
+<li><strong>行业调整期展现弱周期韧性。</strong>2025年营收仅微降1.2%（茅台酒本身+0.39%），远优于行业平均。但合同负债从141亿降至32亿（2026H1）、库存增速高于销量增速，需关注渠道调整节奏。</li>
+</ul></div>
+
+<div class="kpi-row">
+<div class="kpi"><div class="num">1,688亿</div><div class="lbl">2025年营收</div></div>
+<div class="kpi"><div class="num">91.18%</div><div class="lbl">2025年毛利率</div></div>
+<div class="kpi"><div class="num">823亿</div><div class="lbl">2025年归母净利</div></div>
+<div class="kpi"><div class="num">814亿</div><div class="lbl">TTM归母净利</div></div>
+<div class="kpi"><div class="num">4.15%</div><div class="lbl">当前股息率</div></div>
+</div>
+<div class="legend"><span class="legend-block"></span> 灰色色块为 AI 参考判断，仅供参考，不代表投资建议</div>
+
+<h2 id="sec1">一、公司画像：超高端白酒的垄断型龙头</h2>
+<h3 id="s1a">管线与营收结构</h3>
+<p>贵州茅台是中国大曲酱香型白酒的鼻祖和典型代表，控股股东为贵州茅台酒厂（集团）有限责任公司（持股54.50%），实控人为贵州省国资委。公司主营业务极为纯粹——茅台酒系列产品的研制、酿造和销售，酒类营收占总营收99.97%。</p>
+<div class="tw"><table>
+<thead><tr><th>产品/渠道</th><th>2025年营收</th><th>毛利率</th><th>同比</th><th>特点</th></tr></thead>
+<tbody>
+<tr><td>茅台酒</td><td>1,465亿</td><td>93.53%</td><td>+0.39%</td><td>核心利润源，占营收86.8%</td></tr>
+<tr><td>系列酒</td><td>223亿</td><td>76.11%</td><td>-9.76%</td><td>第二曲线，结构调整中</td></tr>
+<tr><td>直销渠道</td><td>845亿</td><td>94.58%</td><td>+12.96%</td><td>i茅台等平台，首次占比过半</td></tr>
+<tr><td>批发代理</td><td>842亿</td><td>87.86%</td><td>-12.05%</td><td>传统渠道，渠道变革承压</td></tr>
+</tbody></table></div>
+<p>2025年直销营收首次超过批发代理（各约845亿 vs 842亿），标志着"全面向C"战略取得阶段性成果。前五大客户销售额仅占10.10%，客户极度分散。国外营收48.50亿元（占比2.9%），国际化仍处起步阶段。</p>
+<div class="insight">管线清晰度是利润可预测性的基础。茅台只做白酒，产品看得懂、利润可验证、无重大多元化干扰——这是A股管线清晰度最高的公司之一。2025年直销占比过半是渠道结构的里程碑：直销毛利率94.58%高于批发代理的87.86%，有利于长期利润率提升。</div>
+
+<h3 id="s1b">行业格局与竞争地位</h3>
+<p>白酒行业整体属于充分竞争——全国有上万家生产企业。但从价格带分层看，呈现清晰的分层垄断格局：</p>
+<ul>
+<li><strong>千元以上超高端</strong>：仅茅台、五粮液、国窖1573三家，茅台在飞天2,500元+的价格带独占</li>
+<li><strong>500-1,000元次高端</strong>：五粮液、国窖、青花郎等5-6家品牌</li>
+<li><strong>300元以下中低端</strong>：充分竞争，地产酒林立</li>
+</ul>
+<p>行业CR5持续提升，呈"强者恒强"的挤压式增长——龙头份额来自中小酒企的退出和萎缩。作为贵州省最大国企，茅台承担税收贡献、地方就业、ESG等社会责任，但对利润直接侵蚀有限。2025年明晟ESG评级从BBB跃升至A级，成为白酒行业首家获此评级的企业。</p>
+<div class="insight">白酒行业是A股最典型的"看似竞争、实则分层垄断"行业。在飞天茅台所处的2,500元+价格带，不存在替代品，且无法通过资本投入创造新的竞争者。社会责任方面，最大的潜在风险是作为贵州省"财政支柱"的角色——若省财政承压，可能加大资源抽取。但截至目前，这一风险尚未显著影响利润。</div>
+
+<h3 id="s1c">品牌护城河：不可复制的三重壁垒</h3>
+<p>贵州茅台品牌价值583.80亿美元（BrandFinance全球烈酒第一，+16.50%），评级AAA+。核心竞争力来源于：</p>
+<ul>
+<li><strong>环境壁垒</strong>：赤水河流域独特微生物群落，不可搬迁</li>
+<li><strong>工艺壁垒</strong>：大曲酱香"12987"工艺（1年生产周期、2次投料、9次蒸煮、8次发酵、7次取酒），国家非物质文化遗产，百年窖池不可速成</li>
+<li><strong>文化壁垒</strong>：数百年酿造历史，"国酒"地位深入人心，文化认同不可购买</li>
+</ul>
+<p>销售费用率仅4.29%（72.53亿/1,688亿），远低于白酒行业平均15-20%——反映品牌"拉力"驱动增长，消费者主动寻求产品，而非依赖推广。茅台酒从生产到出厂需经历5年以上酿造周期，年产基酒约5.6万吨受自然条件约束，产能天花板决定了稀缺性。</p>
+<div class="insight">茅台的壁垒是<strong>自然形成的</strong>（地理+时间+文化），而非资本构建的——这种壁垒最为持久。关键区别在于：产能不可随意扩张——"反规模效应"本身就是壁垒。</div>
+
+<h2 id="sec2">二、定价权与成本结构：A股定价权天花板</h2>
+<h3 id="s2a">极致定价权：毛利率91%+，变异系数0.009</h3>
+<div class="tw"><table>
+<thead><tr><th>年份</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>12年均值</th></tr></thead>
+<tbody>
+<tr><td>毛利率</td><td>91.54%</td><td>91.87%</td><td>91.97%</td><td>91.93%</td><td>91.18%</td><td>91.35%</td></tr>
+<tr><td>营收（亿元）</td><td>1,062</td><td>1,241</td><td>1,477</td><td>1,709</td><td>1,688</td><td>—</td></tr>
+</tbody></table></div>
+<p>近12年毛利率均值91.35%，标准差仅0.81个百分点，极差2.79pp（89.80%-92.59%），变异系数0.009——在A股中属于极端稳定。定价权的底层逻辑：</p>
+<ul>
+<li><strong>巨大价差缓冲</strong>：出厂价1,169元 vs 终端指导价1,499元 vs 市场批价约2,000-2,500元，即使批价下跌30%仍高于出厂价</li>
+<li><strong>长期供不应求</strong>：2025年生产量116,124吨（+11.25%），销售量85,104吨（+2.13%），配额制主动控量</li>
+<li><strong>客户极度分散</strong>：前五大客户占比仅10.10%，无单一客户依赖</li>
+</ul>
+<div class="insight">出厂价与市场批价之间70-110%的价差是"隐性提价空间"——公司随时可通过上调出厂价释放利润，但出于品牌管理和社会责任考量选择不充分提价。这种"<strong>可以但选择不</strong>"的定价权是最可靠的。</div>
+
+<h3 id="s2b">成本端：弱周期，对利润几乎无影响</h3>
+<div class="tw"><table>
+<thead><tr><th>年份</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>12年均值</th></tr></thead>
+<tbody>
+<tr><td>成本率</td><td>8.46%</td><td>8.13%</td><td>8.03%</td><td>8.07%</td><td>8.82%</td><td>8.65%</td></tr>
+<tr><td>营业成本（亿元）</td><td>89.83</td><td>100.93</td><td>118.67</td><td>137.89</td><td>148.92</td><td>—</td></tr>
+</tbody></table></div>
+<p>2025年成本构成：直接材料76亿（51.4%）、直接人工55亿（37.1%）、制造费用9亿（6.1%）、燃料动力5亿（3.2%）、运输费3亿（2.2%）。原料为高粱、小麦等农产品，价格波动远小于煤炭、铜等工业大宗品。成本率仅8-9%——即使原材料价格翻倍，对毛利率的影响也不到5个百分点。</p>
+<div class="insight">茅台的成本调整能力是间接但强大的——不是靠压低原材料价格，而是靠极高的定价使得<strong>成本波动几乎可以忽略不计</strong>。成本仅占营收的不到十分之一，即使成本上涨20%，毛利率也仅下降不到1个百分点。</div>
+
+<h3 id="s2c">售价端弱周期：近11年仅1年微降</h3>
+<div class="tw"><table>
+<thead><tr><th>年份</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr></thead>
+<tbody>
+<tr><td>营收同比</td><td>+11.9%</td><td>+16.9%</td><td>+19.0%</td><td>+15.7%</td><td>-1.2%</td></tr>
+<tr><td>归母净利同比</td><td>+12.3%</td><td>+19.5%</td><td>+19.2%</td><td>+15.4%</td><td>-4.5%</td></tr>
+</tbody></table></div>
+<p>近11年（2015-2025）营收保持10年正增长，仅2025年微降1.2%——且主因系列酒结构调整，茅台酒本身仍增长0.39%。营收同比增速标准差13.3%（剔除2017年异常值后仅8.5%），远优于典型周期股。</p>
+<div class="insight">茅台是典型的弱周期企业。2025年营收首次微降是行业调整期的反映，但-1.2%的幅度远未触及基本面。需关注的是：若宏观经济持续疲软导致商务宴请、礼赠等高端消费场景萎缩，售价稳定性可能面临更大考验。</div>
+
+<h2 id="sec3">三、现金流与资本效率：A股最健康的现金流画像</h2>
+<h3 id="s3a">先钱后货：收现比持续&gt;100%</h3>
+<div class="tw"><table>
+<thead><tr><th>年份</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>12年均值</th></tr></thead>
+<tbody>
+<tr><td>收现比</td><td>112.4%</td><td>113.4%</td><td>110.8%</td><td>106.9%</td><td>109.0%</td><td>113.3%</td></tr>
+<tr><td>应收/营收</td><td>0%</td><td>0.1%</td><td>0.1%</td><td>1.2%</td><td>0%</td><td>—</td></tr>
+<tr><td>合同负债（亿元）</td><td>127</td><td>155</td><td>141</td><td>96</td><td>80</td><td>—</td></tr>
+</tbody></table></div>
+<p>经销商和消费者需先打款后才能获得配额或提货，因此公司账上常年有数十亿至上百亿的合同负债。收现比12年均值113.3%，持续&gt;100%，意味着收到的现金始终大于确认的营业收入。应收账款几乎为零（2025年仅260万元），不存在赊销。</p>
+<div class="insight">茅台的收现模式是A股最健康的——类似五粮液的"纯现金+先钱后货"模式，但更极致（应收几乎为零）。合同负债的下降是白酒行业调整期的行业性现象，不改变"先收钱再发货"的底层商业逻辑。</div>
+
+<h3 id="s3b">极低的资本开支：利润几乎全部可支配</h3>
+<div class="tw"><table>
+<thead><tr><th>年份</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr></thead>
+<tbody>
+<tr><td>Capex（资本开支，亿元）</td><td>34.09</td><td>53.07</td><td>26.20</td><td>46.79</td><td>31.28</td></tr>
+<tr><td>OCF（经营现金流，亿元）</td><td>640</td><td>367</td><td>666</td><td>925</td><td>615</td></tr>
+<tr><td>FCF（自由现金流，亿元）</td><td>606</td><td>314</td><td>640</td><td>878</td><td>584</td></tr>
+<tr><td>Capex/营收</td><td>3.2%</td><td>4.3%</td><td>1.8%</td><td>2.7%</td><td>1.9%</td></tr>
+</tbody></table></div>
+<p>近6年Capex/营收均值仅2.7%，且趋势递减。酿酒车间一旦建成可长期使用（窖池越老越好），重复性资本开支几乎只有设备维护和产能边际扩展。2025年FCF约584亿元（OCF 615亿 - Capex 31亿），完全覆盖当年650亿派息。</p>
+<div class="insight">茅台属于典型的"递减型"资本开支——酿造设施一次性投入后可长期运营。每年经营赚到的现金绝大部分可自由支配（派息或储备），<strong>利润可支配比例极高</strong>。</div>
+
+<h3 id="s3c">现金储备与零杠杆：A股最干净的资产负债表之一</h3>
+<div class="tw"><table>
+<thead><tr><th>年份</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr></thead>
+<tbody>
+<tr><td>货币资金（亿元）</td><td>518</td><td>583</td><td>691</td><td>593</td><td>517</td></tr>
+<tr><td>短期借款（亿元）</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>资产负债率</td><td>22.8%</td><td>19.4%</td><td>18.0%</td><td>19.0%</td><td>16.4%</td></tr>
+</tbody></table></div>
+<p><strong>短期借款全年为零</strong>，一年内到期非流动负债极小（最高1.12亿），茅台几乎没有有息负债。2025年资产负债率仅16.4%，为近12年最低（均值23.1%）。货币资金517亿全部为净现金。综合现金因子（FCF + 现金储备）2025年约1,100亿，完全覆盖归母净利823亿。</p>
+<div class="insight">茅台的综合现金状况在A股属于顶级水平——"每年挣很多钱、花很少钱、存了很多钱"。零有息负债+充裕现金储备意味着即使遇到经营困难，公司也有约0.6年净利润的缓冲。分红可持续性无虞。</div>
+
+<h2 id="sec4">四、股东回报：穿透回报约680亿，支付率承诺75%+</h2>
+<h3 id="s4a">派息与回购：2025年度合计穿透回报约680亿</h3>
+<div class="tw"><table>
+<thead><tr><th>年度</th><th>归母净利（亿元）</th><th>实际派息（亿元）</th><th>可外推支付率</th><th>注销型回购</th></tr></thead>
+<tbody>
+<tr><td>2021</td><td>524.60</td><td>272.28</td><td>51.9%</td><td>无</td></tr>
+<tr><td>2022</td><td>627.16</td><td>600.73（含特别分红275亿）</td><td>51.9%</td><td>无</td></tr>
+<tr><td>2023</td><td>747.34</td><td>627.87（含特别分红240亿）</td><td>51.9%</td><td>无</td></tr>
+<tr><td>2024</td><td>862.28</td><td>646.72（含季度分红）</td><td>75.0%</td><td>无</td></tr>
+<tr><td>2025</td><td>823.20</td><td>650.34（季度+年度预案）</td><td>79.0%</td><td>约30亿</td></tr>
+</tbody></table></div>
+<p>2025年度穿透回报约680亿（派息650亿 + 首轮注销型回购30亿），占归母净利的82.6%。回购用途明确为"注销并减少注册资本"——实际回购2,188,614股、均价1,370.70元/股、约30亿元，已于2026年5月28日完成注销。第二轮注销型回购已启动但具体金额待最终公告。</p>
+
+<h3 id="s4b">回报可预测性：四重保障叠加</h3>
+<p><strong>管理层承诺</strong>：2024-08-09公告《2024-2026年度现金分红回报规划》明确承诺——每年度现金红利不低于归母净利75%，分两次实施（年度+中期）。经股东大会审议通过，为最高可信度级别。2024年度实际支付率75.0%、2025年度79.0%，均已兑现。</p>
+<p>可预测性的四重保障：</p>
+<ul>
+<li><strong>有承诺</strong>：75%比例下限，远高于证监会30%模板</li>
+<li><strong>历史验证</strong>：2024-2025年度已连续兑现</li>
+<li><strong>商业模式封闭</strong>：白酒酿造无需大额Capex或并购，利润几乎全部可支配</li>
+<li><strong>零杠杆</strong>：无有息负债，分红无财务安全顾虑</li>
+</ul>
+<div class="insight">75%的承诺支付率在A股属于较高水平。加之零有息负债、Capex极低、现金储备充裕，75%的支付率完全可持续。实际上2025年度支付率已达79%（超过承诺），可以合理预期未来维持75-80%区间。唯一的不确定性来自"净利润是否持续增长"——取决于茅台酒销量和定价的长期趋势，而非分红政策本身。</div>
+
+<h3 id="s4c">股息率历史分位：当前处于近5年最高</h3>
+<div class="tw"><table>
+<thead><tr><th>年份</th><th>派息总额（亿元）</th><th>年末市值（亿元）</th><th>年末股息率</th><th>年末PE</th></tr></thead>
+<tbody>
+<tr><td>2021</td><td>272</td><td>25,752</td><td>1.06%</td><td>51.36</td></tr>
+<tr><td>2022</td><td>601</td><td>21,695</td><td>2.77%</td><td>36.40</td></tr>
+<tr><td>2023</td><td>628</td><td>21,682</td><td>2.90%</td><td>30.46</td></tr>
+<tr><td>2024</td><td>647</td><td>19,145</td><td>3.38%</td><td>23.15</td></tr>
+<tr><td>2025</td><td>650</td><td>17,246</td><td>3.77%</td><td>19.16</td></tr>
+</tbody></table></div>
+<p>当前股息率4.15%（基于2025年度派息650亿 / 最新市值15,674亿），为近5年最高。近5年年末股息率从1.06%（2021年泡沫期PE 51倍）持续提升至3.77%（2025年末PE 19倍），反映的是估值回归而非分红下降。</p>
+<p><strong>市值极值</strong>（盘中真实数据）：历史最高32,673.7亿元（2021-02-10）；历史最低1,987.65亿元（2015-02-05）。当前市值约为历史峰值的48.0%。</p>
+<div class="insight">4.15%的股息率在A股消费龙头中属于较高水平。考虑到承诺支付率75%+、利润规模800亿+、零有息负债，这一股息率具有较高的安全边际。若维持当前利润水平且支付率不低于75%，4%以上的股息率可视为长期"底线"。</div>
+
+<h2 id="sec5">五、行业逻辑：调整期中的弱周期韧性</h2>
+<h3 id="s5a">消费景气与调整周期</h3>
+<p>2025-2026年白酒行业整体处于调整周期，宏观消费景气度偏弱。贵州茅台作为行业最抗周期的标的，营收仅微降1.2%（茅台酒本身微增0.39%），同行如舍得酒业、水井坊等在调整期利润大幅下滑。</p>
+<ul>
+<li>系列酒营收下降9.76%，反映中低端产品线承压</li>
+<li>产量增速（+11.25%）远高于销量增速（+2.13%），库存增至34万吨（+9.67%）</li>
+<li>2026H1营收907亿（+1.5%），归母净利445亿（-2.0%），行业仍在调整</li>
+</ul>
+<div class="insight">行业周期对茅台的影响主要体现在系列酒板块，茅台酒核心产品几乎不受影响。行业调整期反而可能加速"马太效应"——消费者在预算收紧时更加向确定性高的头部品牌集中。</div>
+
+<h3 id="s5b">批价、库存与渠道变革</h3>
+<p>飞天茅台批价虽从2021年高点（约3,000元）回落，但2025年仍维持在2,000-2,500元区间，出厂价与批价之间仍有70-110%的缓冲空间，不存在"价格倒挂"风险。</p>
+<p>渠道变革深度推进——直销占比从约44%提升至50%+，i茅台等数字营销平台是核心抓手。直销意味着更高的毛利率（94.58% vs 87.86%）和更强的终端控制力。合同负债从2023年141亿降至2026H1的32亿（-77%），需持续跟踪——更可能反映渠道结构调整（直销替代经销商备货）而非需求真正萎缩。</p>
+
+<h3 id="s5c">价格带竞争与龙头壁垒</h3>
+<p>茅台在千元以上超高端白酒市场占据绝对主导地位。五粮液（批价约900-1,000元）和国窖1573（批价约800-900元）与茅台存在明显价差，不构成同价格带竞争。行业CR5持续提升，中小酒企加速出清。</p>
+<p>龙头壁垒的四重叠加：</p>
+<ul>
+<li><strong>品牌壁垒</strong>：583.80亿美元品牌价值，销售费用率仅4.29%（远低于行业均值15-20%）</li>
+<li><strong>产能壁垒</strong>：赤水河流域自然约束，不可异地扩产</li>
+<li><strong>文化壁垒</strong>：国酒地位、非遗工艺</li>
+<li><strong>渠道壁垒</strong>：配额制+直销平台，控量控价</li>
+</ul>
+<div class="insight">茅台的竞争格局可以用一句话概括——"没有竞争者"。在其核心价格带，不存在有效替代品，且无法通过资本投入创造新的竞争者。风险主要来自行业层面（反腐政策、消费降级等外部冲击），而非竞争层面。</div>
+
+<h2 id="sec6">六、2026年中报速览：平稳过渡，现金流大幅改善</h2>
+<div class="tw"><table>
+<thead><tr><th>指标</th><th>TTM</th><th>2026H1</th><th>同比</th></tr></thead>
+<tbody>
+<tr><td>营业收入</td><td>1,702亿</td><td>907亿</td><td>+1.5%</td></tr>
+<tr><td>归母净利</td><td>814亿</td><td>445亿</td><td>-2.0%</td></tr>
+<tr><td>OCF（经营现金流）</td><td>1,191亿</td><td>707亿</td><td>大幅改善</td></tr>
+<tr><td>FCF（自由现金流）</td><td>1,167亿</td><td>699亿</td><td>历史新高</td></tr>
+<tr><td>资产负债率</td><td colspan="3">15.2%（进一步降低）</td></tr>
+<tr><td>合同负债</td><td colspan="3">从80亿（2025年末）降至32亿（2026H1）</td></tr>
+</tbody></table></div>
+<p>TTM口径下，营收1,702亿与2025全年基本持平，归母净利814亿微降1.1%。TTM FCF高达1,167亿元，为历史最高水平——2026H1 OCF大幅改善至707亿（vs 2025H1仅131亿），主要因财务公司金融投资扰动消退。当前PE（TTM）19.25倍。</p>
+<div class="insight">2026年上半年财务表现平稳——收入和利润微降反映白酒行业仍在调整期，但幅度极小（-2%），远未触及基本面。TTM FCF高达1,167亿，公司的现金创造能力不存在任何隐忧。</div>
+
+<h2 id="sec7">七、总结与展望</h2>
+<p>贵州茅台是A股最典型的"确定性资产"——管线极简可验证、定价权冠绝全市场、现金流充沛且轻资本、品牌壁垒不可复制。公司正经历白酒行业调整期的考验，但弱周期韧性显著：2025年营收仅微降1.2%，穿透回报反而创下历史新高680亿。</p>
+<p><strong>积极信号：</strong></p>
+<ul>
+<li><span class="tag-pos">定价权极强</span> 毛利率91%+/CV 0.009，出厂价与批价存在70-110%隐性提价空间</li>
+<li><span class="tag-pos">穿透回报新高</span> 2025年度派息650亿+注销型回购30亿，支付率79%超承诺</li>
+<li><span class="tag-pos">零杠杆+充裕现金</span> 无有息负债，货币资金517亿，FCF约584亿</li>
+<li><span class="tag-pos">股息率处于高位</span> 当前4.15%为近5年最高，安全边际充足</li>
+<li><span class="tag-pos">渠道变革推进</span> 直销占比首超50%，长期有利于利润率和品牌保护</li>
+<li><span class="tag-pos">弱周期韧性</span> 行业调整期营收仅微降1.2%，茅台酒本身仍微增</li>
+</ul>
+<p><strong>关注事项：</strong></p>
+<ul>
+<li><span class="tag-neg">行业调整延续</span> 2025年营收首次微降，2026H1归母净利同比-2.0%，白酒行业仍在调整</li>
+<li><span class="tag-neg">合同负债持续下降</span> 从2023年141亿降至2026H1的32亿，需关注是否反映需求端真实压力</li>
+<li><span class="tag-neg">库存增速偏高</span> 2025年产量增速（+11.25%）远高于销量增速（+2.13%），库存34万吨需关注去化</li>
+<li><span class="tag-neu">管理层换届</span> 2025年10月董事长辞职，2026年6月第五届董事会组建，新任管理层方向待观察</li>
+<li><span class="tag-neu">渠道变革阵痛</span> 批发代理渠道-12.05%，经销商体系调整带来短期不确定性</li>
+<li><span class="tag-neu">估值中枢下移</span> PE从2021年56倍降至当前19倍，若行业预期继续恶化可能进一步承压</li>
+</ul>
+<p>茅台的核心投资逻辑在于：<strong>不可复制的品牌壁垒 + 极致定价权 + 轻资本高分红 + 行业调整期的弱周期韧性</strong>。短期看行业调整对利润的影响极其有限，中期看渠道变革完成后利润率有望进一步提升，长期看中国超高端消费市场的深度和茅台品牌的不可替代性。当前4.15%的股息率和19倍PE，在确定性溢价角度具有吸引力。需关注的核心变量是合同负债下降趋势是否持续——这是判断需求端压力的前瞻指标。</p>
+
+<div class="risk" id="risk"><h3>风险提示</h3>
+<ul>
+<li>白酒行业调整风险：宏观经济疲软可能导致高端白酒消费场景（商务宴请、礼赠）持续萎缩，影响茅台酒销量增长</li>
+<li>合同负债持续下降风险：从2023年141亿降至2026H1的32亿，若持续下降可能反映需求端真实压力而非渠道调整</li>
+<li>管理层换届风险：2025年10月董事长辞职、2026年第五届董事会组建，新任管理层战略方向和执行力待观察</li>
+<li>渠道变革风险：直销占比快速提升可能导致经销商体系不稳定，短期产生渠道震荡</li>
+<li>库存积压风险：产量增速（+11.25%）远高于销量增速（+2.13%），库存34万吨的去化节奏值得关注</li>
+<li>关联交易风险：前五大供应商中关联方占比15.22%，2026-05-22签订商标许可协议等关联交易需关注公允性</li>
+<li>估值下行风险：PE从2021年56倍降至当前19倍，若行业预期继续恶化，估值可能进一步承压</li>
+</ul></div>
+
+<div style="margin-top:32px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);text-align:center;">
+公司研究 &nbsp;|&nbsp; 本报告仅包含客观事实和数据分析，不含投资建议 &nbsp;|&nbsp; 数据截止 2026-09-22
+</div>
+</div></main>
+</body>
+</html>

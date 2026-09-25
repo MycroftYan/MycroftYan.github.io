@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中际旭创 公司研究</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6f9; --card: #fff; --text: #2e3440; --muted: #6b7785;
+    --border: #e1e5eb; --accent: #3574d4; --accent-bg: #e8f0fe;
+    --green: #1a7f37; --green-bg: #dafbe1; --amber: #9a6700; --amber-bg: #fff8c5;
+    --heading: #1c2433; --toc-w: 240px; --radius: 8px;
+    --shadow: 0 1px 4px rgba(0,0,0,.05);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; scroll-padding-top:24px; }
+  body {
+    font-family: "Noto Sans SC", -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 15px; line-height: 1.82; color: var(--text); background: var(--bg);
+  }
+
+  /* ── Sidebar ── */
+  nav.toc {
+    position:fixed; top:0; left:0; width:var(--toc-w); height:100vh;
+    background:#eef1f6; border-right:1px solid var(--border);
+    overflow-y:auto; z-index:100;
+    scrollbar-width:thin; scrollbar-color:#c5c9d0 transparent;
+  }
+  nav.toc::-webkit-scrollbar { width:3px; }
+  nav.toc::-webkit-scrollbar-thumb { background:#c5c9d0; border-radius:2px; }
+  .toc-brand {
+    padding:20px 18px 14px; border-bottom:1px solid var(--border);
+  }
+  .toc-brand .label {
+    font-size:11px; font-weight:600; color:var(--accent);
+    letter-spacing:.06em; text-transform:uppercase;
+  }
+  .toc-brand .doc-title {
+    font-family:"Noto Serif SC",serif; font-size:15px; font-weight:700;
+    color:var(--heading); margin-top:4px; line-height:1.35;
+  }
+  nav.toc ul { list-style:none; padding:8px 0 28px; }
+  nav.toc a {
+    display:block; padding:4px 18px; font-size:13px; line-height:1.5;
+    color:#57606a; text-decoration:none; border-left:2px solid transparent;
+    transition:all .12s;
+  }
+  nav.toc a:hover { color:var(--accent); background:var(--accent-bg); border-left-color:var(--accent); }
+  nav.toc .t1 { font-weight:700; color:var(--heading); margin-top:14px; padding-top:8px; border-top:1px solid var(--border); }
+  nav.toc li:first-child .t1 { border-top:none; margin-top:0; }
+  nav.toc .t2 { font-weight:600; padding-left:24px; }
+  nav.toc .t3 { padding-left:34px; font-size:12.5px; color:var(--muted); }
+
+  /* ── Main ── */
+  main { margin-left:var(--toc-w); padding:32px 44px 80px; }
+  .wrap {
+    max-width:960px; margin:0 auto; background:var(--card);
+    border-radius:12px; padding:44px 52px; border:1px solid #e8ecf1;
+    box-shadow:var(--shadow);
+  }
+
+  /* ── Typography ── */
+  h1 {
+    font-family:"Noto Serif SC",serif; font-size:27px; font-weight:700;
+    color:var(--heading); line-height:1.35; margin-bottom:6px;
+  }
+  .subtitle { font-size:15px; color:var(--muted); margin-bottom:20px; }
+  .meta-bar {
+    display:flex; gap:16px; flex-wrap:wrap; font-size:13px; color:var(--muted);
+    padding:10px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    margin-bottom:28px;
+  }
+  .meta-bar span { white-space:nowrap; }
+
+  h2 {
+    font-size:19px; font-weight:700; color:var(--accent);
+    margin:40px 0 14px; padding-bottom:8px; border-bottom:2px solid var(--accent);
+  }
+  h3 {
+    font-size:16px; font-weight:600; color:var(--heading);
+    margin:26px 0 8px; padding-left:12px; border-left:3px solid var(--accent);
+  }
+  p { margin:7px 0; }
+  ul { margin:6px 0; padding-left:20px; }
+  li { margin:4px 0; }
+
+  /* ── Abstract card ── */
+  .abstract {
+    background:linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 100%);
+    border:1px solid #c8d8f0; border-radius:var(--radius);
+    padding:22px 26px; margin:20px 0 28px;
+  }
+  .abstract h2 { margin:0 0 12px; border:none; padding:0; font-size:17px; color:var(--accent); }
+  .abstract ul { padding-left:20px; margin:0; }
+  .abstract li { margin:6px 0; font-size:14.5px; line-height:1.7; }
+  .abstract li strong { color:var(--heading); }
+
+  /* ── Key figures row ── */
+  .kpi-row {
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+    gap:12px; margin:18px 0 24px;
+  }
+  .kpi {
+    background:var(--bg); border-radius:var(--radius); padding:14px 16px;
+    text-align:center; border:1px solid var(--border);
+  }
+  .kpi .num { font-size:22px; font-weight:700; color:var(--accent); }
+  .kpi .lbl { font-size:12px; color:var(--muted); margin-top:2px; }
+
+  /* ── Tables ── */
+  .tw { overflow-x:auto; margin:14px 0; border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); }
+  table { width:100%; border-collapse:collapse; font-size:13.5px; background:var(--card); }
+  thead th {
+    background:var(--accent); color:#fff; font-weight:600; font-size:12.5px;
+    text-align:left; padding:9px 14px;
+  }
+  tbody td { padding:8px 14px; border-bottom:1px solid #eef0f3; vertical-align:top; }
+  tbody tr:last-child td { border-bottom:none; }
+  tbody tr:hover td { background:#f6f8fa; }
+  tbody td:first-child { font-weight:500; color:var(--heading); white-space:nowrap; }
+
+  /* ── Insight box ── */
+  .insight {
+    margin:12px 0; padding:12px 18px;
+    background:#eef1f6; border-left:3px solid #5b6b82;
+    border-radius:0 var(--radius) var(--radius) 0; font-size:14px; color:#4a5568;
+  }
+  .insight strong { color:var(--accent); }
+
+  /* ── Positive / Negative tags ── */
+  .tag-pos { display:inline-block; background:var(--green-bg); color:var(--green); font-size:12px; font-weight:600; padding:2px 8px; border-radius:10px; }
+  .tag-neg { display:inline-block; background:#ffdce0; color:#cf222e; font-size:12px; font-weight:600; padding:2px 8px; border-radius:10px; }
+  .tag-neu { display:inline-block; background:var(--amber-bg); color:var(--amber); font-size:12px; font-weight:600; padding:2px 8px; border-radius:10px; }
+
+  /* ── Risk box ── */
+  .risk {
+    background:#fef2f2; border:1px solid #fecaca; border-radius:var(--radius);
+    padding:16px 20px; margin:20px 0;
+  }
+  .risk h3 { border:none; padding:0; color:#b91c1c; margin:0 0 8px; }
+  .risk ul { padding-left:20px; margin:0; }
+  .risk li { font-size:14px; color:#7f1d1d; margin:4px 0; }
+
+  /* ── Responsive ── */
+  @media print { nav.toc{display:none;} main{margin-left:0;padding:20px;} .wrap{max-width:100%;box-shadow:none;border:none;} }
+  @media (max-width:900px) { nav.toc{display:none;} main{margin-left:0;padding:16px;} .wrap{padding:24px 20px;} }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex; align-items: center; gap: 8px;
+    margin: 8px 0 20px; font-size: 12px; color: #8b949e;
+  }
+  .legend-block {
+    display: inline-block; width: 28px; height: 16px; border-radius: 3px;
+    background: #eef1f6; border-left: 3px solid #5b6b82; flex-shrink: 0;
+  }
+
+</style>
+</head>
+<body>
+
+<nav class="toc">
+  <div class="toc-brand">
+    <div class="label">公司研究</div>
+    <div class="doc-title">中际旭创</div>
+  </div>
+  <ul>
+    <li class="t1"><a href="#abstract">核心观点</a></li>
+    <li class="t1"><a href="#sec1">一、公司画像</a></li>
+    <li class="t2"><a href="#s1a">产品与产业链</a></li>
+    <li class="t2"><a href="#s1b">营收结构与客户</a></li>
+    <li class="t1"><a href="#sec2">二、AI算力浪潮下的增长引擎</a></li>
+    <li class="t2"><a href="#s2a">云厂商资本开支与需求驱动</a></li>
+    <li class="t2"><a href="#s2b">产品迭代：800G到1.6T</a></li>
+    <li class="t2"><a href="#s2c">技术路线与长期风险</a></li>
+    <li class="t1"><a href="#sec3">三、盈利能力与定价权</a></li>
+    <li class="t2"><a href="#s3a">毛利率跃升的驱动力</a></li>
+    <li class="t2"><a href="#s3b">成本结构与周期性</a></li>
+    <li class="t1"><a href="#sec4">四、现金流与股东回报</a></li>
+    <li class="t2"><a href="#s4a">经营现金流与自由现金流</a></li>
+    <li class="t2"><a href="#s4b">分红与回购</a></li>
+    <li class="t2"><a href="#s4c">资产负债表质量</a></li>
+    <li class="t1"><a href="#sec5">五、2026年中报：增收不增现的信号</a></li>
+    <li class="t1"><a href="#sec6">六、总结与展望</a></li>
+    <li class="t1"><a href="#risk">风险提示</a></li>
+  </ul>
+</nav>
+
+<main><div class="wrap">
+
+<!-- ══════════════ Header ══════════════ -->
+<h1>中际旭创 公司研究</h1>
+<div class="subtitle">300308.XSHE &nbsp;|&nbsp; 通信设备 &nbsp;|&nbsp; 公司研究</div>
+<div class="meta-bar">
+  <span>报告日期：2026-09-23</span>
+  <span>数据截止：2025年年报 + 2026年半年报</span>
+  <span>市值：10,927.7亿（2026-09-22收盘）</span>
+  <span>股息率：0.14%</span>
+</div>
+
+<!-- ══════════════ Abstract ══════════════ -->
+<div class="abstract" id="abstract">
+  <h2>核心观点</h2>
+  <ul>
+    <li><strong>全球光模块龙头，2025年营收382亿、归母净利108亿。</strong>公司主营高端光通信收发模块（光模块），产品覆盖100G至1.6T全系列，下游客户为全球头部云计算数据中心厂商。2025年光模块收入374.6亿（占营收97.95%），前五大客户贡献76%营收，龙头地位稳固。</li>
+    <li><strong>AI算力需求爆发驱动三年业绩飙升。</strong>2023-2025年营收从107亿增至382亿（+257%），归母净利从21.7亿增至108亿（+397%），毛利率从33.0%提升至42.0%。核心驱动力是全球云厂商资本开支（CapEx）持续高增长——2025年Q4海外四大云厂商合计CapEx同比+64%至1,186亿美元。</li>
+    <li><strong>TTM归母净利204.5亿，2026H1延续高增长。</strong>2026年上半年营收418亿（同比+183%），归母净利136.5亿（同比+242%），滚动十二个月（TTM）归母净利达204.5亿。毛利率继续提升至45.3%，产品结构持续向800G/1.6T高端产品倾斜。</li>
+    <li><strong>现金流大幅改善但中报现隐忧。</strong>2025年经营现金流（OCF）109亿元为历史最高，综合现金因子180亿。但2026H1出现"增收不增现"——营收+183%但OCF仅18亿（同比-44%），应收账款飙升至150亿，货币资金从110亿降至64亿。</li>
+    <li><strong>分红提速但力度仍弱，激励型回购消耗现金。</strong>2025年首次实施中期分红，全年合计派息15.58亿（支付率14.4%）。但公司同期启动40-80亿元激励型回购（非注销型），且第三期/第四期限制性股票激励计划持续归属——股权激励频繁是需要关注的信号。</li>
+  </ul>
+</div>
+
+<!-- ══════════════ KPI ══════════════ -->
+<div class="kpi-row">
+  <div class="kpi"><div class="num">382.4亿</div><div class="lbl">2025年营收</div></div>
+  <div class="kpi"><div class="num">42.0%</div><div class="lbl">2025年毛利率</div></div>
+  <div class="kpi"><div class="num">108.0亿</div><div class="lbl">2025年归母净利</div></div>
+  <div class="kpi"><div class="num">204.5亿</div><div class="lbl">TTM归母净利</div></div>
+  <div class="kpi"><div class="num">0.14%</div><div class="lbl">当前股息率</div></div>
+</div>
+
+<div class="legend">
+  <span class="legend-block"></span> 灰色色块为 AI 参考判断，仅供参考，不代表投资建议
+</div>
+
+<!-- ══════════════ Sec 1: Company Profile ══════════════ -->
+<h2 id="sec1">一、公司画像：全球光模块产业链核心供应商</h2>
+
+<h3 id="s1a">产品与产业链</h3>
+<p>中际旭创是全球领先的高端光通信收发模块制造商，全资子公司苏州旭创为核心运营主体。公司产品覆盖100G、200G、400G、800G、1.6T全系列光模块，应用于云计算数据中心、5G无线网络和电信传输等场景。</p>
+
+<p>在产业链中，公司处于<strong>中游位置</strong>：</p>
+<ul>
+  <li><strong>上游</strong>：光芯片（EML/CW激光器/硅光PIC）和电子芯片（DSP/Driver/TIA）——第一大供应商占采购额35.76%</li>
+  <li><strong>中游</strong>：光模块组装、测试、封装——公司核心环节，拥有自动化产线和COB封装技术</li>
+  <li><strong>下游</strong>：全球头部云厂商的数据中心和通信设备商——前五大客户占销售额75.98%</li>
+</ul>
+
+<p>公司生产模式为"以销定产"，即根据下游客户订单安排生产。销售以直销为主，需通过客户的供应商认证和产品代码认证（周期通常1-2年），这构成了重要的客户切换壁垒。</p>
+
+<p>2026年7月30日，公司完成A+H双重上市（境外上市股份H股在港交所挂牌），进一步拓展国际融资渠道。第一大股东为山东中际投资控股有限公司（持股10.31%），实际控制人为王伟修家族，公司为<strong>民营企业</strong>。</p>
+
+<h3 id="s1b">营收结构与客户</h3>
+
+<div class="tw">
+<table>
+<thead><tr><th>产品/地区</th><th>2025年营收</th><th>毛利率</th><th>同比增速</th><th>特点</th></tr></thead>
+<tbody>
+<tr><td>光通信收发模块</td><td>374.6亿</td><td>42.61%</td><td>+63.67%</td><td>核心产品，占营收97.95%</td></tr>
+<tr><td>其他（光组件/汽车光电子）</td><td>7.8亿</td><td>—</td><td>-19.77%</td><td>占比极低且萎缩</td></tr>
+<tr><td>其中：境外销售</td><td>346.4亿</td><td>44.64%</td><td>+67.20%</td><td>占比约90%，以北美云厂商为主</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>营收结构高度集中于光模块（98%），且以境外销售为主（90%）。2025年光模块销售量2,109万只（同比+44.55%），生产量2,376万只（同比+54.69%），库存量521万只（同比+105%——库存翻倍值得关注）。</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>排序</th><th>客户</th><th>销售额</th><th>占比</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>客户A</td><td>92.0亿</td><td>24.06%</td></tr>
+<tr><td>2</td><td>客户B</td><td>69.8亿</td><td>18.26%</td></tr>
+<tr><td>3</td><td>客户C</td><td>54.4亿</td><td>14.22%</td></tr>
+<tr><td>4</td><td>客户D</td><td>43.4亿</td><td>11.34%</td></tr>
+<tr><td>5</td><td>客户E（含关联方）</td><td>31.0亿</td><td>8.10%</td></tr>
+<tr><td colspan="2"><strong>前五名合计</strong></td><td><strong>290.6亿</strong></td><td><strong>75.98%</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="insight">前五大客户占比76%意味着<strong>任何一个大客户的订单变动都会显著影响业绩</strong>。这些客户均为全球顶级科技公司（信用风险极低），但AI算力投资节奏的变化可能导致订单波动。此外，客户E为关联方（占8.10%），关联交易需持续关注。</div>
+
+<!-- ══════════════ Sec 2: AI Growth ══════════════ -->
+<h2 id="sec2">二、AI算力浪潮下的增长引擎</h2>
+
+<h3 id="s2a">云厂商资本开支（CapEx）与需求驱动</h3>
+<p>AI大模型技术的迅速发展推动全球Token消耗量近指数级增长，直接拉动算力基础设施建设：</p>
+<ul>
+  <li><strong>海外云厂商</strong>：2025年Q4微软/亚马逊/Meta/谷歌合计CapEx同比+64%至1,186亿美元；Factset一致预期2026年四家合计同比+53%至5,708亿美元</li>
+  <li><strong>国内云厂商</strong>：2025年Q1-Q3阿里/腾讯/百度合计CapEx 1,637亿元人民币（同比+92%）</li>
+  <li><strong>Token消耗量</strong>：谷歌月均从2024年4月9.7万亿→2025年10月1,300万亿（+134倍）；字节豆包日均从2024年3月1,200亿→2025年12月50万亿（+417倍）</li>
+</ul>
+
+<p>光模块是数据中心网络的核心器件——每台51.2T交换机需要配套64个800G光模块或32个1.6T光模块。云厂商CapEx→数据中心建设→交换机+光模块采购，这一传导链使公司成为AI算力投资的直接受益者。</p>
+
+<div class="insight">公司2023-2025年营收三年增长3.57倍、净利增长4.97倍，与全球云厂商资本开支加速高度同步。<strong>AI算力需求是否可持续</strong>是核心命题——若云厂商发现AI应用变现不达预期并收缩CapEx，光模块订单可能快速回落。2019年公司营收曾同比下降7.7%（5G建设初期需求疲软），说明科技周期的回调真实存在。</div>
+
+<h3 id="s2b">产品迭代：从800G到1.6T</h3>
+
+<p>根据Lightcounting预测，2026年全球数通光模块市场规模约228亿美元，预计2030年增至414亿美元（2025-2030年复合增长率约20%）。其中800G和1.6T光模块将于2026年合计占市场的约64%。</p>
+
+<p>公司产品迭代紧跟行业节奏：</p>
+<ul>
+  <li><strong>800G</strong>：OSFP和QSFP-DD双系列，EML+硅光双平台方案，已实现大规模量产</li>
+  <li><strong>1.6T</strong>：OFC2025展示3nm 1.6T OSFP 2xFR4光模块，率先推出1.6T-DR8 OSFP224 LPO（线性驱动可插拔光模块，功耗低于4W）</li>
+  <li><strong>3.2T</strong>：预计2028年起逐步起量，公司已启动研发</li>
+</ul>
+
+<p>公司截至2025年末拥有专利411件（其中发明专利215件），2025年新增授权44件。研发投入16.76亿元（占营收4.38%），研发人员2,169人（同比+49%）。</p>
+
+<h3 id="s2c">技术路线与长期风险</h3>
+
+<p>光模块行业存在多条技术路线演进方向，各有利弊：</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>技术路线</th><th>核心特点</th><th>对公司的影响</th></tr></thead>
+<tbody>
+<tr><td>硅光（SiPh）</td><td>基于CMOS工艺，集成度高、低功耗、低成本</td><td><span class="tag-pos">公司已布局</span> 拥有EML+硅光双平台</td></tr>
+<tr><td>LPO（线性驱动可插拔）</td><td>去除DSP芯片，功耗降至<4W</td><td><span class="tag-pos">先发优势</span> 率先推出1.6T LPO</td></tr>
+<tr><td>LRO（半重定时线性）</td><td>介于传统方案和LPO之间</td><td><span class="tag-neu">跟踪中</span> 性能与功耗折中方案</td></tr>
+<tr><td>CPO（共封装光学）</td><td>将光模块与交换机芯片共封装</td><td><span class="tag-neg">最大长期风险</span> 可能颠覆可插拔光模块市场</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="insight">CPO（Co-Packaged Optics，共封装光学）是公司面临的<strong>最大长期技术风险</strong>——如果光模块与交换机芯片直接集成在同一封装中，可插拔光模块的市场空间将被大幅挤压。目前CPO渗透率极低，但博通等芯片厂商正在积极推进。公司应对策略包括布局硅光和LPO等新技术路线，但若CPO大规模商用，行业格局可能发生根本性变化。</div>
+
+<!-- ══════════════ Sec 3: Profitability ══════════════ -->
+<h2 id="sec3">三、盈利能力与定价权：产品升级驱动毛利率跃升</h2>
+
+<h3 id="s3a">毛利率跃升的驱动力</h3>
+
+<div class="tw">
+<table>
+<thead><tr><th>年份</th><th>2017</th><th>2018</th><th>2019</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th></tr></thead>
+<tbody>
+<tr><td>毛利率</td><td>26.8%</td><td>27.2%</td><td>27.1%</td><td>25.4%</td><td>25.6%</td><td>29.3%</td><td>33.0%</td><td>33.8%</td><td>42.0%</td></tr>
+<tr><td>归母净利（亿元）</td><td>1.6</td><td>6.2</td><td>5.1</td><td>8.7</td><td>8.8</td><td>12.2</td><td>21.7</td><td>51.7</td><td>108.0</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>毛利率从2017-2021年的26%区间跃升至2025年的42.0%，提升约16个百分点。驱动力主要包括：</p>
+
+<ul>
+  <li><strong>产品结构升级</strong>：从100G/400G为主转向800G/1.6T为主——高端产品平均售价（ASP）更高，而BOM成本占比并未同比例上升</li>
+  <li><strong>规模效应</strong>：光模块销量从数百万只增至2,109万只，单位生产成本下降</li>
+  <li><strong>供需紧张</strong>：AI算力需求爆发期光模块供不应求，临时增强了定价权</li>
+</ul>
+
+<p>2025年年报显示光通信收发模块收入同比+63.67%，其中销量+44.55%，差额（约19pp）主要由产品结构升级（即ASP提升）贡献。</p>
+
+<div class="insight">毛利率42%在电子制造业中属于较高水平，但这<strong>并非永续状态</strong>。光模块行业存在"代际降价+新代际提价"的循环：800G产品ASP已开始下降，公司需要依靠1.6T/3.2T等新一代产品维持毛利率。如果产品迭代节奏放缓或竞争加剧导致ASP快速下滑，毛利率可能回落至30%-35%区间。</div>
+
+<h3 id="s3b">成本结构与周期性</h3>
+
+<p>公司营业成本主要为光器件和集成电路芯片。供应商集中度较高——前五大供应商占采购总额51.50%，其中第一大供应商占35.76%（推测为核心DSP芯片供应商）。</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>年份</th><th>营业成本（亿元）</th><th>成本同比</th><th>成本率</th><th>毛利率</th></tr></thead>
+<tbody>
+<tr><td>2019</td><td>34.7</td><td>-7.5%</td><td>72.9%</td><td>27.1%</td></tr>
+<tr><td>2020</td><td>52.6</td><td>+51.6%</td><td>74.6%</td><td>25.4%</td></tr>
+<tr><td>2021</td><td>57.3</td><td>+8.9%</td><td>74.4%</td><td>25.6%</td></tr>
+<tr><td>2022</td><td>68.2</td><td>+19.0%</td><td>70.7%</td><td>29.3%</td></tr>
+<tr><td>2023</td><td>71.8</td><td>+5.4%</td><td>67.0%</td><td>33.0%</td></tr>
+<tr><td>2024</td><td>158.0</td><td>+119.9%</td><td>66.2%</td><td>33.8%</td></tr>
+<tr><td>2025</td><td>221.7</td><td>+40.3%</td><td>58.0%</td><td>42.0%</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>成本率从2019年73%持续下降至2025年58%，反映产品结构升级和规模效应的叠加降本效果。成本同比波动较大（标准差0.37），但毛利率的波动更小（变异系数0.18），说明公司在一定程度上能通过产品升级消化上游成本波动。</p>
+
+<p>售价端同样呈现强科技周期性——2019年营收同比-7.7%，2024年+122.6%，营收同比标准差0.41。净利润波动更大（标准差0.51），反映较高的经营杠杆。</p>
+
+<!-- ══════════════ Sec 4: Cash Flow ══════════════ -->
+<h2 id="sec4">四、现金流与股东回报：成长期企业的分红逻辑</h2>
+
+<h3 id="s4a">经营现金流与自由现金流</h3>
+
+<div class="tw">
+<table>
+<thead><tr><th>年份</th><th>OCF（经营现金流，亿元）</th><th>Capex（资本开支，亿元）</th><th>FCF（自由现金流，亿元）</th><th>归母净利（亿元）</th><th>OCF/净利</th></tr></thead>
+<tbody>
+<tr><td>2019</td><td>5.7</td><td>7.6</td><td>-1.9</td><td>5.1</td><td>110.9%</td></tr>
+<tr><td>2020</td><td>0.2</td><td>9.6</td><td>-9.3</td><td>8.7</td><td>2.5%</td></tr>
+<tr><td>2021</td><td>8.1</td><td>8.4</td><td>-0.3</td><td>8.8</td><td>92.7%</td></tr>
+<tr><td>2022</td><td>24.5</td><td>7.9</td><td>16.6</td><td>12.2</td><td>200.1%</td></tr>
+<tr><td>2023</td><td>19.0</td><td>17.0</td><td>1.9</td><td>21.7</td><td>87.3%</td></tr>
+<tr><td>2024</td><td>31.6</td><td>28.7</td><td>3.0</td><td>51.7</td><td>61.2%</td></tr>
+<tr><td>2025</td><td><strong>109.0</strong></td><td>27.6</td><td><strong>81.4</strong></td><td>108.0</td><td><strong>100.9%</strong></td></tr>
+</tbody>
+</table>
+</div>
+
+<p>2025年是现金流质量的转折点——经营现金流109亿元为历史最高，自由现金流81.4亿元首次大幅为正，且OCF/净利润=100.9%，<strong>利润有真实现金流全额支撑</strong>。此前2019-2021年FCF持续为负，公司处于"赚了钱但没攒下钱"的扩张期。</p>
+
+<p>真实可支配现金流（= OCF + 投资活动现金流净额 - 财务费用）2025年达81.2亿元，现金储备（= 货币资金 - 短期借款 - 一年内到期非流动负债）99.0亿元，综合现金因子180.2亿元——从2019年的-11亿跃升至180亿，现金状况彻底改善。</p>
+
+<h3 id="s4b">分红与回购</h3>
+
+<div class="tw">
+<table>
+<thead><tr><th>年度</th><th>归母净利（亿元）</th><th>派息总额（亿元）</th><th>支付率</th><th>年末股息率</th></tr></thead>
+<tbody>
+<tr><td>2020</td><td>8.7</td><td>0.86</td><td>10.0%</td><td>0.24%</td></tr>
+<tr><td>2021</td><td>8.8</td><td>1.75</td><td>19.9%</td><td>0.51%</td></tr>
+<tr><td>2022</td><td>12.2</td><td>1.57</td><td>12.8%</td><td>0.73%</td></tr>
+<tr><td>2023</td><td>21.7</td><td>3.55</td><td>16.3%</td><td>0.39%</td></tr>
+<tr><td>2024</td><td>51.7</td><td>5.56</td><td>10.8%</td><td>0.40%</td></tr>
+<tr><td>2025（含中期分红）</td><td>108.0</td><td>15.58</td><td>14.4%</td><td>0.23%</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>2025年两个积极变化：</p>
+<ul>
+  <li><strong>首次中期分红</strong>：每10股4元，叠加年度分红每10股10元，全年合计每10股14元</li>
+  <li><strong>派息绝对额跳升</strong>：从2024年5.56亿增至15.58亿（+180%），但支付率仅从10.8%提升至14.4%</li>
+</ul>
+
+<p>公司最新股东回报规划（2026-2028年）为标准监管模板——每年现金分红不少于可分配利润的10%，三年累计不少于30%，并自定义为"成长期且有重大资金支出安排"（最低20%）。<strong>这不构成有效的分红承诺</strong>。历史支付率在10%-20%区间波动，整体偏低。</p>
+
+<p>回购方面，2026年9月公司启动40-80亿元A股回购，<strong>用途为股权激励或员工持股计划</strong>——这是激励型回购，不等同于注销型回购（后者才相当于给股东分红）。公司已连续实施第三期和第四期限制性股票激励计划，激励型回购频繁意味着部分利润通过股权激励转移给管理层和技术人员。</p>
+
+<div class="insight">当前股息率仅0.14%（市值10,928亿，年派息15.58亿），<strong>完全不具备股息投资吸引力</strong>。市值从2015年的19亿增长至2026年峰值15,416亿（约800倍），股东回报主要来自资本利得。但40-80亿元激励型回购值得关注——规模相当于2025年净利的37%-74%，虽然不直接回报股东，但若三年内未使用完毕将注销。</div>
+
+<h3 id="s4c">资产负债表质量</h3>
+
+<div class="tw">
+<table>
+<thead><tr><th>时点</th><th>总资产（亿元）</th><th>总负债（亿元）</th><th>资产负债率</th><th>应收账款（亿元）</th><th>货币资金（亿元）</th></tr></thead>
+<tbody>
+<tr><td>2023年末</td><td>200.1</td><td>52.3</td><td>26.2%</td><td>25.8</td><td>33.2</td></tr>
+<tr><td>2024年末</td><td>288.7</td><td>85.7</td><td>29.7%</td><td>46.0</td><td>50.5</td></tr>
+<tr><td>2025年末</td><td>452.9</td><td>136.7</td><td>30.2%</td><td>62.8</td><td>109.9</td></tr>
+<tr><td>2026H1</td><td>689.4</td><td>248.8</td><td><strong>36.1%</strong></td><td><strong>150.0</strong></td><td>64.0</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>资产负债率从2023年的26%温和上升至2026H1的36%——仍处于健康区间。但<strong>应收账款从62.8亿飙升至150亿</strong>（+139%）是最需关注的变化，占2026H1营收的35.9%（2025年末仅16.4%）。下游客户为全球顶级科技公司，坏账风险极低，但回款节奏是否匹配营收增速需要持续跟踪。</p>
+
+<!-- ══════════════ Sec 5: 2026H1 ══════════════ -->
+<h2 id="sec5">五、2026年中报：高增长下的"增收不增现"信号</h2>
+
+<p>2026年上半年业绩继续爆发式增长：</p>
+
+<div class="tw">
+<table>
+<thead><tr><th>指标</th><th>2026H1</th><th>2025H1</th><th>同比</th></tr></thead>
+<tbody>
+<tr><td>营业收入</td><td>417.8亿</td><td>147.9亿</td><td><strong>+182.5%</strong></td></tr>
+<tr><td>归母净利润</td><td>136.5亿</td><td>40.0亿</td><td><strong>+241.6%</strong></td></tr>
+<tr><td>经营现金流</td><td>18.0亿</td><td>32.2亿</td><td><strong>-44.1%</strong></td></tr>
+<tr><td>Capex</td><td>48.0亿</td><td>9.5亿</td><td>+403.4%</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>利润表极为亮眼——营收+183%、净利+242%、毛利率45.3%继续提升。但现金流量表出现矛盾信号：</p>
+
+<ul>
+  <li><strong>OCF下降44%至18亿</strong>：营收几乎翻3倍但经营现金流反而下降，核心原因是应收账款飙升（从63亿增至150亿）</li>
+  <li><strong>Capex翻4倍至48亿</strong>：已超过2025全年水平（27.6亿），产能扩张大幅加速（泰国基地等）</li>
+  <li><strong>货币资金从110亿降至64亿</strong>：现金在被应收和资本开支双重消耗</li>
+</ul>
+
+<p>TTM口径关键指标：</p>
+<ul>
+  <li>TTM营收 = 652.3亿</li>
+  <li>TTM归母净利 = 204.5亿</li>
+  <li>TTM毛利率 = 45.3%</li>
+  <li>TTM Capex = 66.1亿</li>
+</ul>
+
+<div class="insight">"增收不增现"有两种解读：<strong>乐观解读</strong>——AI算力需求井喷导致发货量激增，应收账款是"幸福的烦恼"，随着客户回款将逐步转化为现金。<strong>审慎解读</strong>——应收150亿元（相当于FY2025净利的139%），如果下游客户延迟付款或行业景气度下降，可能面临现金流紧张和坏账风险。考虑到下游客户均为全球最大的科技公司，坏账概率极低，核心关注点是回款节奏而非信用风险。</div>
+
+<!-- ══════════════ Sec 6: Summary ══════════════ -->
+<h2 id="sec6">六、总结与展望</h2>
+
+<p>中际旭创是AI算力浪潮中最确定的受益者之一——全球光模块龙头，产品覆盖800G/1.6T核心世代，绑定全球头部云厂商客户，2023-2025年业绩三年增长数倍。公司已从一家传统通信设备企业转型为AI算力基础设施核心供应商。</p>
+
+<p><strong>积极信号：</strong></p>
+<ul>
+  <li><span class="tag-pos">业绩爆发</span> TTM归母净利204.5亿（FY2025的108亿+2026H1增量），毛利率45.3%创新高</li>
+  <li><span class="tag-pos">产品领先</span> 率先推出1.6T LPO光模块，EML+硅光双平台布局，411件专利</li>
+  <li><span class="tag-pos">现金改善</span> 2025年OCF 109亿、FCF 81亿、综合现金因子180亿，利润有真实现金流支撑</li>
+  <li><span class="tag-pos">国际化</span> 2026年7月A+H双重上市完成，泰国产能建设推进全球化布局</li>
+  <li><span class="tag-pos">行业景气</span> 全球云厂商2026年CapEx预计同比+53%，光模块需求持续增长</li>
+</ul>
+
+<p><strong>关注事项：</strong></p>
+<ul>
+  <li><span class="tag-neg">增收不增现</span> 2026H1应收飙升至150亿，OCF仅18亿（同比-44%），现金回收节奏是关键</li>
+  <li><span class="tag-neg">股权激励频繁</span> 第三期/第四期限制性股票激励持续归属，40-80亿元激励型回购，消耗穿透回报</li>
+  <li><span class="tag-neg">库存翻倍</span> 库存量521万只（+105%），若需求不及预期可能面临减值压力</li>
+  <li><span class="tag-neu">CPO技术风险</span> 共封装光学若大规模商用，可插拔光模块市场空间将被挤压</li>
+  <li><span class="tag-neu">客户集中度</span> 前五大客户占76%，单一客户订单变动影响大</li>
+  <li><span class="tag-neu">控股股东减持</span> 山东中际控股2025-2026年实施减持计划</li>
+  <li><span class="tag-neu">分红偏低</span> 支付率14.4%、股息率0.14%，成长股定位而非价值股</li>
+</ul>
+
+<p>中际旭创的核心投资逻辑在于：<strong>AI算力Scaling Laws（规模定律）持续有效→全球数据中心持续扩容→光互连需求结构性增长→光模块龙头持续受益</strong>。短期看云厂商CapEx指引和订单能见度，中期看1.6T/3.2T产品迭代节奏，长期看AI算力需求的终局规模和CPO等颠覆性技术的演进方向。当前市值10,928亿对应TTM PE约53倍——市场已充分定价了高增长预期，业绩兑现的持续性将决定估值能否维持。</p>
+
+<p>市值极值参考：历史最高市值<strong>15,416.2亿元</strong>（2026-06-22盘中），历史最低市值<strong>19.27亿元</strong>（2015-01-12盘中），当前10,927.7亿元距历史高点-29.1%。</p>
+
+<!-- ══════════════ Risk ══════════════ -->
+<div class="risk" id="risk">
+  <h3>风险提示</h3>
+  <ul>
+    <li>云厂商资本开支下修风险：若AI应用变现不达预期，全球云厂商可能收缩CapEx，直接冲击光模块订单和业绩</li>
+    <li>技术路线颠覆风险：CPO（共封装光学）若大规模商用，可能替代可插拔光模块，从根本上改变行业格局</li>
+    <li>客户集中度风险：前五大客户占营收76%，任何一家大客户的订单调整或供应商切换都将显著影响业绩</li>
+    <li>应收账款风险：2026H1应收150亿（FY2025净利的139%），若回款节奏不及预期或行业下行，可能面临现金流压力</li>
+    <li>产品降价风险：光模块存在"代际降价"规律，若竞争加剧导致ASP快速下滑，毛利率可能回落</li>
+    <li>地缘政治风险：境外销售占90%，中美科技博弈可能影响出口或供应链安排</li>
+    <li>股权激励稀释风险：第三期/第四期限制性股票激励+40-80亿元激励型回购，可能稀释现有股东权益</li>
+  </ul>
+</div>
+
+<div style="margin-top:32px; padding-top:16px; border-top:1px solid var(--border); font-size:12px; color:var(--muted); text-align:center;">
+  公司研究 &nbsp;|&nbsp; 本报告仅包含客观事实和数据分析，不含投资建议 &nbsp;|&nbsp; 数据截止 2026-09-22
+</div>
+
+</div></main>
+</body>
+</html>
