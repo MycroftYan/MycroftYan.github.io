@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Swarm for Equity Research</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #f5f3ef;
+  --bg-warm: #eae7e0;
+  --card: #ffffff;
+  --card-hover: #fafaf8;
+  --text: #2c2a26;
+  --text-mid: #5c5850;
+  --text-light: #8a857a;
+  --text-faint: #b5b0a5;
+  --border: #ddd9d0;
+  --border-light: #eae7e0;
+
+  --blue: #2d6a8a;
+  --blue-light: #e4f0f6;
+  --blue-border: #b8d6e6;
+  --amber: #b8860b;
+  --amber-light: #fdf5e6;
+  --amber-border: #e6d5a8;
+  --green: #3a7a5a;
+  --green-light: #e6f4ed;
+  --green-border: #a8d8bc;
+  --purple: #6a5acd;
+  --purple-light: #f0eef8;
+  --purple-border: #c4bfe6;
+
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  --sans: 'Inter', 'Noto Sans SC', -apple-system, sans-serif;
+  --sans-cn: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --serif-cn: 'Noto Serif SC', 'SimSun', serif;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ── Header ── */
+.header {
+  padding: 4.5rem 0 1.5rem;
+  text-align: center;
+}
+
+.header__eyebrow {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 0.6rem;
+  opacity: 0; animation: fadeUp .7s ease .1s forwards;
+}
+
+.header__title {
+  font-family: var(--sans);
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  opacity: 0; animation: fadeUp .7s ease .25s forwards;
+}
+
+.header__desc {
+  margin-top: 0.7rem;
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0; animation: fadeUp .7s ease .4s forwards;
+}
+
+.header__sep {
+  width: 40px; height: 2px;
+  background: var(--amber);
+  margin: 1.8rem auto 0;
+  opacity: 0; animation: fadeUp .7s ease .5s forwards;
+}
+
+/* ── Stats Row ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 2rem;
+  opacity: 0; animation: fadeUp .7s ease .6s forwards;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.2rem 1rem;
+  text-align: center;
+}
+
+.stat-card__number {
+  font-family: var(--mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.stat-card__number--amber { color: var(--amber); }
+.stat-card__number--blue { color: var(--blue); }
+.stat-card__number--green { color: var(--green); }
+.stat-card__number--purple { color: var(--purple); }
+
+.stat-card__label {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  margin-top: 0.4rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+/* ── Section ── */
+.section { padding: 2rem 0; }
+.section__title {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.section__title::before {
+  content: '';
+  width: 16px; height: 3px;
+  border-radius: 2px;
+  background: var(--amber);
+}
+.section__subtitle {
+  font-size: 0.92rem;
+  color: var(--text-mid);
+  margin-bottom: 1.2rem;
+  padding-left: calc(16px + 0.6rem);
+}
+.section__subtitle--clickable {
+  color: var(--green);
+  font-weight: 600;
+  font-size: 1.05rem;
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Report Grid ── */
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.report-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.4rem 1.5rem;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all .25s ease;
+  position: relative;
+}
+
+.report-card:hover {
+  border-color: var(--green);
+  background: var(--green-light);
+  box-shadow: 0 2px 12px rgba(58,122,90,0.08);
+  transform: translateY(-2px);
+}
+
+.report-card__icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--green-light);
+  border: 1px solid var(--green-border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all .25s ease;
+}
+.report-card:hover .report-card__icon {
+  background: var(--green);
+  border-color: var(--green);
+}
+.report-card__icon svg {
+  width: 18px; height: 18px;
+  transition: all .25s ease;
+}
+.report-card:hover .report-card__icon svg { stroke: #fff; }
+
+.report-card__body { flex: 1; min-width: 0; }
+.report-card__name {
+  font-family: var(--serif-cn);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.report-card__hint {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  margin-top: 3px;
+  font-family: var(--sans);
+  font-weight: 500;
+}
+.report-card:hover .report-card__hint { color: var(--green); }
+
+.report-card__arrow {
+  color: var(--text-faint);
+  transition: all .25s ease;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.report-card__arrow svg {
+  width: 18px; height: 18px;
+}
+.report-card:hover .report-card__arrow {
+  color: var(--green);
+  transform: translateX(3px);
+}
+
+/* ── Knowledge Banner ── */
+.knowledge-banner {
+  background: var(--amber-light);
+  border: 1px solid var(--amber-border);
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.knowledge-banner__icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid var(--amber-border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.1rem;
+}
+
+.knowledge-banner__text {
+  flex: 1;
+}
+
+.knowledge-banner__title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: var(--mono);
+}
+
+.knowledge-banner__desc {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  margin-top: 0.25rem;
+  line-height: 1.55;
+}
+
+/* ── Agent Grid ── */
+.agent-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.agent-chip {
+  background: var(--card);
+  border: 1px solid var(--purple-border);
+  border-radius: 8px;
+  padding: 0.7rem 0.8rem;
+  text-align: center;
+  transition: all .2s ease;
+  cursor: default;
+  position: relative;
+}
+
+.agent-chip:hover {
+  border-color: var(--purple);
+  background: var(--purple-light);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(106,90,205,0.1);
+}
+
+.agent-chip__cn {
+  font-family: var(--sans-cn);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.agent-chip__en {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  color: var(--text-light);
+  margin-top: 2px;
+  line-height: 1.25;
+}
+
+.agent-chip__num {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  color: var(--purple);
+  opacity: 0.4;
+}
+
+/* ── Matching Logic ── */
+.matching-note {
+  margin-top: 1rem;
+  padding: 0.9rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
+.matching-note strong {
+  color: var(--purple);
+  font-weight: 600;
+}
+
+/* ── Data Sources Section ── */
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.data-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.3rem 1.2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.data-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 3px;
+}
+.data-card--structured::before { background: var(--blue); }
+.data-card--unstructured::before { background: var(--amber); }
+.data-card--market::before { background: var(--green); }
+
+.data-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.data-card__icon {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.data-card--structured .data-card__icon { background: var(--blue-light); }
+.data-card--unstructured .data-card__icon { background: var(--amber-light); }
+.data-card--market .data-card__icon { background: var(--green-light); }
+
+.data-card__icon svg { width: 14px; height: 14px; }
+
+.data-card__title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.data-card__items {
+  list-style: none;
+  padding: 0;
+}
+
+.data-card__items li {
+  font-size: 0.75rem;
+  color: var(--text-mid);
+  padding: 0.15rem 0;
+  padding-left: 0.9rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.data-card__items li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0.55rem;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--text-faint);
+}
+
+.data-card__badge {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+.data-card--structured .data-card__badge { background: var(--blue-light); color: var(--blue); }
+.data-card--unstructured .data-card__badge { background: var(--amber-light); color: var(--amber); }
+.data-card--market .data-card__badge { background: var(--green-light); color: var(--green); }
+
+/* ── Architecture ── */
+.arch-wrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2.5rem 2rem 2rem;
+  margin-top: 0.5rem;
+  overflow-x: auto;
+}
+
+.arch-svg {
+  display: block;
+  margin: 0 auto;
+  min-width: 900px;
+  max-width: 100%;
+}
+
+/* SVG anims */
+@keyframes dash { to { stroke-dashoffset: -16; } }
+@keyframes pulse { 0%,100% { opacity:.35; } 50% { opacity:1; } }
+.flow { stroke-dasharray: 6 5; animation: dash 1.2s linear infinite; }
+.pulse-d { animation: pulse 2.5s ease-in-out infinite; }
+
+/* ── Pipeline Section ── */
+.pipeline-wrap {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.pipeline-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.pipeline-step {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.pipeline-step__box {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.pipeline-step__box--blue { background: var(--blue-light); color: var(--blue); border: 1px solid var(--blue-border); }
+.pipeline-step__box--amber { background: var(--amber-light); color: var(--amber); border: 1px solid var(--amber-border); }
+.pipeline-step__box--purple { background: var(--purple-light); color: var(--purple); border: 1px solid var(--purple-border); }
+.pipeline-step__box--green { background: var(--green-light); color: var(--green); border: 1px solid var(--green-border); }
+
+.pipeline-arrow {
+  color: var(--text-faint);
+  font-size: 0.9rem;
+  padding: 0 0.4rem;
+  flex-shrink: 0;
+}
+
+/* ── Footer ── */
+.footer {
+  padding: 2.5rem 0 3rem;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  border-top: 1px solid var(--border-light);
+  margin-top: 2rem;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Animations (staggered) ── */
+.fade-in { opacity: 0; animation: fadeUp .6s ease forwards; }
+.delay-1 { animation-delay: .1s; }
+.delay-2 { animation-delay: .2s; }
+.delay-3 { animation-delay: .3s; }
+.delay-4 { animation-delay: .4s; }
+.delay-5 { animation-delay: .5s; }
+.delay-6 { animation-delay: .6s; }
+.delay-7 { animation-delay: .7s; }
+.delay-8 { animation-delay: .8s; }
+
+@media (max-width: 720px) {
+  .container { padding: 0 1rem; }
+  .header { padding: 3rem 0 1.5rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .report-grid { grid-template-columns: 1fr; }
+  .agent-grid { grid-template-columns: repeat(2, 1fr); }
+  .data-grid { grid-template-columns: 1fr; }
+  .arch-wrap { padding: 1.5rem 1rem; }
+  .pipeline-steps { gap: 0.3rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- HERO                                     -->
+  <!-- ════════════════════════════════════════ -->
+  <header class="header">
+    <div class="header__eyebrow">Multi-Agent System &middot; Equity Research</div>
+    <h1 class="header__title">Agent Swarm for Equity Research</h1>
+    <p class="header__desc">
+      26 industry-specialized agents, each distilled from real analyst discussions and training materials at
+      <strong style="color:var(--amber)">CICC</strong> (China International Capital Corporation).
+      An orchestrator routes each company to matched specialist agents by its actual business model.
+    </p>
+    <div class="header__sep"></div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-card__number stat-card__number--purple">26</div>
+        <div class="stat-card__label">Industry Agents</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number stat-card__number--blue">15+</div>
+        <div class="stat-card__label">Data Tables</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number stat-card__number--amber">~4 min</div>
+        <div class="stat-card__label">Per Report</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card__number stat-card__number--green">~&yen;0.5</div>
+        <div class="stat-card__label">Per Report</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- SAMPLE REPORTS                           -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section__title">Sample Output</div>
+    <div class="section__subtitle section__subtitle--clickable">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="vertical-align:-2px;margin-right:4px;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+<strong>Click</strong>&nbsp;any card below to view the full interactive report
+    </div>
+    <div class="report-grid">
+      <a class="report-card" href="https://mycroftyan.github.io/Equity/行云科技_研报.html" target="_blank">
+        <div class="report-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#3a7a5a" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+        <div class="report-card__body"><div class="report-card__name">行云科技</div><div class="report-card__hint">Supply Chain SaaS</div></div>
+        <span class="report-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+      </a>
+      <a class="report-card" href="https://mycroftyan.github.io/Equity/爱美客_研报.html" target="_blank">
+        <div class="report-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#3a7a5a" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+        <div class="report-card__body"><div class="report-card__name">爱美客</div><div class="report-card__hint">Medical Aesthetics</div></div>
+        <span class="report-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+      </a>
+      <a class="report-card" href="https://mycroftyan.github.io/Equity/招商轮船_研报.html" target="_blank">
+        <div class="report-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#3a7a5a" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+        <div class="report-card__body"><div class="report-card__name">招商轮船</div><div class="report-card__hint">Shipping & Logistics</div></div>
+        <span class="report-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+      </a>
+      <a class="report-card" href="https://mycroftyan.github.io/Equity/沃尔德_研报.html" target="_blank">
+        <div class="report-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#3a7a5a" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+        <div class="report-card__body"><div class="report-card__name">沃尔德</div><div class="report-card__hint">Precision Tooling</div></div>
+        <span class="report-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+      </a>
+      <a class="report-card" href="https://mycroftyan.github.io/Equity/中际旭创_研报.html" target="_blank">
+        <div class="report-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#3a7a5a" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+        <div class="report-card__body"><div class="report-card__name">中际旭创</div><div class="report-card__hint">Optical Transceivers</div></div>
+        <span class="report-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+      </a>
+      <a class="report-card" href="https://mycroftyan.github.io/Equity/贵州茅台_研报.html" target="_blank">
+        <div class="report-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="#3a7a5a" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg></div>
+        <div class="report-card__body"><div class="report-card__name">贵州茅台</div><div class="report-card__hint">Premium Liquor</div></div>
+        <span class="report-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- ARCHITECTURE DIAGRAM (right after samples) -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section__title">System Architecture</div>
+    <div class="arch-wrap">
+      <svg class="arch-svg" viewBox="0 0 960 325" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2d6a8a"/><stop offset="100%" stop-color="#245a76"/></linearGradient>
+          <linearGradient id="gAmber" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c8960e"/><stop offset="100%" stop-color="#a87a08"/></linearGradient>
+          <linearGradient id="gGreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3a7a5a"/><stop offset="100%" stop-color="#2e6648"/></linearGradient>
+          <linearGradient id="gPurple" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6a5acd"/><stop offset="100%" stop-color="#5548b0"/></linearGradient>
+          <marker id="arrowA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#c8960e" opacity="0.5"/></marker>
+          <marker id="arrowG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#3a7a5a" opacity="0.5"/></marker>
+          <marker id="arrowP" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1 L 10 5 L 0 9 z" fill="#6a5acd" opacity="0.4"/></marker>
+          <filter id="shadow"><feDropShadow dx="0" dy="1" stdDeviation="3" flood-opacity="0.06"/></filter>
+        </defs>
+
+        <!-- ═══════════════════════════════════════════════════════ -->
+        <!-- All 4 agent blocks top-aligned at y=14                 -->
+        <!-- Data Agent | Orchestrator Agent | 26 Industry | Reasoning -->
+        <!-- ═══════════════════════════════════════════════════════ -->
+
+        <!-- Gaps: all 10px. Data(5,175) Orch(190,110) Industry(310,365) Reasoning(685,250) -->
+
+        <!-- ═══ 1. DATA AGENT ═══ -->
+        <g filter="url(#shadow)">
+          <rect x="5" y="14" width="175" height="300" rx="12" fill="#fff" stroke="#b8d6e6" stroke-width="1.2"/>
+          <rect x="5" y="14" width="175" height="32" rx="12 12 0 0" fill="url(#gBlue)"/>
+          <text x="92" y="35" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">Data Agent</text>
+        </g>
+        <g>
+          <rect x="17" y="58" width="151" height="64" rx="6" fill="#fafaf8" stroke="#ddd9d0" stroke-width="0.8"/>
+          <text x="28" y="74" font-family="JetBrains Mono, monospace" font-size="9" font-weight="500" fill="#2d6a8a">MySQL</text>
+          <text x="28" y="87" font-family="Inter, sans-serif" font-size="7" fill="#8a857a">Financial statements &middot; Dividends</text>
+          <text x="28" y="98" font-family="Inter, sans-serif" font-size="7" fill="#8a857a">Equity changes &middot; Segment revenue</text>
+          <text x="28" y="109" font-family="Inter, sans-serif" font-size="7" fill="#8a857a">Board &amp; executives &middot; Valuation</text>
+        </g>
+        <g>
+          <rect x="17" y="130" width="151" height="50" rx="6" fill="#fafaf8" stroke="#ddd9d0" stroke-width="0.8"/>
+          <text x="28" y="146" font-family="JetBrains Mono, monospace" font-size="9" font-weight="500" fill="#2d6a8a">PDF Parser</text>
+          <text x="28" y="159" font-family="Inter, sans-serif" font-size="7" fill="#8a857a">Annual report MD&amp;A &middot; Risk disclosure</text>
+          <text x="28" y="170" font-family="Inter, sans-serif" font-size="7" fill="#8a857a">Core competitiveness &middot; R&amp;D narrative</text>
+        </g>
+        <g>
+          <rect x="17" y="188" width="151" height="50" rx="6" fill="#fafaf8" stroke="#ddd9d0" stroke-width="0.8"/>
+          <text x="28" y="204" font-family="JetBrains Mono, monospace" font-size="9" font-weight="500" fill="#2d6a8a">Web / API</text>
+          <text x="28" y="217" font-family="Inter, sans-serif" font-size="7" fill="#8a857a">CNINFO announcements &middot; Filings</text>
+          <text x="28" y="228" font-family="Inter, sans-serif" font-size="7" fill="#8a857a">JoinQuant market data &middot; Index</text>
+        </g>
+        <rect x="28" y="252" width="140" height="18" rx="4" fill="#e4f0f6" stroke="#b8d6e6" stroke-width="0.6"/>
+        <text x="98" y="265" font-family="JetBrains Mono, monospace" font-size="7" fill="#2d6a8a" text-anchor="middle">2015 &ndash; 2026 &middot; All A-shares</text>
+        <text x="92" y="286" font-family="JetBrains Mono, monospace" font-size="7" fill="#b5b0a5" text-anchor="middle">15+ tables &middot; auto-extraction</text>
+
+        <!-- ═══ 2. ORCHESTRATOR AGENT ═══ -->
+        <g filter="url(#shadow)">
+          <rect x="190" y="14" width="110" height="100" rx="10" fill="url(#gAmber)" opacity="0.95"/>
+          <text x="245" y="36" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">Orchestrator</text>
+          <text x="245" y="50" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">Agent</text>
+          <line x1="204" y1="58" x2="286" y2="58" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <text x="245" y="73" font-family="Inter, sans-serif" font-size="7" fill="rgba(255,255,255,0.65)" text-anchor="middle">business model</text>
+          <text x="245" y="84" font-family="Inter, sans-serif" font-size="7" fill="rgba(255,255,255,0.65)" text-anchor="middle">analysis</text>
+          <text x="245" y="100" font-family="Inter, sans-serif" font-size="7" fill="rgba(255,255,255,0.65)" text-anchor="middle">agent routing</text>
+        </g>
+
+        <!-- raw.json (centered below Orch, at y=190) -->
+        <g filter="url(#shadow)">
+          <rect x="213" y="190" width="64" height="50" rx="7" fill="#fff" stroke="#e6d5a8" stroke-width="1.3"/>
+          <text x="245" y="210" font-family="JetBrains Mono, monospace" font-size="9" font-weight="500" fill="#b8860b" text-anchor="middle">raw</text>
+          <text x="245" y="224" font-family="JetBrains Mono, monospace" font-size="9" font-weight="500" fill="#b8860b" text-anchor="middle">.json</text>
+          <circle cx="245" cy="235" r="2" fill="#b8860b" class="pulse-d"/>
+        </g>
+
+        <!-- Data Agent → raw.json -->
+        <line x1="180" y1="215" x2="211" y2="215" stroke="#c8960e" stroke-width="1.2" opacity="0.4" class="flow" marker-end="url(#arrowA)"/>
+        <!-- raw.json → Orchestrator (up) -->
+        <line x1="245" y1="188" x2="245" y2="116" stroke="#c8960e" stroke-width="1.2" opacity="0.4" class="flow" marker-end="url(#arrowA)"/>
+        <!-- Orchestrator → Industry Agents (right) -->
+        <line x1="300" y1="55" x2="308" y2="55" stroke="#6a5acd" stroke-width="1.2" opacity="0.4" class="flow" marker-end="url(#arrowP)"/>
+
+        <!-- ═══ 3. 26 INDUSTRY RESEARCH AGENTS ═══ -->
+        <g filter="url(#shadow)">
+          <rect x="310" y="14" width="365" height="300" rx="14" fill="#fff" stroke="#c4bfe6" stroke-width="1.2"/>
+          <rect x="310" y="14" width="365" height="34" rx="14 14 0 0" fill="url(#gPurple)"/>
+          <text x="492" y="36" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">26 Industry Research Agents</text>
+        </g>
+
+        <!-- Tiles: 3 col × 4 row. Col: 326, 434, 542. Tile: 100w × 26h -->
+        <g><rect x="326" y="60" width="100" height="26" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.7"/><text x="376" y="77" font-family="Noto Sans SC, sans-serif" font-size="9" fill="#5548b0" text-anchor="middle">食品饮料</text></g>
+        <g><rect x="434" y="60" width="100" height="26" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.7"/><text x="484" y="77" font-family="Noto Sans SC, sans-serif" font-size="9" fill="#5548b0" text-anchor="middle">电子与半导体</text></g>
+        <g><rect x="542" y="60" width="118" height="26" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.7"/><text x="601" y="77" font-family="Noto Sans SC, sans-serif" font-size="9" fill="#5548b0" text-anchor="middle">生物医药</text></g>
+
+        <g><rect x="326" y="92" width="100" height="26" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.7"/><text x="376" y="109" font-family="Noto Sans SC, sans-serif" font-size="9" fill="#5548b0" text-anchor="middle">交通运输</text></g>
+        <g><rect x="434" y="92" width="100" height="26" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.7"/><text x="484" y="109" font-family="Noto Sans SC, sans-serif" font-size="9" fill="#5548b0" text-anchor="middle">银行</text></g>
+        <g><rect x="542" y="92" width="118" height="26" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.7"/><text x="601" y="109" font-family="Noto Sans SC, sans-serif" font-size="9" fill="#5548b0" text-anchor="middle">美容护理</text></g>
+
+        <g><rect x="326" y="124" width="100" height="26" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.7"/><text x="376" y="141" font-family="Noto Sans SC, sans-serif" font-size="9" fill="#5548b0" text-anchor="middle">计算机与AI</text></g>
+        <g><rect x="434" y="124" width="100" height="26" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.7"/><text x="484" y="141" font-family="Noto Sans SC, sans-serif" font-size="9" fill="#5548b0" text-anchor="middle">有色金属</text></g>
+        <g><rect x="542" y="124" width="118" height="26" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.7"/><text x="601" y="141" font-family="Noto Sans SC, sans-serif" font-size="9" fill="#5548b0" text-anchor="middle">通信及设备</text></g>
+
+        <g><rect x="326" y="156" width="100" height="26" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.7"/><text x="376" y="173" font-family="Noto Sans SC, sans-serif" font-size="9" fill="#5548b0" text-anchor="middle">机械零部件</text></g>
+        <g><rect x="434" y="156" width="100" height="26" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.7"/><text x="484" y="173" font-family="Noto Sans SC, sans-serif" font-size="9" fill="#5548b0" text-anchor="middle">汽车整车</text></g>
+        <g><rect x="542" y="156" width="118" height="26" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.7"/><text x="601" y="173" font-family="Noto Sans SC, sans-serif" font-size="9" fill="#5548b0" text-anchor="middle">电力新能源</text></g>
+
+        <text x="492" y="206" font-family="JetBrains Mono, monospace" font-size="10" fill="#6a5acd" text-anchor="middle" opacity="0.55">+ 14 more industry agents</text>
+
+        <rect x="406" y="218" width="172" height="22" rx="5" fill="#f0eef8" stroke="#c4bfe6" stroke-width="0.6"/>
+        <text x="492" y="233" font-family="JetBrains Mono, monospace" font-size="8" fill="#6a5acd" text-anchor="middle">distilled from CICC analysts</text>
+
+        <text x="492" y="262" font-family="Inter, sans-serif" font-size="7.5" fill="#8a857a" text-anchor="middle" font-style="italic">e.g. 行云科技 &rarr; Retail &middot; 爱美客 &rarr; Beauty &middot; 茅台 &rarr; Food &middot; 旭创 &rarr; Electronics</text>
+
+        <rect x="348" y="276" width="288" height="26" rx="5" fill="#fafaf8" stroke="#ddd9d0" stroke-width="0.8"/>
+        <text x="492" y="293" font-family="Inter, sans-serif" font-size="7.5" fill="#5c5850" text-anchor="middle">Business Model &rarr; Financials &rarr; Industry Logic &rarr; Draft &rarr; Report</text>
+
+        <!-- ═══ 4. REASONING AGENT ═══ -->
+
+        <!-- flow lines -->
+        <path d="M675 80 Q688 80 692 55 L698 45" stroke="#3a7a5a" stroke-width="1" fill="none" opacity="0.25" class="flow"/>
+        <path d="M675 120 Q690 120 694 80 L700 60" stroke="#3a7a5a" stroke-width="1" fill="none" opacity="0.25" class="flow"/>
+        <path d="M675 160 Q692 160 696 110 L702 75" stroke="#3a7a5a" stroke-width="1" fill="none" opacity="0.25" class="flow"/>
+
+        <g filter="url(#shadow)">
+          <rect x="685" y="14" width="250" height="72" rx="10" fill="url(#gGreen)" opacity="0.95"/>
+          <text x="810" y="36" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">Reasoning Agent</text>
+          <line x1="703" y1="46" x2="917" y2="46" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+          <text x="810" y="61" font-family="Inter, sans-serif" font-size="8" fill="rgba(255,255,255,0.65)" text-anchor="middle">analysis &amp; reasoning &rarr; structured report</text>
+          <text x="810" y="73" font-family="Inter, sans-serif" font-size="8" fill="rgba(255,255,255,0.65)" text-anchor="middle">fact/judgment separation &middot; traceable citations</text>
+        </g>
+
+        <line x1="810" y1="86" x2="810" y2="106" stroke="#3a7a5a" stroke-width="1.2" fill="none" opacity="0.35" class="flow" marker-end="url(#arrowG)"/>
+
+        <g filter="url(#shadow)">
+          <rect x="695" y="114" width="230" height="126" rx="10" fill="#fff" stroke="#a8d8bc" stroke-width="1.3"/>
+
+          <g transform="translate(713, 128)">
+            <rect x="0" y="0" width="16" height="20" rx="2" fill="#e6f4ed" stroke="#a8d8bc" stroke-width="0.7"/>
+            <line x1="4" y1="5" x2="12" y2="5" stroke="#3a7a5a" stroke-width="0.8" opacity="0.4"/>
+            <line x1="4" y1="9" x2="11" y2="9" stroke="#3a7a5a" stroke-width="0.8" opacity="0.4"/>
+            <line x1="4" y1="13" x2="9" y2="13" stroke="#3a7a5a" stroke-width="0.8" opacity="0.4"/>
+          </g>
+          <text x="739" y="142" font-family="Inter, sans-serif" font-size="9" fill="#5c5850">Analysis draft (.md)</text>
+
+          <g transform="translate(713, 158)">
+            <rect x="0" y="0" width="16" height="20" rx="2" fill="#e6f4ed" stroke="#a8d8bc" stroke-width="0.7"/>
+            <text x="8" y="14" font-family="JetBrains Mono, monospace" font-size="6" fill="#3a7a5a" text-anchor="middle">&lt;/&gt;</text>
+          </g>
+          <text x="739" y="172" font-family="Inter, sans-serif" font-size="9" fill="#5c5850">Interactive report (.html)</text>
+
+          <line x1="713" y1="190" x2="907" y2="190" stroke="#eae7e0" stroke-width="0.8"/>
+          <text x="810" y="207" font-family="JetBrains Mono, monospace" font-size="8" fill="#b5b0a5" text-anchor="middle">~4 min &middot; ~&yen;0.5 per report</text>
+          <text x="810" y="224" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#b5b0a5" text-anchor="middle">~60 KB &middot; self-contained HTML</text>
+        </g>
+
+        <!-- LEGEND -->
+        <g transform="translate(695, 268)">
+          <rect x="0" y="0" width="12" height="12" rx="2" fill="url(#gBlue)"/>
+          <text x="17" y="10" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#5c5850">Data Agent</text>
+          <rect x="108" y="0" width="12" height="12" rx="2" fill="url(#gAmber)"/>
+          <text x="125" y="10" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#5c5850">Orchestrator Agent</text>
+          <rect x="0" y="18" width="12" height="12" rx="2" fill="url(#gPurple)"/>
+          <text x="17" y="28" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#5c5850">Industry Agents</text>
+          <rect x="108" y="18" width="12" height="12" rx="2" fill="url(#gGreen)"/>
+          <text x="125" y="28" font-family="JetBrains Mono, monospace" font-size="7.5" fill="#5c5850">Reasoning Agent</text>
+        </g>
+
+      </svg>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- REAL PRACTICE — AGENT SWARM              -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section__title">Real Practice &mdash; Industry-Specialized Agent Swarm</div>
+    <div class="section__subtitle">Each agent encodes sector-specific analytical frameworks distilled from real analyst expertise</div>
+
+    <div class="knowledge-banner">
+      <div class="knowledge-banner__icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="1.8" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+      </div>
+      <div class="knowledge-banner__text">
+        <div class="knowledge-banner__title">Knowledge Source</div>
+        <div class="knowledge-banner__desc">
+          Each agent's industry SkillSet was distilled from discussions with sector analysts at
+          <strong>CICC</strong> and iteratively refined through <strong>4 rounds</strong> of internal research materials review.
+          The orchestrator matches companies to agents by <em>actual business model</em>, not by stock exchange industry labels.
+        </div>
+      </div>
+    </div>
+
+    <div class="agent-grid">
+      <div class="agent-chip"><div class="agent-chip__num">01</div><div class="agent-chip__cn">有色金属</div><div class="agent-chip__en">Non-ferrous Metals</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">02</div><div class="agent-chip__cn">钢铁能源煤炭化工</div><div class="agent-chip__en">Steel, Energy & Chemicals</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">03</div><div class="agent-chip__cn">银行</div><div class="agent-chip__en">Banking</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">04</div><div class="agent-chip__cn">非银金融</div><div class="agent-chip__en">Non-bank Finance</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">05</div><div class="agent-chip__cn">地产</div><div class="agent-chip__en">Real Estate</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">06</div><div class="agent-chip__cn">商贸零售及服务</div><div class="agent-chip__en">Retail & Services</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">07</div><div class="agent-chip__cn">纺织服装</div><div class="agent-chip__en">Textiles & Apparel</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">08</div><div class="agent-chip__cn">轻工制造</div><div class="agent-chip__en">Light Manufacturing</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">09</div><div class="agent-chip__cn">农林牧渔</div><div class="agent-chip__en">Agriculture & Forestry</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">10</div><div class="agent-chip__cn">交通运输</div><div class="agent-chip__en">Transportation</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">11</div><div class="agent-chip__cn">美容护理</div><div class="agent-chip__en">Beauty & Personal Care</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">12</div><div class="agent-chip__cn">国防军工</div><div class="agent-chip__en">Defense & Military</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">13</div><div class="agent-chip__cn">建筑材料</div><div class="agent-chip__en">Construction Materials</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">14</div><div class="agent-chip__cn">建筑装饰</div><div class="agent-chip__en">Construction & Decoration</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">15</div><div class="agent-chip__cn">计算机软件及AI应用</div><div class="agent-chip__en">Software & AI</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">16</div><div class="agent-chip__cn">家用电器</div><div class="agent-chip__en">Home Appliances</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">17</div><div class="agent-chip__cn">食品饮料</div><div class="agent-chip__en">Food & Beverage</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">18</div><div class="agent-chip__cn">传媒互联网游戏</div><div class="agent-chip__en">Media, Internet & Gaming</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">19</div><div class="agent-chip__cn">生物医药</div><div class="agent-chip__en">Biopharmaceuticals</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">20</div><div class="agent-chip__cn">医疗器械</div><div class="agent-chip__en">Medical Devices</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">21</div><div class="agent-chip__cn">电力设备与新能源</div><div class="agent-chip__en">Power & New Energy</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">22</div><div class="agent-chip__cn">电子与半导体</div><div class="agent-chip__en">Electronics & Semicon</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">23</div><div class="agent-chip__cn">通信及设备</div><div class="agent-chip__en">Telecom & Equipment</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">24</div><div class="agent-chip__cn">机械零部件</div><div class="agent-chip__en">Machinery & Components</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">25</div><div class="agent-chip__cn">汽车整车</div><div class="agent-chip__en">Automobiles</div></div>
+      <div class="agent-chip"><div class="agent-chip__num">26</div><div class="agent-chip__cn">环保公共事业</div><div class="agent-chip__en">Utilities & Environment</div></div>
+    </div>
+
+    <div class="matching-note">
+      <strong>Routing logic:</strong>
+      The orchestrator answers <em>"What does this company actually sell or provide?"</em> after analyzing its business model,
+      then matches 1&ndash;3 specialist agents accordingly. Companies are never routed by stock exchange industry tags &mdash;
+      a conglomerate selling both medical devices and software would invoke both the Medical Devices and Software &amp; AI agents.
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- HIGH CONFIDENCE — DATA SOURCES           -->
+  <!-- ════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section__title">High Confidence &mdash; Traceable Data Sources</div>
+    <div class="section__subtitle">All analysis grounded in first-hand filings with traceable sources and calculation basis</div>
+
+    <div class="data-grid">
+      <div class="data-card data-card--structured">
+        <div class="data-card__header">
+          <div class="data-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2d6a8a" stroke-width="1.8" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <div class="data-card__title">Structured Financials</div>
+        </div>
+        <ul class="data-card__items">
+          <li>Income, balance sheet, cash flow statements</li>
+          <li>Stock valuation & share structure</li>
+          <li>Dividend history & equity changes</li>
+          <li>Board composition & executive profiles</li>
+          <li>Industry & segment revenue breakdown</li>
+        </ul>
+        <div class="data-card__badge">MySQL &middot; 15+ tables</div>
+      </div>
+
+      <div class="data-card data-card--unstructured">
+        <div class="data-card__header">
+          <div class="data-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#b8860b" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          </div>
+          <div class="data-card__title">Annual Report PDFs</div>
+        </div>
+        <ul class="data-card__items">
+          <li>MD&A (Management Discussion & Analysis)</li>
+          <li>Core competitiveness & R&D narrative</li>
+          <li>Risk disclosure sections</li>
+          <li>Auto-fallback: summary when full report is scanned</li>
+        </ul>
+        <div class="data-card__badge">CNINFO &middot; PDF Parsing</div>
+      </div>
+
+      <div class="data-card data-card--market">
+        <div class="data-card__header">
+          <div class="data-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#3a7a5a" stroke-width="1.8" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="data-card__title">Market & Announcements</div>
+        </div>
+        <ul class="data-card__items">
+          <li>Daily prices & trading volume</li>
+          <li>Index constituent membership (point-in-time)</li>
+          <li>Corporate announcements & filings</li>
+          <li>Earnings forecasts & analyst consensus</li>
+        </ul>
+        <div class="data-card__badge">2015 &ndash; 2026 &middot; All A-shares</div>
+      </div>
+    </div>
+
+    <!-- ── Pipeline ── -->
+    <div class="pipeline-wrap">
+      <div class="pipeline-steps">
+        <div class="pipeline-step">
+          <div class="pipeline-step__box pipeline-step__box--blue">Data Agent</div>
+        </div>
+        <span class="pipeline-arrow">&rarr;</span>
+        <div class="pipeline-step">
+          <div class="pipeline-step__box pipeline-step__box--amber">Orchestrator</div>
+        </div>
+        <span class="pipeline-arrow">&rarr;</span>
+        <div class="pipeline-step">
+          <div class="pipeline-step__box pipeline-step__box--purple">Industry Agent(s)</div>
+        </div>
+        <span class="pipeline-arrow">&rarr;</span>
+        <div class="pipeline-step">
+          <div class="pipeline-step__box pipeline-step__box--green">Reasoning Agent</div>
+        </div>
+        <span class="pipeline-arrow">&rarr;</span>
+        <div class="pipeline-step">
+          <div class="pipeline-step__box pipeline-step__box--green">Report</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+    Agent Swarm for Equity Research &mdash; Multi-Agent Architecture &middot; 2026
+  </div>
+</footer>
+
+</body>
+</html>
